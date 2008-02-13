@@ -35,7 +35,7 @@ public:
 
 	string toString()
 	{
-		string szAuxString = ((string) getPrimerOcteto()) + "." + ((string) setSegundoOcteto());
+		string szAuxString = ((string) getPrimerOcteto()) + "." + ((string) getSegundoOcteto());
 
 		return szAuxString;
 	}
