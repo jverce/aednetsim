@@ -64,6 +64,11 @@ public class Router
 			m_ArchivoSalida.open(szFileName);
 		}
 
+		void setTabla(Tabla tabla)
+		{
+			m_TablaEnrutamiento = tabla;
+		}
+
 		void agregarHost(Host* host)
 		{
 			m_ListaHosts.push_back(host);
