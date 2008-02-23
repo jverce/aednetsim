@@ -1,10 +1,12 @@
 #include <fstream>
 #include <iostream>
-#include <stdio.h>
+#include <cstdio>
+#include <cstdlib>
 
 #define NOMBRE_ARCHIVO "Datos.txt"
 #define OTRA_COLUMNA ' '
 #define OTRA_FILA '\n'
+#define MAX_N_ROUTER 256
 
 using namespace std;
 
@@ -15,16 +17,19 @@ class LectorArchivoTexto {
 		int n_Pc;
 		int AnchoBanda;
 		FILE *Datos;
-		char ListaRouters[128];
+		int ListaRouters[128];
+//		int Matriz_Adyacencia[MAX_N_ROUTER][MAX_N_ROUTER];
+		int** Matriz_Adyacencia;
 
 	
 	public:
-		Lector();
+		LectorArchivoTexto();
 		int getAnchoBanda(int Router1 , int Router2);
 		int getNumeroPcs(int Router);
-		char* getRoutersConectados(int Router);
+		int* getRoutersConectados(int Router);
 		void Routers();
 		int getRouters();
+		int** Matriz();
 };
 
 LectorArchivoTexto::LectorArchivoTexto() 
@@ -35,15 +40,14 @@ LectorArchivoTexto::LectorArchivoTexto()
 		printf( "No es posible abrir el archivo Datos.txt\n" );
 	}
 
-	getRouters();
+	Routers();
 }
 
 int LectorArchivoTexto::getAnchoBanda(int Router1, int Router2) {
     ifstream datos(NOMBRE_ARCHIVO);
-	if ( Router1 >= n_Routers || Router2 >= n_Routers) { 
-		cout << "Numeros de Routers invalidos" << endl;	
+	if ( Router1 > n_Routers || Router2 > n_Routers) { 
 		
-		return -1;
+		return 0;
 	} else {
 		char t_AnchoBanda[50];
 		
@@ -80,7 +84,7 @@ int LectorArchivoTexto::getNumeroPcs(int Router) {
 void LectorArchivoTexto::Routers() {
 	ifstream datos (NOMBRE_ARCHIVO);
 
-	n_Routers = 1;
+	n_Routers = 0;
 	while(!datos.eof()) {
 		if (datos.get() == OTRA_FILA ){
 			n_Routers++;
@@ -90,18 +94,17 @@ void LectorArchivoTexto::Routers() {
 	datos.clear();
 };
 
-char* LectorArchivoTexto::getRoutersConectados(int Router) {
-	ifstream datos (NOMBRE_ARCHIVO);
-	int c = 1;
+int* LectorArchivoTexto::getRoutersConectados(int Router) {
+
+	int c = 0;
 	
-	for (int i=1; i <= n_Routers ; i++) {
-		if (getAnchoBanda(Router, i) != 0) {
-			ListaRouters[c] = 'i';
+	for (int i=0; i < n_Routers ; i++) {
+		if (getAnchoBanda(Router, i+1) != 0) {
+			ListaRouters[c] = i+1;
 			c++;	
 		}
 	}
 
-	datos.clear();
 
 	return ListaRouters;
 };
@@ -109,3 +112,32 @@ char* LectorArchivoTexto::getRoutersConectados(int Router) {
 int LectorArchivoTexto::getRouters() {
 	return n_Routers;
 };
+
+
+int** LectorArchivoTexto::Matriz(){
+	
+	Matriz_Adyacencia = (int**) malloc(sizeof(int) * MAX_N_ROUTER * 2);
+		for (int i = 0; i< MAX_N_ROUTER ; i++){
+			for (int j = 0; j < MAX_N_ROUTER ; j++ ){
+				**Matriz_Adyacencia = getAnchoBanda(i,j);
+				(*Matriz_Adyacencia)++;
+			}
+		
+		}
+	return Matriz_Adyacencia;
+
+};
+
+
+int main (){
+	LectorArchivoTexto Lector;
+	cout << Lector.getRouters()<< endl;
+	cout << Lector.Matriz() << endl;
+	return 0;
+
+
+
+
+
+
+}
