@@ -114,16 +114,15 @@ int LectorArchivoTexto::getRouters() {
 
 
 Matriz LectorArchivoTexto::getMatriz(){
-	Matriz m;
-		for (int cii = 1; cii <= MAX_N_ROUTER; cii++){
-			for (int cij = 1 ; cij <= MAX_N_ROUTER; cij++){
-				m.setElemento(cii-1, cij-1 , getAnchoBanda(cii,cij));
-			}
-		
-		}
+	Matriz matriz;
 
+	for (int cii = 1; cii <= MAX_N_ROUTER; cii++) {
+		for (int cij = 1 ; cij <= MAX_N_ROUTER; cij++) {
+			matriz.setElemento(cii - 1, cij - 1, getAnchoBanda(cii,cij));
+		}	
+	}
 
-	return m;
+	return matriz;
 
 };
 
