@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include "Matriz.cpp"
 
 #define NOMBRE_ARCHIVO "Datos.txt"
 #define OTRA_COLUMNA ' '
@@ -18,9 +19,7 @@ class LectorArchivoTexto {
 		int AnchoBanda;
 		FILE *Datos;
 		int ListaRouters[128];
-//		int Matriz_Adyacencia[MAX_N_ROUTER][MAX_N_ROUTER];
-		int** Matriz_Adyacencia;
-
+		
 	
 	public:
 		LectorArchivoTexto();
@@ -29,7 +28,7 @@ class LectorArchivoTexto {
 		int* getRoutersConectados(int Router);
 		void Routers();
 		int getRouters();
-		int** Matriz();
+		Matriz getMatriz();
 };
 
 LectorArchivoTexto::LectorArchivoTexto() 
@@ -114,17 +113,17 @@ int LectorArchivoTexto::getRouters() {
 };
 
 
-int** LectorArchivoTexto::Matriz(){
-	
-	Matriz_Adyacencia = (int**) malloc(sizeof(int) * MAX_N_ROUTER * 2);
-		for (int i = 0; i< MAX_N_ROUTER ; i++){
-			for (int j = 0; j < MAX_N_ROUTER ; j++ ){
-				**Matriz_Adyacencia = getAnchoBanda(i,j);
-				(*Matriz_Adyacencia)++;
+Matriz LectorArchivoTexto::getMatriz(){
+	Matriz m;
+		for (int cii = 1; cii <= MAX_N_ROUTER; cii++){
+			for (int cij = 1 ; cij <= MAX_N_ROUTER; cij++){
+				m.setElemento(cii-1, cij-1 , getAnchoBanda(cii,cij));
 			}
 		
 		}
-	return Matriz_Adyacencia;
+
+
+	return m;
 
 };
 
@@ -132,7 +131,11 @@ int** LectorArchivoTexto::Matriz(){
 int main (){
 	LectorArchivoTexto Lector;
 	cout << Lector.getRouters()<< endl;
-	cout << Lector.Matriz() << endl;
+	
+	Matriz m;
+	m = Lector.getMatriz();
+	m.printMatriz(Lector.getRouters());
+	
 	return 0;
 
 

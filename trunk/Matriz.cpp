@@ -1,4 +1,7 @@
 #include "Constantes.h"
+#include <iostream>
+
+using namespace std;
 
 class Matriz
 {
@@ -26,5 +29,16 @@ class Matriz
 		int getElemento(int iFila, int iColumna)
 		{
 			return this->m_aiMatriz[iFila][iColumna];
+		}
+
+		void printMatriz(int iFilas)
+		{
+			for (int cii = 0; cii < iFilas; cii++) {
+				for (int cij = 0; cij < iFilas; cij++) {
+					cout << m_aiMatriz[cii][cij] << " ";
+				}
+
+				cout << endl;
+			}
 		}
 };
