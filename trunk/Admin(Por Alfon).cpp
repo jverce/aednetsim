@@ -59,15 +59,16 @@ void Admin::mostrar_tabla(int g){
     
   
      for (int i = 1 ; i<= 4 ; i++) {
+     cout << "Paquetes con Destino Router: " << i << " Enviarlos a: ";
          switch (Tabla_Destino_NextHop[i]){
             case -1:
-                 cout << "Enviar a PC " << endl;
+                 cout << " PC" << endl;
                  break;
             default:
-                    if (Tabla_Destino_NextHop[i] == g) {cout << "Enviar a Router: " << i << endl;  }
+                    if (Tabla_Destino_NextHop[i] == g) {cout << "Router: " << i << endl;  }
                     else {
                     
-                   cout << "Enviar a Router: " << Tabla_Destino_NextHop[i] << endl;   }
+                   cout << "Router: " << Tabla_Destino_NextHop[i] << endl;   }
                  
               
             
@@ -136,19 +137,21 @@ void Admin::dijkstra (int iOrigen){
      
 int main (){
 	LectorArchivoTexto Lector;
-	cout << Lector.getRouters()<< endl;
+
 	
 	Matriz m;
 
 	m = Lector.getMatriz();
+	cout << "Con la siguiente Matriz de adyacencia: " << endl;
 	m.printMatriz(Lector.getRouters());
 	Admin admin;
 	admin.getMatrizOriginal();
 	
     
-    cout << "Ingrese el numero de router origen : " << endl;
+    cout << "Elija un router: " << endl;
     int g;
     cin >> g;
+    cout << "La siguiente tabla de enrrutamiento se agregaria el Router: " << endl;
 	admin.dijkstra(g);
 	admin.mostrar_tabla(g);
 	int c;
