@@ -44,7 +44,7 @@ class Admin
 		};*/
 public:
 		void dijkstra(int iOrigen);
-	    void mostrar_tabla ();
+	    void mostrar_tabla (int g);
    		void getMatrizOriginal();
 };
 
@@ -54,12 +54,35 @@ void Admin::getMatrizOriginal()
 
 			m_MatrizActualizada = lector.getMatriz();
 		};
-void Admin::mostrar_tabla(){
-     cout << Tabla_Destino_NextHop[4]<< endl;
+void Admin::mostrar_tabla(int g){
+
+    
+  
      for (int i = 1 ; i<= 4 ; i++) {
-             cout << "Para llegar al destino " << i << " hay que mandar el paquete a: " << Tabla_Destino_NextHop[i] <<endl;
-                          
-                          
+         switch (Tabla_Destino_NextHop[i]){
+            case -1:
+                 cout << "Enviar a PC " << endl;
+                 break;
+            default:
+                    if (Tabla_Destino_NextHop[i] == g) {cout << "Enviar a Router: " << i << endl;  }
+                    else {
+                    
+                   cout << "Enviar a Router: " << Tabla_Destino_NextHop[i] << endl;   }
+                 
+              
+            
+            
+            
+            
+            
+            
+            
+            
+         }
+              
+              
+              
+              
      }
   
   
@@ -121,8 +144,13 @@ int main (){
 	m.printMatriz(Lector.getRouters());
 	Admin admin;
 	admin.getMatrizOriginal();
-	admin.dijkstra(1);
-	admin.mostrar_tabla();
+	
+    
+    cout << "Ingrese el numero de router origen : " << endl;
+    int g;
+    cin >> g;
+	admin.dijkstra(g);
+	admin.mostrar_tabla(g);
 	int c;
 	cin >> c;
 
