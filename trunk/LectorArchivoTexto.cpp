@@ -83,7 +83,7 @@ int LectorArchivoTexto::getNumeroPcs(int Router) {
 void LectorArchivoTexto::Routers() {
 	ifstream datos (NOMBRE_ARCHIVO);
 
-	n_Routers = 0;
+	n_Routers = 1;
 	while(!datos.eof()) {
 		if (datos.get() == OTRA_FILA ){
 			n_Routers++;
@@ -126,20 +126,3 @@ Matriz LectorArchivoTexto::getMatriz(){
 
 };
 
-
-int main (){
-	LectorArchivoTexto Lector;
-	cout << Lector.getRouters()<< endl;
-	
-	Matriz m;
-	m = Lector.getMatriz();
-	m.printMatriz(Lector.getRouters());
-	
-	return 0;
-
-
-
-
-
-
-}
