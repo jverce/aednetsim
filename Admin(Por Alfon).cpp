@@ -55,10 +55,11 @@ void Admin::getMatrizOriginal()
 			m_MatrizActualizada = lector.getMatriz();
 		};
 void Admin::mostrar_tabla(int g){
-
+     LectorArchivoTexto lector;
+     int n_Routers = lector.getRouters();   
     
   
-     for (int i = 1 ; i<= 4 ; i++) {
+     for (int i = 1 ; i<= n_Routers ; i++) {
      cout << "Paquetes con Destino Router: " << i << " Enviarlos a: ";
          switch (Tabla_Destino_NextHop[i]){
             case -1:
