@@ -33,7 +33,7 @@ public class Router
 		void meterEnLista(Paquete paquete)
 		{
 			m_ListaPaquetes.push_back(paquete);
-			m_ArchivoSalida << "Entra_ " + paquete.toString() << endl;				
+			m_ArchivoSalida << "Entra_ " + paquete.toString() << endl;
 		}
 
 		Router* elegirInterfaz(Paquete paquete)
