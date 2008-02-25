@@ -1,8 +1,9 @@
 #include <map>
 #include "Router.cpp"
 #include "Matriz.cpp"
+#include "Constantes.h"
 
-#define INF 999  
+#define INF 999
 
 class Admin
 {
@@ -12,9 +13,9 @@ class Admin
 		int m_iCantRouters;
 		map<int, Router*> m_aRefRouters;
 		map<Router*, int> m_aDestRouters;
-		map<int, int> m_Tabla_Destino_nextHop; 
+		map<int, int > m_Tabla_Destino_nextHop; 
         
-		void incializarTodo()
+		void inicializarTodo()
 		{
 			LectorArchivoTexto lector;
 
@@ -41,17 +42,17 @@ class Admin
 
 void Admin::dijkstra (int iOrigen)
 {
-	int cantRouters = m_iCantRouters;
-	int costo[cantRouters];          /* D   distancias minima desde s al nodo i */
-	int nextHop[cantRouters];      /* ruta hacia el nodo i desde s */
-	bool permanente[cantRouters]; 
+	int n_Routers = m_iCantRouters;
+	int costo[m_iCantRouters];          /* D   distancias minima desde s al nodo i */
+	int nextHop[m_iCantRouters];      /* ruta hacia el nodo i desde s */
+	bool permanente[m_iCantRouters]; 
      
 	priority_queue< pair<int, int> > cola;
 	pair <int, int> nodo;
 
 	int Vi, Vj;     
 
-	for (int i=1; i<= cantRouters; i++) {
+	for (int i=1; i<= n_Routers; i++){
 		costo[i] = INF;
 		nextHop[i] = -1;
 		permanente[i] = false;
@@ -64,20 +65,20 @@ void Admin::dijkstra (int iOrigen)
 		Vi = nodo.second;
 		if ( !permanente[Vi] ) {
 			permanente[Vi] = true;
-			for (Vj = 1; Vj <= cantRouters; Vj++) {
+			for (Vj = 1; Vj <= n; Vj++){
 				if ( 
-					!permanente[Vj] && 
-					m_MatrizActualizada.getElemento(Vi , Vj) > 0 && 
-					D[Vi] + m_MatrizActualizada.getElemento(Vi , Vj) > D[Vj] ) {
-						D[Vj] = D[Vi] + m_MatrizActualizada.getElemento(Vi, Vj);
-						nextHop[Vj] = Vi;
-						cola.push( pair <int,int> (-D[Vj], Vj) );
+				!permanente[Vj] && 
+				m_MatrizActualizada.getElemento(Vi , Vj) > 0 && 
+				D[Vi] + m_MatrizActualizada.getElemento(Vi , Vj) > D[Vj] ){
+					D[Vj] = D[Vi] + m_MatrizActualizada.getElemento(Vi ; Vj);
+					nextHop[Vj] = Vi,;
+					cola.push( pair <int,int> (-D[Vj], Vj) );
 				}
 			}
 		}
 	}
 
+	for ( int cii = 1 ; cci <= n_Routers; cci++)
+		m_Tabla_Destino_nextHop[cii] = nextHop[ci];
 
-	for ( int cci = 1 ; cci <= cantRouters; cci++)
-		m_Tabla_Destino_nextHop[cci] = nextHop[ci];
 };
