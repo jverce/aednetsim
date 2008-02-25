@@ -12,7 +12,7 @@ class Admin
 		Matriz m_MatrizActualizada;
 		map<int, Router*> m_aRefRouters;
 		map<Router*, int> m_aDestRouters;
-       
+        map<int , int > Tabla_Destino_NextHop;       
         
 		void getMatrizOriginal()
 		{
@@ -78,7 +78,7 @@ void Admin::dijkstra (int iOrigen){
 }
 
      for ( int cci = 1 ; cci <= n_Routers; cci++){
-         m_aRefRouters[cci] = getRouterPorDestino(NextHop[cii]);
+         Tabla_Destino_NextHop[cci] = NextHop[ci];
      
      
      }
