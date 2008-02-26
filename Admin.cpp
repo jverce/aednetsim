@@ -21,16 +21,23 @@ class Admin
 
 			m_iMatrizOriginal = lector.getMatriz();
 			m_iCantRouters = lector.getRouters();
+			crearRouters(m_iCantRouters, lector);
 		}
 
-		Router* getRouterPorDestino(int iDestino)
+		void crearRouters(int iCantRouters, LectorArchivoTexto lector)
 		{
-			return m_aRefRouters[iDestino];
-		}
+			for (int cii = 0; cii < iCantRouters; cii++)
+			{
+				Router* router = new Router(cii);
+				m_aRefRouters[cii] = router;
+				m_aDestRouters[router] = cii;
 
-		int getDestinoPorRouter(Router* router)
-		{
-			return m_aDestRouters[router];
+				for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
+				{
+					Host* host = new Host(cii, cij);
+					router -> agregarHost(host);
+				}
+			}
 		}
 		
 		void actualizarMatriz()
@@ -86,6 +93,61 @@ class Admin
 							aiColaDePares.
 							push(pair<int, int> (-aiDistMinimas[iVertice2], iVertice2));
 						}
+					}
+				}
+			}
+
+			Tabla tabla;
+			for (int cii = 0; cii < m_iCantRouters; cii++)
+			{
+				if (aiNextHop[cii] != -1)
+				{
+					tabla.crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[cii]]);
+				} 
+				else
+				{
+					tabla.crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[iOrigen]]);
+				}
+			}
+
+			m_aRefRouters[iOrigen] -> setTabla(tabla);
+
+		}
+
+	public:
+		Router* getRouterPorDestino(int iDestino)
+		{
+			return m_aRefRouters[iDestino];
+		}
+
+		int getDestinoPorRouter(Router* router)
+		{
+			return m_aDestRouters[router];
+		}
+		
+		void start (int iVueltas)
+		{
+			inicializarTodo();
+			
+			list<Host*> :: iterator iterator = m_aRefRouters[cii] -> getListaHosts().begin();
+			while ( !iterator.end() )
+			{
+				(*iterator) -> enviar();
+				iterator++;
+			}
+
+			for (int cii = 0; cii < iVueltas; cii++)
+			{
+				for (int cij = 0; cij < m_iCantRouters; cij++) 
+				{
+					dijkstraJuanjo(cii);
+				}
+
+				for (int cij = 0; cij < CICLOS_ACTUALIZACION; cij++)
+				{
+					for (int cik = 0; cik < m_iCantRouters; cik++)
+					{
+						m_aRefRouters[cik] -> enviar();
 					}
 				}
 			}
