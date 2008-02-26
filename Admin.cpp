@@ -54,7 +54,7 @@ class Admin
 						( (float) m_aRefRouters[cii] -> getCarga(m_aRefRouters[cij]) /
 						  (float) m_iMatrizOriginal.getElemento(cii, cij) );
 
-						m_iMatrizActualizada.setElemento(cii, cij);
+						m_iMatrizActualizada.setElemento(cii, cij, iNuevoCosto);
 					}
 				}
 			}
