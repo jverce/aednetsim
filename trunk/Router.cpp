@@ -67,6 +67,9 @@ public class Router
 		void setTabla(Tabla tabla)
 		{
 			m_TablaEnrutamiento = tabla;
+			m_ArchivoSalida << "La tabla de enrutamiento ha cambiado." << endl;
+			m_ArchivoSalida << "Nueva tabla de enrutamiento: " << endl;
+			m_ArchivoSalida << m_Tabla.toString() << endl;
 		}
 
 		list<Host*> getListaHosts ()
@@ -85,6 +88,11 @@ public class Router
 			queue<Paquete> cola;
 
 			m_ColasVecinos[vecino] = cola;	
+		}
+
+		int getCarga(Router* interfaz)
+		{
+			return m_ColasVecinos[interfaz].size();
 		}
 
 		void recibir(Pagina pagina)

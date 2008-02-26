@@ -1,4 +1,5 @@
 #include <map>
+#include <list>
 #include "Router.cpp"
 #include "Matriz.cpp"
 #include "Constantes.h"
@@ -20,6 +21,7 @@ class Admin
 			LectorArchivoTexto lector;
 
 			m_iMatrizOriginal = lector.getMatriz();
+			m_iMatrizActualizada = m_iMatrizOriginal;
 			m_iCantRouters = lector.getRouters();
 			crearRouters(m_iCantRouters, lector);
 		}
@@ -42,6 +44,20 @@ class Admin
 		
 		void actualizarMatriz()
 		{
+			for (int cii = 0; cii < m_iCantRouters; cii++)
+			{
+				for (int cij = 0; cij < m_iCantRouters; cij++)
+				{
+					if (cii != cij)
+					{
+						int iNuevoCosto = (int)
+						( (float) m_aRefRouters[cii] -> getCarga(m_aRefRouters[cij]) /
+						  (float) m_iMatrizOriginal.getElemento(cii, cij) );
+
+						m_iMatrizActualizada.setElemento(cii, cij);
+					}
+				}
+			}
 		}
 
 		void dijkstraJuanjo(int iOrigen)
@@ -82,7 +98,7 @@ class Admin
 						m_iMatrizActualizada.getElement(iVertice1, iVertice2) > 0 &&
 						( aiDistMinimas[iVertice1] + 
 						m_iMatrizActualizada.getElement(iVertice1, iVertice2) )
-						> aiDistMinimas[iVertice2] )
+						< aiDistMinimas[iVertice2] )
 						{
 							aiDistMinimas[iVertice2] = 
 							m_iMatrizActualizada[iVertice1][iVertice2] +
@@ -129,15 +145,19 @@ class Admin
 		{
 			inicializarTodo();
 			
-			list<Host*> :: iterator iterator = m_aRefRouters[cii] -> getListaHosts().begin();
-			while ( !iterator.end() )
+			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
-				(*iterator) -> enviar();
-				iterator++;
+				list<Host*> :: iterator iterator = m_aRefRouters[cii] -> getListaHosts().begin();
+				while ( !iterator.end() )
+				{
+					(*iterator) -> enviar();
+					iterator++;
+				}
 			}
 
 			for (int cii = 0; cii < iVueltas; cii++)
 			{
+				actualizarMatriz();
 				for (int cij = 0; cij < m_iCantRouters; cij++) 
 				{
 					dijkstraJuanjo(cii);
