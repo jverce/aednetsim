@@ -69,6 +69,11 @@ public class Router
 			m_TablaEnrutamiento = tabla;
 		}
 
+		list<Host*> getListaHosts ()
+		{
+			return m_ListaHosts;
+		}
+
 		void agregarHost(Host* host)
 		{
 			m_ListaHosts.push_back(host);
