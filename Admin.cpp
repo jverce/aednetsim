@@ -3,13 +3,13 @@
 #include "Matriz.cpp"
 #include "Constantes.h"
 
-#define INF 999
+using namespace std;
 
 class Admin
 {
 	private:
-		Matriz m_MatrizOriginal;
-		Matriz m_MatrizActualizada;
+		Matriz m_iMatrizOriginal;
+		Matriz m_iMatrizActualizada;
 		int m_iCantRouters;
 		map<int, Router*> m_aRefRouters;
 		map<Router*, int> m_aDestRouters;
@@ -19,7 +19,7 @@ class Admin
 		{
 			LectorArchivoTexto lector;
 
-			m_MatrizOriginal = lector.getMatriz();
+			m_iMatrizOriginal = lector.getMatriz();
 			m_iCantRouters = lector.getRouters();
 		}
 
@@ -37,6 +37,62 @@ class Admin
 		{
 		}
 
+		void dijkstraJuanjo(int iOrigen)
+		{
+			priority_queue<pair<int, int>> aiColaDePares;
+			pair<int, int> nodoTemporal;
+			int iVertice1;
+			int iVertice2;
+			int aiDistMinimas[m_iCantRouters];
+			int aiNextHop[m_iCantRouters];
+			int abListo[m_iCantRouters];
+
+			for (int cii = 0; cii < m_iCantRouters; cii++)
+			{
+				aiDistMinimas[cii] = INF;
+				aiNextHop[cii] = -1;
+				abListo[cii] = false;
+			}
+
+			aiDistMinimas[iOrigen] = 0;
+			aiColaDePares.push(pair<int, int> (aiDistMinimas[iOrigen], iOrigen));
+
+			while ( !aiDistMinimas.empty() )
+			{
+				nodoTemporal = aiColaDePares.top();
+				aiColaDePares.pop();
+
+				iVertice1 = nodoTemporal.second;
+
+				if ( !abListo[iVertice1] )
+				{
+					abListo[iVertice1] = true;
+
+					for (iVertice2 = 0; iVertice2 < m_iCantRouters; iVertice2++)
+					{
+						if (
+						!abListo[iVertice2] &&
+						m_iMatrizActualizada.getElement(iVertice1, iVertice2) > 0 &&
+						( aiDistMinimas[iVertice1] + 
+						m_iMatrizActualizada.getElement(iVertice1, iVertice2) )
+						> aiDistMinimas[iVertice2] )
+						{
+							aiDistMinimas[iVertice2] = 
+							m_iMatrizActualizada[iVertice1][iVertice2] +
+							aiDistMinimas[iVertice1];
+							
+							aiNextHop[iVertice2] = iVertice1;
+							
+							aiColaDePares.
+							push(pair<int, int> (-aiDistMinimas[iVertice2], iVertice2));
+						}
+					}
+				}
+			}
+		}
+
+
+		
 		void dijkstra(int iOrigen);
 };
 
