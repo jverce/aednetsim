@@ -3,11 +3,11 @@
 
 using namespace std;
 
-class Matriz
+template <class N> class Matriz
 {
 	private:
 		static const int VALOR_INICIAL = 0;
-		int m_aiMatriz[NUM_MAX_ROUTERS][NUM_MAX_ROUTERS];
+		N m_aiMatriz[NUM_MAX_ROUTERS][NUM_MAX_ROUTERS];
 
 	public:
 		Matriz()
@@ -21,14 +21,14 @@ class Matriz
 			}
 		}
 
-		void setElemento(int iFila, int iColumna, int iElemento)
+		void setElemento(int iFila, int iColumna, N iElemento)
 		{
-			this->m_aiMatriz[iFila][iColumna] = iElemento;
+			m_aiMatriz[iFila][iColumna] = iElemento;
 		}
 
-		int getElemento(int iFila, int iColumna)
+		N getElemento(int iFila, int iColumna)
 		{
-			return this->m_aiMatriz[iFila][iColumna];
+			return m_aiMatriz[iFila][iColumna];
 		}
 
 		void printMatriz(int iFilas)
