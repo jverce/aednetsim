@@ -17,7 +17,7 @@ public class Router
 
 		list<Host*> m_ListaHosts;
 		map<Router*, queue<Paquete>> m_ColasVecinos;
-
+		Buffer<Paquete> m_Buffer;
 		list<Paquete> m_ListaPaquetes;
 
 		Tabla m_TablaEnrutamiento;
@@ -37,6 +37,15 @@ public class Router
 			}
 			
 			return false;
+		}
+
+		void vaciarBuffer()
+		{
+			m_Buffer.sort();
+			while (!m_Buffer.empty())
+			{
+				meterEnLista(m_Buffer.get());
+			}
 		}
 
 		void meterEnLista(Pagina pagina)
@@ -104,6 +113,23 @@ public class Router
 			return m_ListaHosts;
 		}
 
+		int getCarga(int iDestino)
+		{
+			list<Paquete> :: iterator it = m_ListaPaquetes.begin();
+			int iCounter = 0;
+
+			while (it != m_ListaPaquetes.end())
+			{
+				if ( (it -> getIPDestino().getPrimerOcteto()) == iDestino )
+				{
+					iCounter++;
+				}
+				it++;
+			}
+
+			return iCounter;
+		}
+
 		void agregarHost(Host* host)
 		{
 			m_ListaHosts.push_back(host);
@@ -124,18 +150,21 @@ public class Router
 
 		void recibir(Pagina pagina)
 		{
-			meterEnLista(pagina);
-			m_ListaPaquetes.sort();
+			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
+			{
+				m_Buffer.insert(getPaquete(cii));
+			}
 		}
 
 		void recibir(Paquete paquete)
 		{
-			meterEnLista(paquete);
-			m_ListaPaquetes.sort();
+			m_Buffer.insert(paquete);
 		}
 
 		void enviar()
 		{
+			vaciarBuffer();
+
 			map<Router*, queue<Paquete>>::iterator iiterator_1 = m_ColasVecinos.begin();
 
 			for (int cii = 0; cii < m_ColasVecinos.size(); cii++) {
@@ -169,7 +198,5 @@ public class Router
 			}
 
 		}
-
-
 };
 

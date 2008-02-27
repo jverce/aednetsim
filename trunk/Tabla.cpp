@@ -1,4 +1,6 @@
 #include <map>
+#include <string>
+#include <sstream>
 
 class Tabla
 {
@@ -36,5 +38,21 @@ class Tabla
 		int getBW(Router* router)
 		{
 			return m_aMapaBandWidth[router];
+		}
+
+		string toString()
+		{
+			map<int, Router*> :: iterator it = m_aMapaDestinos.begin();
+
+			while (it != m_aMapaDestinos.end())
+			{
+				stringstream stringStream; 
+				stringStream
+					<< "Destino: " << it -> first << '\t' 
+					<< "Ruta: " << m_aMapaDestinos -> second -> getId() << endl;
+
+			}
+
+			return stringStream.str();
 		}
 };
