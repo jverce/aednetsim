@@ -160,13 +160,14 @@ public class Router
 
 			while (iiterator != m_ColasVecinos.end()) {
 
-				for (int cii = 0; cii < (*iiterator).second.size(); cii++) {
+				for (int cii = 0; cii < (*iiterator).second.size(); ) {
 					(*iiterator).first->recibir((*iiterator).second.front());
 					(*iiterator).second.pop();
 				}
-
+				
 				iiterator++;
 			}
+
 		}
 
 

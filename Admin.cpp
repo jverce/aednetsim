@@ -62,28 +62,28 @@ class Admin
 
 		void dijkstraJuanjo(int iOrigen)
 		{
-			priority_queue<pair<int, int>> aiColaDePares;
-			pair<int, int> nodoTemporal;
+			priority_queue<pair<double, int>> aColaDePares;
+			pair<double, int> nodoTemporal;
 			int iVertice1;
 			int iVertice2;
-			int aiDistMinimas[m_iCantRouters];
+			double adDistMinimas[m_iCantRouters];
 			int aiNextHop[m_iCantRouters];
-			int abListo[m_iCantRouters];
+			bool abListo[m_iCantRouters];
 
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
-				aiDistMinimas[cii] = INF;
+				adDistMinimas[cii] = INF;
 				aiNextHop[cii] = PROPIO_ROUTER;
 				abListo[cii] = false;
 			}
 
-			aiDistMinimas[iOrigen] = 0;
-			aiColaDePares.push(pair<int, int> (aiDistMinimas[iOrigen], iOrigen));
+			adDistMinimas[iOrigen] = 0;
+			aColaDePares.push(pair<double, int> (adDistMinimas[iOrigen], iOrigen));
 
-			while ( !aiDistMinimas.empty() )
+			while ( !adDistMinimas.empty() )
 			{
-				nodoTemporal = aiColaDePares.top();
-				aiColaDePares.pop();
+				nodoTemporal = aColaDePares.top();
+				aColaDePares.pop();
 
 				iVertice1 = nodoTemporal.second;
 
@@ -96,18 +96,18 @@ class Admin
 						if (
 						!abListo[iVertice2] &&
 						m_dMatrizActualizada.getElement(iVertice1, iVertice2) > 0 &&
-						( aiDistMinimas[iVertice1] + 
+						( adDistMinimas[iVertice1] + 
 						m_dMatrizActualizada.getElement(iVertice1, iVertice2) )
-						< aiDistMinimas[iVertice2] )
+						< adDistMinimas[iVertice2] )
 						{
-							aiDistMinimas[iVertice2] = 
+							adDistMinimas[iVertice2] = 
 							m_dMatrizActualizada[iVertice1][iVertice2] +
-							aiDistMinimas[iVertice1];
+							adDistMinimas[iVertice1];
 							
 							aiNextHop[iVertice2] = iVertice1;
 							
-							aiColaDePares.
-							push(pair<int, int> (-aiDistMinimas[iVertice2], iVertice2));
+							aColaDePares.
+							push(pair<double, int> (-adDistMinimas[iVertice2], iVertice2));
 						}
 					}
 				}
