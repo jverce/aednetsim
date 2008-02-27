@@ -22,6 +22,23 @@ public class Router
 
 		Tabla m_TablaEnrutamiento;
 
+		bool isVecino (Router* router)
+		{
+			map<Router*, queue<Paquete>> :: iterator it = m_ColasVecinos.begin();
+			
+			while ( it != m_ColasVecinos.end() )
+			{
+				if ( (it -> first) == router)
+				{
+					return true;
+				}
+
+				it++;
+			}
+			
+			return false;
+		}
+
 		void meterEnLista(Pagina pagina)
 		{
 			for (int cii = 0; cii < pagina.getCantPaquetes(); cii++) {
@@ -38,7 +55,12 @@ public class Router
 
 		Router* elegirInterfaz(Paquete paquete)
 		{
-			return (m_TablaEnrutamiento.getNextHop(paquete))
+			Router* router = m_TablaEnrutamiento.getNextHop(paquete.getIPDestino().getPrimerOct());
+
+			if (isVecino(router))
+				return router;
+			else
+				return m_TablaEnrutamiento.getNextHop(router -> getId());
 		}
 
 		Paquete getAt(list<Paquete> lista, int iindex)
@@ -62,6 +84,11 @@ public class Router
 
 			string szFileName = "Router_" + i1Oct + ".log";
 			m_ArchivoSalida.open(szFileName);
+		}
+
+		int getId ()
+		{
+			return m_i1Oct;
 		}
 
 		void setTabla(Tabla tabla)

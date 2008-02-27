@@ -1,3 +1,4 @@
 #define NUM_MAX_ROUTERS 256
 #define INF 999
 #define CICLOS_ACTUALIZACION 30
+#define PROPIO_ROUTER -1

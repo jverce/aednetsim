@@ -9,8 +9,8 @@ using namespace std;
 class Admin
 {
 	private:
-		Matriz m_iMatrizOriginal;
-		Matriz m_iMatrizActualizada;
+		Matriz<int> m_iMatrizOriginal;
+		Matriz<double> m_dMatrizActualizada;
 		int m_iCantRouters;
 		map<int, Router*> m_aRefRouters;
 		map<Router*, int> m_aDestRouters;
@@ -21,9 +21,9 @@ class Admin
 			LectorArchivoTexto lector;
 
 			m_iMatrizOriginal = lector.getMatriz();
-			m_iMatrizActualizada = m_iMatrizOriginal;
 			m_iCantRouters = lector.getRouters();
 			crearRouters(m_iCantRouters, lector);
+			actualizarMatriz();
 		}
 
 		void crearRouters(int iCantRouters, LectorArchivoTexto lector)
@@ -50,11 +50,11 @@ class Admin
 				{
 					if (cii != cij)
 					{
-						int iNuevoCosto = (int)
-						( (float) m_aRefRouters[cii] -> getCarga(m_aRefRouters[cij]) /
-						  (float) m_iMatrizOriginal.getElemento(cii, cij) );
+						double dNuevoCosto =
+						( 1 / (double) m_iMatrizOriginal.getElemento(cii, cij) ) *
+						( 1 + m_aRefRouters[cii] -> getCarga(m_aRefRouters[cij]) );
 
-						m_iMatrizActualizada.setElemento(cii, cij, iNuevoCosto);
+						m_dMatrizActualizada.setElemento(cii, cij, dNuevoCosto);
 					}
 				}
 			}
@@ -73,7 +73,7 @@ class Admin
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
 				aiDistMinimas[cii] = INF;
-				aiNextHop[cii] = -1;
+				aiNextHop[cii] = PROPIO_ROUTER;
 				abListo[cii] = false;
 			}
 
@@ -95,13 +95,13 @@ class Admin
 					{
 						if (
 						!abListo[iVertice2] &&
-						m_iMatrizActualizada.getElement(iVertice1, iVertice2) > 0 &&
+						m_dMatrizActualizada.getElement(iVertice1, iVertice2) > 0 &&
 						( aiDistMinimas[iVertice1] + 
-						m_iMatrizActualizada.getElement(iVertice1, iVertice2) )
+						m_dMatrizActualizada.getElement(iVertice1, iVertice2) )
 						< aiDistMinimas[iVertice2] )
 						{
 							aiDistMinimas[iVertice2] = 
-							m_iMatrizActualizada[iVertice1][iVertice2] +
+							m_dMatrizActualizada[iVertice1][iVertice2] +
 							aiDistMinimas[iVertice1];
 							
 							aiNextHop[iVertice2] = iVertice1;
@@ -116,7 +116,7 @@ class Admin
 			Tabla tabla;
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
-				if (aiNextHop[cii] != -1)
+				if (aiNextHop[cii] != PROPIO_ROUTER)
 				{
 					tabla.crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[cii]]);
 				} 
