@@ -23,6 +23,7 @@ class Admin
 			m_iMatrizOriginal = lector.getMatriz();
 			m_iCantRouters = lector.getRouters();
 			crearRouters(m_iCantRouters, lector);
+			crearGrafo(lector);
 			actualizarMatriz();
 		}
 
@@ -38,6 +39,28 @@ class Admin
 				{
 					Host* host = new Host(cii, cij);
 					router -> agregarHost(host);
+				}
+			}
+		}
+
+		void crearGrafo(LectorArchivoTexto lector)
+		{
+			for (int cii = 0; cii < m_iCantRouters; cii++)
+			{
+				list<int> aiLista = lector.getRoutersConectados(cii);
+				list<int> :: iterator it = aiLista.begin();
+
+				while ( it != aiLista.end() )
+				{
+					m_aRefRouters[cii] -> agregarVecino(m_aRefRouters[it -> front()]);
+					aiLista.pop_front();
+
+					it++;
+				}
+
+				for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
+				{
+					m_aRefRouters[cii] -> agregarHost(new Host(cii, cij));
 				}
 			}
 		}
