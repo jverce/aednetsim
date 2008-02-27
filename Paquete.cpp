@@ -44,7 +44,7 @@ public class Paquete
 			return m_ipDestino;
 		}
 
-		IP getIPOringen()
+		IP getIPOrigen()
 		{
 			return m_ipOrigen;
 		}

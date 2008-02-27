@@ -56,6 +56,10 @@ class Admin
 
 						m_dMatrizActualizada.setElemento(cii, cij, dNuevoCosto);
 					}
+					else
+					{
+						m_dMatrizActualizada.setElemento(cii, cij, PROPIO_ROUTER);
+					}
 				}
 			}
 		}
