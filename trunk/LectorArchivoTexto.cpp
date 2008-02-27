@@ -25,7 +25,7 @@ class LectorArchivoTexto {
 		LectorArchivoTexto();
 		int getAnchoBanda(int Router1 , int Router2);
 		int getNumeroPcs(int Router);
-		int* getRoutersConectados(int Router);
+		list<int> getRoutersConectados(int Router);
 		void Routers();
 		int getRouters();
 		Matriz getMatriz();
@@ -93,19 +93,18 @@ void LectorArchivoTexto::Routers() {
 	datos.clear();
 };
 
-int* LectorArchivoTexto::getRoutersConectados(int Router) {
+list<int> LectorArchivoTexto::getRoutersConectados(int Router) {
 
-	int c = 0;
+	list<int> aiLista;
 	
 	for (int i=0; i < n_Routers ; i++) {
-		if (getAnchoBanda(Router, i+1) != 0) {
-			ListaRouters[c] = i+1;
-			c++;	
+		if (getAnchoBanda(Router, i) != 0) {
+			aiLista.push_back(i);
 		}
 	}
 
 
-	return ListaRouters;
+	return aiLista;
 };
 
 int LectorArchivoTexto::getRouters() {
