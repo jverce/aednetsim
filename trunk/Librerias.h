@@ -8,7 +8,13 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
-
-
-
-
+#include "Admin.h"
+#include "Constantes.h"
+#include "Host.h"
+#include "IP.h"
+#include "LectorArchivoTexto.h"
+#include "Matriz.h"
+#include "Pagina.h"
+#include "Paquete.h"
+#include "Router.h"
+#include "Tabla.h"
