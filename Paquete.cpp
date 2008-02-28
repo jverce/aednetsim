@@ -1,7 +1,7 @@
 #include <string>
 #include <sstream>
 
-public class Paquete
+class Paquete
 {
 	private:
 		double m_dIDPagina;

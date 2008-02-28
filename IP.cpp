@@ -1,7 +1,7 @@
 #include <string>
 #include <sstream>
 
-public class IP
+class IP
 {
 	private:
 		int m_iPrimerOcteto;

@@ -3,7 +3,7 @@
 
 #include "Classes.h"
 
-public class Host
+class Host
 {
 
 	private:
