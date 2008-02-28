@@ -1,28 +1,7 @@
-#include <fstream>
-#include <string>
-#include <list>
-#include <map>
-#include <queue>
+#include "Router.h"
 
-#include "Classes.h"
 
-using namespace std;
-
-class Router
-{
-	private:
-		int m_i1Oct;
-		int m_iCantHosts;
-
-		ofstream m_ArchivoSalida;
-
-		list<Host*> m_ListaHosts;
-		map<Router*, queue<Paquete>> m_ColasVecinos;
-		Buffer<Paquete> m_Buffer;
-		list<Paquete> m_ListaPaquetes;
-		Tabla m_TablaEnrutamiento;
-
-		bool isVecino (Router* router)
+		bool Router::isVecino (Router* router)
 		{
 			map<Router*, queue<Paquete>> :: iterator it = m_ColasVecinos.begin();
 			
@@ -39,7 +18,7 @@ class Router
 			return false;
 		}
 
-		void vaciarBuffer()
+		void Router::vaciarBuffer()
 		{
 			m_Buffer.sort();
 			while (!m_Buffer.empty())
@@ -48,7 +27,7 @@ class Router
 			}
 		}
 
-		void meterEnLista(Pagina pagina)
+		void Router::meterEnLista(Pagina pagina)
 		{
 			for (int cii = 0; cii < pagina.getCantPaquetes(); cii++) {
 				m_ListaPaquetes.push_back(pagina.getPaquete(cii));
@@ -56,13 +35,13 @@ class Router
 			}		
 		}
 
-		void meterEnLista(Paquete paquete)
+		void Router::meterEnLista(Paquete paquete)
 		{
 			m_ListaPaquetes.push_back(paquete);
 			m_ArchivoSalida << "Entra_ " + paquete.toString() << endl;
 		}
 
-		Router* elegirInterfaz(Paquete paquete)
+		Router* Router::elegirInterfaz(Paquete paquete)
 		{
 			Router* router = m_TablaEnrutamiento.getNextHop(paquete.getIPDestino().getPrimerOct());
 
@@ -72,7 +51,7 @@ class Router
 				return m_TablaEnrutamiento.getNextHop(router -> getId());
 		}
 
-		Paquete getAt(list<Paquete> lista, int iIndex)
+		Paquete Router::getAt(list<Paquete> lista, int iIndex)
 		{
 			list<Paquete> :: iterator it = lista.begin();
 
@@ -82,8 +61,8 @@ class Router
 			return (*it);
 		}
 
-	public:
-		Router(int i1Oct)
+
+		Router::Router(int i1Oct)
 		{
 			m_i1Oct = i1Oct;
 			m_iCantHosts = 0;
@@ -92,12 +71,12 @@ class Router
 			m_ArchivoSalida.open(szFileName);
 		}
 
-		int getId()
+		int Router::getId()
 		{
 			return m_i1Oct;
 		}
 
-		void setTabla(Tabla tabla)
+		void Router::setTabla(Tabla tabla)
 		{
 			m_TablaEnrutamiento = tabla;
 			m_ArchivoSalida << "La tabla de enrutamiento ha cambiado." << endl;
@@ -105,12 +84,12 @@ class Router
 			m_ArchivoSalida << m_Tabla.toString() << endl;
 		}
 
-		list<Host*> getListaHosts()
+		list<Host*> Router::getListaHosts()
 		{
 			return m_ListaHosts;
 		}
 
-		int getCarga(int iDestino)
+		int Router::getCarga(int iDestino)
 		{
 			list<Paquete> :: iterator it = m_ListaPaquetes.begin();
 			int iCounter = 0;
@@ -127,25 +106,25 @@ class Router
 			return iCounter;
 		}
 
-		void agregarHost(Host* host)
+		void Router::agregarHost(Host* host)
 		{
 			m_ListaHosts.push_back(host);
 			m_iCantHosts++;
 		}
 
-		void agregarVecino(Router* vecino)
+		void Router::agregarVecino(Router* vecino)
 		{
 			queue<Paquete> cola;
 
 			m_ColasVecinos[vecino] = cola;	
 		}
 
-		int getCarga(Router* interfaz)
+		int Router::getCarga(Router* interfaz)
 		{
 			return getCarga(interfaz -> getId());
 		}
 
-		void recibir(Pagina pagina)
+		void Router::recibir(Pagina pagina)
 		{
 			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 			{
@@ -153,12 +132,12 @@ class Router
 			}
 		}
 
-		void recibir(Paquete paquete)
+		void Router::recibir(Paquete paquete)
 		{
 			m_Buffer.insert(paquete);
 		}
 
-		void enviar()
+		void Router::enviar()
 		{
 			vaciarBuffer();
 
@@ -199,5 +178,4 @@ class Router
 			}
 
 		}
-};
 

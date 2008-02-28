@@ -1,21 +1,6 @@
-#include <list>
-#include <cstdlib>
+#include "Host.h"
 
-#include "Classes.h"
-
-class Host
-{
-
-	private:
-		IP m_IP;
-		int m_iRandomNumber;
-	
-		ofstream m_ArchivoSalida;
-
-		Router* m_Gateway;
-		Admin* m_Admin;
-
-		IP generarDestino()
+		IP Host::generarDestino()
 		{
 			m_iRandomNumber = calcularRandom(m_Admin -> getCantRouters());
 
@@ -30,20 +15,20 @@ class Host
 			return ip;
 		}
 
-		Pagina generarPagina()
+		Pagina Host::generarPagina()
 		{		
 			Pagina pagina(calcularRandom(100), generarDestino(), m_IP);
 		
 			return pagina;
 		}	
 	
-		int calcularRandom(int iLim)
+		int Host::calcularRandom(int iLim)
 		{	
 			return ((int) (rand() * iLim)) + 1;
 		}	
 
-	public:
-		Host(int i1Oct, int i2Oct, Admin* admin)
+
+		Host::Host(int i1Oct, int i2Oct, Admin* admin)
 		{
 			setIP(i1Oct, i2Oct);
 			m_Admin = admin;
@@ -56,18 +41,18 @@ class Host
 			m_Gateway = m_Admin -> getRouterPorDestino(i1Oct);
 		}
 
-		void setIP(int i1Oct, int i2Oct)
+		void Host::setIP(int i1Oct, int i2Oct)
 		{
 			m_IP.setPrimerOcteto(i1Oct);
 			m_IP.setSegundoOcteto(i2Oct);
 		}
 
-		IP getIP()
+		IP Host::getIP()
 		{
 			return m_IP;
 		}	
 
-		void enviar()
+		void Host::enviar()
 		{
 			Pagina pagina;
 			pagina = generarPagina();
@@ -80,11 +65,11 @@ class Host
 			}
 		}
 	
-		void recibir(Pagina pagina)
+		void Host::recibir(Pagina pagina)
 		{
 			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 			{
 				m_ArchivoSalida << "Entra_ " + pagina.getPaquete(cii).toString() << endl;			
 			}
 		}
-};
+

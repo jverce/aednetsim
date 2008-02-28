@@ -1,40 +1,32 @@
-#include <string>
-#include <sstream>
+#include "IP.h"
 
-class IP
-{
-	private:
-		int m_iPrimerOcteto;
-		int m_iSegundoOcteto;
-
-	public:
-		IP(int i1Oct, int i2Oct)
+		IP::IP(int i1Oct, int i2Oct)
 		{
 			setPrimerOcteto(i1Oct);
 			setSegundoOcteto(i2Oct);
 		}
 	
-		void setPrimerOcteto(int i1Oct)
+		void IP::setPrimerOcteto(int i1Oct)
 		{
 			m_iPrimerOcteto = i1Oct;
 		}
 
-		int getPrimerOcteto()
+		int IP::getPrimerOcteto()
 		{
 			return m_iPrimerOcteto;
 		}
 
-		void setSegundoOcteto(int i2Oct)
+		void IP::setSegundoOcteto(int i2Oct)
 		{
 			m_iSegundoOcteto = i2Oct;
 		}
 
-		int getSegundoOcteto()
+		int IP::getSegundoOcteto()
 		{
 			return m_iSegundoOcteto;
 		}
 
-		string toString()
+		string IP::toString()
 		{
 			stringstream stringStream;
 			
@@ -43,4 +35,4 @@ class IP
 
 			return szAuxString;
 		}
-};
+

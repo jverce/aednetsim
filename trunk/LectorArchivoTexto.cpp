@@ -1,35 +1,4 @@
-#include <fstream>
-#include <iostream>
-#include <cstdio>
-#include <cstdlib>
-#include "Matriz.cpp"
-
-#define NOMBRE_ARCHIVO "Datos.txt"
-#define OTRA_COLUMNA ' '
-#define OTRA_FILA '\n'
-#define MAX_N_ROUTER 256
-
-using namespace std;
-
-class LectorArchivoTexto { 
-
-	private:
-		int n_Routers;
-		int n_Pc;
-		int AnchoBanda;
-		FILE *Datos;
-		int ListaRouters[128];
-		
-	
-	public:
-		LectorArchivoTexto();
-		int getAnchoBanda(int Router1 , int Router2);
-		int getNumeroPcs(int Router);
-		list<int> getRoutersConectados(int Router);
-		void Routers();
-		int getCantRouters();
-		Matriz getMatriz();
-};
+#include "LectorArchivoTexto.h"
 
 LectorArchivoTexto::LectorArchivoTexto() 
 {	
@@ -110,7 +79,6 @@ list<int> LectorArchivoTexto::getRoutersConectados(int Router) {
 int LectorArchivoTexto::getCantRouters() {
 	return n_Routers;
 };
-
 
 Matriz LectorArchivoTexto::getMatriz(){
 	Matriz matriz;

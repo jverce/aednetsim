@@ -1,16 +1,7 @@
-#include <string>
-#include <sstream>
+#include "Paquete.h"
 
-class Paquete
-{
-	private:
-		double m_dIDPagina;
-		int m_iIDPaquete;
-		IP m_ipDestino;
-		IP m_ipOrigen;
 
-	public:
-		Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete)
+		Paquete::Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete)
 		{
 			m_ipDestino = ipDestino;
 			m_ipOrigen = ipOrigen;
@@ -19,7 +10,7 @@ class Paquete
 			m_dIDPagina = dIDPagina;
 		}
 
-		string toString()
+		string Paquete::toString()
 		{
 			stringstream stringStream;
 
@@ -29,38 +20,37 @@ class Paquete
 			return szAuxString;
 		}
 
-		double getIDPagina()
+		double Paquete::getIDPagina()
 		{
 			return m_dIDPagina;
 		}
 
-		int getIDPaquete()
+		int Paquete::getIDPaquete()
 		{
 			return m_iIDPaquete;
 		}
 
-		IP getIPDestino()
+		IP Paquete::getIPDestino()
 		{
 			return m_ipDestino;
 		}
 
-		IP getIPOrigen()
+		IP Paquete::getIPOrigen()
 		{
 			return m_ipOrigen;
 		}
 
-		bool operator < (const Paquete &paquete2)
+		bool Paquete::operator < (const Paquete &paquete2)
 		{
 			return m_iIDPaquete < paquete2.m_iIDPaquete;
 		}
 
-		bool operator > (const Paquete &paquete2)
+		bool Paquete::operator > (const Paquete &paquete2)
 		{
 			return m_iIDPaquete > paquete2.m_iIDPaquete;
 		}
 
-		bool operator == (const Paquete &paquete2)
+		bool Paquete::operator == (const Paquete &paquete2)
 		{
 			 return m_iIDPaquete == paquete2.m_iIDPaquete;
 		}
-};
