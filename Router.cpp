@@ -3,6 +3,7 @@
 #include <list>
 #include <map>
 #include <queue>
+
 #include "Classes.h"
 
 using namespace std;
@@ -19,7 +20,6 @@ public class Router
 		map<Router*, queue<Paquete>> m_ColasVecinos;
 		Buffer<Paquete> m_Buffer;
 		list<Paquete> m_ListaPaquetes;
-
 		Tabla m_TablaEnrutamiento;
 
 		bool isVecino (Router* router)
@@ -72,11 +72,11 @@ public class Router
 				return m_TablaEnrutamiento.getNextHop(router -> getId());
 		}
 
-		Paquete getAt(list<Paquete> lista, int iindex)
+		Paquete getAt(list<Paquete> lista, int iIndex)
 		{
-			list<Paquete>::iterator it = lista.begin();
+			list<Paquete> :: iterator it = lista.begin();
 
-			for (int cii = 0; cii < iindex; cii++)
+			for (int cii = 0; cii < iIndex; cii++)
 				it++;
 
 			return (*it);
@@ -88,14 +88,11 @@ public class Router
 			m_i1Oct = i1Oct;
 			m_iCantHosts = 0;
 
-			Tabla tablaEnrutamiento(i1Oct);
-			m_TablaEnrutamiento = tablaEnrutamiento;
-
 			string szFileName = "Router_" + i1Oct + ".log";
 			m_ArchivoSalida.open(szFileName);
 		}
 
-		int getId ()
+		int getId()
 		{
 			return m_i1Oct;
 		}
@@ -108,7 +105,7 @@ public class Router
 			m_ArchivoSalida << m_Tabla.toString() << endl;
 		}
 
-		list<Host*> getListaHosts ()
+		list<Host*> getListaHosts()
 		{
 			return m_ListaHosts;
 		}
@@ -145,7 +142,7 @@ public class Router
 
 		int getCarga(Router* interfaz)
 		{
-			return m_ColasVecinos[interfaz].size();
+			return getCarga(interfaz -> getId());
 		}
 
 		void recibir(Pagina pagina)
@@ -165,36 +162,40 @@ public class Router
 		{
 			vaciarBuffer();
 
-			map<Router*, queue<Paquete>>::iterator iiterator_1 = m_ColasVecinos.begin();
+			map<Router*, queue<Paquete>> :: iterator it_1 = m_ColasVecinos.begin();
 
-			for (int cii = 0; cii < m_ColasVecinos.size(); cii++) {
-				Router* iRouter = (*iiterator_1).first;
+			while (it_1 != m_ColasVecinos.end())
+			{
+				Router* routerDestino = (*it_1).first;
 
-				list<Paquete>::iterator iiterator_2 = m_ListaPaquetes.begin();
+				list<Paquete> :: iterator it_2 = m_ListaPaquetes.begin();
 				for (int cij = 0; 
-						(cij < m_TablaEnrutamiento.getBW(iRouter)) || 
-						(iiterator_2 == m_ListaPaquetes.end()); iiterator_2++) {
-					if (m_TablaEnrutamiento.getNextHop(*iiterator_2) == iRouter) {
-						m_ColasVecinos[iRouter].push(*iiterator_2);
-						m_ListaPaquetes.erase(iiterator_2);
+						(cij < m_TablaEnrutamiento.getBW(routerDestino)) || 
+						(it_2 != m_ListaPaquetes.end()); it_2++)
+				{
+					if (m_TablaEnrutamiento.getNextHop(*it_2) == routerDestino) 
+					{
+						m_ColasVecinos[routerDestino].push(*it_2);
+						m_ListaPaquetes.erase(it_2);
 
 						cij++;
 					}
 				}
 
-				iiterator_1++;
+				it_1++;
 			}
 
-			map<Router*, queue<Paquete>>::iterator iiterator = m_ColasVecinos.begin();
+			map<Router*, queue<Paquete>> :: iterator it = m_ColasVecinos.begin();
 
-			while (iiterator != m_ColasVecinos.end()) {
-
-				for (int cii = 0; cii < (*iiterator).second.size(); ) {
-					(*iiterator).first->recibir((*iiterator).second.front());
-					(*iiterator).second.pop();
+			while (it != m_ColasVecinos.end()) 
+			{
+				for (int cii = 0; cii < it -> second.size(); ) 
+				{
+					it -> first -> recibir(it -> second.front());
+					it -> second.pop();
 				}
 				
-				iiterator++;
+				it++;
 			}
 
 		}

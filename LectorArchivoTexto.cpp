@@ -27,7 +27,7 @@ class LectorArchivoTexto {
 		int getNumeroPcs(int Router);
 		list<int> getRoutersConectados(int Router);
 		void Routers();
-		int getRouters();
+		int getCantRouters();
 		Matriz getMatriz();
 };
 
@@ -107,7 +107,7 @@ list<int> LectorArchivoTexto::getRoutersConectados(int Router) {
 	return aiLista;
 };
 
-int LectorArchivoTexto::getRouters() {
+int LectorArchivoTexto::getCantRouters() {
 	return n_Routers;
 };
 

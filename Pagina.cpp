@@ -8,21 +8,22 @@ public class Pagina
 		int m_iCantPaquetes;
 		IP m_IPDestino;
 		IP m_IPOrigen;
-		float m_fIDPagina;
+		double m_dIDPagina;
 
 	public:
 		Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen)
 		{
 			srand((unsigned) time(0));
 
-			m_fIDPagina = rand();
+			m_dIDPagina = rand();
 
 			m_iCantPaquetes = iCantPaquetes;
 			m_IPDestino = ipDestino;
 			m_IPOrigen = ipOrigen;
 
-			for (int cii = 0; cii < iCantPaquetes; cii++) {
-				Paquete paquete(ipDestino, ipOrigen, m_fIDPagina, (cii + 1));
+			for (int cii = 0; cii < iCantPaquetes; cii++) 
+			{
+				Paquete paquete(ipDestino, ipOrigen, m_dIDPagina, (cii + 1));
 				m_ListaPaquetes.push_back(paquete);
 			}
 		}
@@ -32,10 +33,10 @@ public class Pagina
 			m_ListaPaquetes = listaPaquetes;
 			m_iCantPaquetes = listaPaquetes.size();
 
-			list<Paquete>::iterator iiterator = listaPaquetes.begin();
-			m_fIDPagina = (*iiterator).getIDPagina();
-			m_IPDestino = (*iiterator).getIPDestino();
-			m_IPOrigen = (*iiterator).getIPOrigen();
+			list<Paquete> :: iterator it = listaPaquetes.begin();
+			m_dIDPagina = it -> getIDPagina();
+			m_IPDestino = it -> getIPDestino();
+			m_IPOrigen = it ->getIPOrigen();
 		}
 
 		int getCantPaquetes()
@@ -48,12 +49,14 @@ public class Pagina
 			return m_IPDestino;
 		}
 
-		Paquete getPaquete(int ii)
+		Paquete getPaquete(int iPos)
 		{
-			list<Paquete>::iterator it = m_ListaPaquetes.begin();
+			list<Paquete> :: iterator it = m_ListaPaquetes.begin();
 
-			for (int cii = 0; cii < (ii - 1); cii++)
+			for (int cii = 0; cii < iPos; cii++)
+			{
 				it++;
+			}
 
 			return (*it);
 		}
