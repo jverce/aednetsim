@@ -1,17 +1,7 @@
-#include <cstdlib>
+#include "Pagina.h"
 
-class Pagina
-{
 
-	private:
-		list<Paquete> m_ListaPaquetes;
-		int m_iCantPaquetes;
-		IP m_IPDestino;
-		IP m_IPOrigen;
-		double m_dIDPagina;
-
-	public:
-		Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen)
+		Pagina::Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen)
 		{
 			srand((unsigned) time(0));
 
@@ -28,7 +18,7 @@ class Pagina
 			}
 		}
 
-		Pagina(list<Paquete> listaPaquetes)
+		Pagina::Pagina(list<Paquete> listaPaquetes)
 		{
 			m_ListaPaquetes = listaPaquetes;
 			m_iCantPaquetes = listaPaquetes.size();
@@ -39,17 +29,17 @@ class Pagina
 			m_IPOrigen = it ->getIPOrigen();
 		}
 
-		int getCantPaquetes()
+		int Pagina::getCantPaquetes()
 		{
 			return m_iCantPaquetes;
 		}
 
-		IP getIPDestino()
+		IP Pagina::getIPDestino()
 		{
 			return m_IPDestino;
 		}
 
-		Paquete getPaquete(int iPos)
+		Paquete Pagina::getPaquete(int iPos)
 		{
 			list<Paquete> :: iterator it = m_ListaPaquetes.begin();
 
@@ -60,5 +50,5 @@ class Pagina
 
 			return (*it);
 		}
-};
+
 
