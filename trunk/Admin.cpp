@@ -1,5 +1,8 @@
 #include <map>
 #include <list>
+#include <utility>
+#include <queue>
+
 #include "Router.cpp"
 #include "Matriz.cpp"
 #include "Constantes.h"
@@ -21,25 +24,19 @@ class Admin
 			LectorArchivoTexto lector;
 
 			m_iMatrizOriginal = lector.getMatriz();
-			m_iCantRouters = lector.getRouters();
-			crearRouters(m_iCantRouters, lector);
+			m_iCantRouters = lector.getCantRouters();
+			crearRouters(lector);
 			crearGrafo(lector);
 			actualizarMatriz();
 		}
 
-		void crearRouters(int iCantRouters, LectorArchivoTexto lector)
+		void crearRouters(LectorArchivoTexto lector)
 		{
-			for (int cii = 0; cii < iCantRouters; cii++)
+			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
 				Router* router = new Router(cii);
 				m_aRefRouters[cii] = router;
 				m_aDestRouters[router] = cii;
-
-				for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
-				{
-					Host* host = new Host(cii, cij);
-					router -> agregarHost(host);
-				}
 			}
 		}
 
@@ -52,15 +49,13 @@ class Admin
 
 				while ( it != aiLista.end() )
 				{
-					m_aRefRouters[cii] -> agregarVecino(m_aRefRouters[it -> front()]);
-					aiLista.pop_front();
-
+					m_aRefRouters[cii] -> agregarVecino(m_aRefRouters[*it]);
 					it++;
 				}
 
 				for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
 				{
-					m_aRefRouters[cii] -> agregarHost(new Host(cii, cij));
+					m_aRefRouters[cii] -> agregarHost(new Host(cii, cij, this));
 				}
 			}
 		}
@@ -87,7 +82,7 @@ class Admin
 			}
 		}
 
-		void dijkstraJuanjo(int iOrigen)
+		void dijkstra(int iOrigen)
 		{
 			priority_queue<pair<double, int>> aColaDePares;
 			pair<double, int> nodoTemporal;
@@ -151,6 +146,13 @@ class Admin
 				{
 					tabla.crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[iOrigen]]);
 				}
+
+				for (int cij = 0; cij < m_iCantRouters; cij++)
+				{
+					tabla.crearEntradaBandWidth(
+					m_aRefRouters[cij],
+					m_iMatrizOriginal.getElemento(cii, cij));
+				}
 			}
 
 			m_aRefRouters[iOrigen] -> setTabla(tabla);
@@ -167,6 +169,11 @@ class Admin
 		{
 			return m_aDestRouters[router];
 		}
+
+		int getCantRouters()
+		{
+			return m_iCantRouters;
+		}
 		
 		void start (int iVueltas)
 		{
@@ -174,11 +181,11 @@ class Admin
 			
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
-				list<Host*> :: iterator iterator = m_aRefRouters[cii] -> getListaHosts().begin();
-				while ( !iterator.end() )
+				list<Host*> :: iterator it = m_aRefRouters[cii] -> getListaHosts().begin();
+				while ( !it.end() )
 				{
-					(*iterator) -> enviar();
-					iterator++;
+					(*it) -> enviar();
+					it++;
 				}
 			}
 
@@ -187,7 +194,7 @@ class Admin
 				actualizarMatriz();
 				for (int cij = 0; cij < m_iCantRouters; cij++) 
 				{
-					dijkstraJuanjo(cii);
+					dijkstra(cii);
 				}
 
 				for (int cij = 0; cij < CICLOS_ACTUALIZACION; cij++)
@@ -202,48 +209,4 @@ class Admin
 
 
 		
-		void dijkstra(int iOrigen);
-};
-
-void Admin::dijkstra (int iOrigen)
-{
-	int n_Routers = m_iCantRouters;
-	int costo[m_iCantRouters];          /* D   distancias minima desde s al nodo i */
-	int nextHop[m_iCantRouters];      /* ruta hacia el nodo i desde s */
-	bool permanente[m_iCantRouters]; 
-     
-	priority_queue< pair<int, int> > cola;
-	pair <int, int> nodo;
-
-	int Vi, Vj;     
-
-	for (int i=1; i<= n_Routers; i++){
-		costo[i] = INF;
-		nextHop[i] = -1;
-		permanente[i] = false;
-	}
-	costo[s] = 0;
-	cola.push( pair <int, int> (costo[iOrigen], iOrigen) );
-
-	while( !pq.empty() ) {
-		nodo = cola.top();  cola.pop();
-		Vi = nodo.second;
-		if ( !permanente[Vi] ) {
-			permanente[Vi] = true;
-			for (Vj = 1; Vj <= n; Vj++){
-				if ( 
-				!permanente[Vj] && 
-				m_MatrizActualizada.getElemento(Vi , Vj) > 0 && 
-				D[Vi] + m_MatrizActualizada.getElemento(Vi , Vj) > D[Vj] ){
-					D[Vj] = D[Vi] + m_MatrizActualizada.getElemento(Vi ; Vj);
-					nextHop[Vj] = Vi,;
-					cola.push( pair <int,int> (-D[Vj], Vj) );
-				}
-			}
-		}
-	}
-
-	for ( int cii = 1 ; cci <= n_Routers; cci++)
-		m_Tabla_Destino_nextHop[cii] = nextHop[ci];
-
 };

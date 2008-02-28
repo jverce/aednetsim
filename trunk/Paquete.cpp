@@ -4,34 +4,34 @@
 public class Paquete
 {
 	private:
-		float m_fIDPagina;
+		double m_dIDPagina;
 		int m_iIDPaquete;
 		IP m_ipDestino;
 		IP m_ipOrigen;
 
 	public:
-		Paquete(IP ipDestino, IP ipOrigen, float fIDPagina, int iIDPaquete)
+		Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete)
 		{
 			m_ipDestino = ipDestino;
 			m_ipOrigen = ipOrigen;
 
 			m_iIDPaquete = iIDPaquete;
-			m_fIDPagina = fIDPagina;
+			m_dIDPagina = dIDPagina;
 		}
 
 		string toString()
 		{
 			stringstream stringStream;
 
-			stringStream << "Paquete, ID = " << m_iIDPaquete << ", Pagina.ID = " << m_fIDPagina;
+			stringStream << "Paquete, ID = " << m_iIDPaquete << ", Pagina.ID = " << m_dIDPagina;
 			string szAuxString = stringStream.str();
 
 			return szAuxString;
 		}
 
-		float getIDPagina()
+		double getIDPagina()
 		{
-			return m_fIDPagina;
+			return m_dIDPagina;
 		}
 
 		int getIDPaquete()
@@ -51,25 +51,16 @@ public class Paquete
 
 		bool operator < (const Paquete &paquete2)
 		{
-			if (m_iIDPaquete < paquete2.m_iIDPaquete)
-				return true;
-			else
-				return false;
+			return m_iIDPaquete < paquete2.m_iIDPaquete;
 		}
 
 		bool operator > (const Paquete &paquete2)
 		{
-			if (m_iIDPaquete > paquete2.m_iIDPaquete)
-				return true;
-			else
-				return false;
+			return m_iIDPaquete > paquete2.m_iIDPaquete;
 		}
 
 		bool operator == (const Paquete &paquete2)
 		{
-			if (m_iIDPaquete == paquete2.m_iIDPaquete)
-				return true;
-			else
-				return false;
+			 return m_iIDPaquete == paquete2.m_iIDPaquete;
 		}
 };
