@@ -1,6 +1,6 @@
 #include <cstdlib>
 
-public class Pagina
+class Pagina
 {
 
 	private:

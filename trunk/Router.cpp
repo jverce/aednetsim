@@ -8,7 +8,7 @@
 
 using namespace std;
 
-public class Router
+class Router
 {
 	private:
 		int m_i1Oct;
