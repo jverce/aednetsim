@@ -1,25 +1,6 @@
-#include <map>
-#include <list>
-#include <utility>
-#include <queue>
-
-#include "Router.cpp"
-#include "Matriz.cpp"
-#include "Constantes.h"
-
-using namespace std;
-
-class Admin
-{
-	private:
-		Matriz<int> m_iMatrizOriginal;
-		Matriz<double> m_dMatrizActualizada;
-		int m_iCantRouters;
-		map<int, Router*> m_aRefRouters;
-		map<Router*, int> m_aDestRouters;
-		map<int, int > m_Tabla_Destino_nextHop; 
+#include "Admin.h"
         
-		void inicializarTodo()
+		void Admin::inicializarTodo()
 		{
 			LectorArchivoTexto lector;
 
@@ -30,7 +11,7 @@ class Admin
 			actualizarMatriz();
 		}
 
-		void crearRouters(LectorArchivoTexto lector)
+		void Admin::crearRouters(LectorArchivoTexto lector)
 		{
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
@@ -40,7 +21,7 @@ class Admin
 			}
 		}
 
-		void crearGrafo(LectorArchivoTexto lector)
+		void Admin::crearGrafo(LectorArchivoTexto lector)
 		{
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
@@ -60,7 +41,7 @@ class Admin
 			}
 		}
 		
-		void actualizarMatriz()
+		void Admin::actualizarMatriz()
 		{
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
@@ -82,7 +63,7 @@ class Admin
 			}
 		}
 
-		void dijkstra(int iOrigen)
+		void Admin::dijkstra(int iOrigen)
 		{
 			priority_queue<pair<double, int>> aColaDePares;
 			pair<double, int> nodoTemporal;
@@ -159,23 +140,22 @@ class Admin
 
 		}
 
-	public:
-		Router* getRouterPorDestino(int iDestino)
+		Router* Admin::getRouterPorDestino(int iDestino)
 		{
 			return m_aRefRouters[iDestino];
 		}
 
-		int getDestinoPorRouter(Router* router)
+		int Admin::getDestinoPorRouter(Router* router)
 		{
 			return m_aDestRouters[router];
 		}
 
-		int getCantRouters()
+		int Admin::getCantRouters()
 		{
 			return m_iCantRouters;
 		}
 		
-		void start (int iVueltas)
+		void Admin::start (int iVueltas)
 		{
 			inicializarTodo();
 			
@@ -209,4 +189,3 @@ class Admin
 
 
 		
-};
