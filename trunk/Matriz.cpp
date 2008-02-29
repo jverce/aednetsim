@@ -1,4 +1,6 @@
-#include "Matriz.h"
+#include "Librerias.h"
+
+using namespace std;
 
 		Matriz::Matriz()
 		{

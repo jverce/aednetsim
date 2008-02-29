@@ -1,6 +1,7 @@
 #ifndef __MATRIZ_H__
 #define __MATRIZ_H__
 
+
 using namespace std;
 
 template <class N> class Matriz
@@ -8,7 +9,7 @@ template <class N> class Matriz
 	private:
 	
 		static const int VALOR_INICIAL = 0;
-		N m_aiMatriz[NUM_MAX_ROUTERS][NUM_MAX_ROUTERS];
+		N** m_aiMatriz;
 
 	public:
 	

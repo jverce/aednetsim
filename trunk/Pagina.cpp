@@ -1,5 +1,9 @@
-#include "Pagina.h"
+#include "Librerias.h"
 
+using namespace std;
+
+
+		Pagina::Pagina() {}
 
 		Pagina::Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen)
 		{

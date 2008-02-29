@@ -1,6 +1,10 @@
 #ifndef __PAGINA_H__
 #define __PAGINA_H__
 
+#include <list>
+
+using namespace std;
+
 class Pagina
 {
 
@@ -13,7 +17,8 @@ class Pagina
 		double m_dIDPagina;
 
 	public:
-	
+		
+		Pagina();
 		Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen);
 		Pagina(list<Paquete> listaPaquetes);
 		int getCantPaquetes();

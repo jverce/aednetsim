@@ -1,6 +1,14 @@
 #ifndef __ADMIN_H__
 #define __ADMIN_H__
 
+#include <fstream>
+#include <list>
+#include <queue>
+#include <map>
+
+class Host;
+class Tabla;
+
 using namespace std;
 
 class Router
@@ -11,10 +19,10 @@ class Router
 		int m_iCantHosts;
 		ofstream m_ArchivoSalida;
 		list<Host*> m_ListaHosts;
-		map<Router*, queue<Paquete>> m_ColasVecinos;
+		map< Router*, queue<Paquete> > m_ColasVecinos;
 		Buffer<Paquete> m_Buffer;
 		list<Paquete> m_ListaPaquetes;
-		Tabla m_TablaEnrutamiento;
+		Tabla* m_TablaEnrutamiento;
 		
 		//Metodos
 		bool isVecino (Router* router);
@@ -34,7 +42,7 @@ class Router
 		void agregarHost(Host* host);
 		void agregarVecino(Router* vecino);
 		int getCarga(Router* interfaz);
-		void recibir(Pagina pagina):
+		void recibir(Pagina pagina);
 		void recibir(Paquete paquete);
 		void enviar();
 };

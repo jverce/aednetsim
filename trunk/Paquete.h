@@ -1,6 +1,10 @@
 #ifndef __PAQUETE_H__
 #define __PAQUETE_H__
 
+#include <string>
+
+using namespace std;
+
 class Paquete
 {
 	private:

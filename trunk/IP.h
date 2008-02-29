@@ -1,6 +1,9 @@
 #ifndef __IP_H__
 #define __IP_H__
 
+#include <string>
+
+using namespace std;
 
 class IP
 {
@@ -11,6 +14,7 @@ class IP
 
 	public:
 	
+		IP();
 		IP(int i1Oct, int i2Oct);
 		void setPrimerOcteto(int i1Oct);
 		int getPrimerOcteto();

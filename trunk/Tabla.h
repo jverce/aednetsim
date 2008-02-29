@@ -1,6 +1,10 @@
 #ifndef __ADMIN_H__
 #define __ADMIN_H__
 
+#include <map>
+#include <string>
+
+using namespace std;
 
 class Tabla
 {

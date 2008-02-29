@@ -1,4 +1,9 @@
-#include "Paquete.h"
+#include <string>
+#include <sstream>
+
+#include "Librerias.h"
+
+using namespace std;
 
 
 		Paquete::Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete)

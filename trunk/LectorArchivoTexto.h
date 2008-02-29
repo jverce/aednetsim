@@ -1,5 +1,8 @@
 #ifndef __LECTORARCHIVOTEXTO_H__
 #define __LECTORARCHIVOTEXTO_H__
+
+#include <list>
+
 using namespace std;
 
 class LectorArchivoTexto { 
@@ -19,6 +22,6 @@ class LectorArchivoTexto {
 		list<int> getRoutersConectados(int Router);
 		void Routers();
 		int getCantRouters();
-		Matriz getMatriz();
+		Matriz<int> getMatriz();
 };
 #endif

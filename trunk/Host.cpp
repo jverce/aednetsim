@@ -1,4 +1,6 @@
-#include "Host.h"
+#include "Librerias.h"
+
+using namespace std;
 
 		IP Host::generarDestino()
 		{
