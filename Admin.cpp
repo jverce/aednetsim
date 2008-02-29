@@ -120,21 +120,21 @@ using namespace std;
 				}
 			}
 
-			Tabla tabla;
+			Tabla* tabla = new Tabla();
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
 				if (aiNextHop[cii] != PROPIO_ROUTER)
 				{
-					tabla.crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[cii]]);
+					tabla -> crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[cii]]);
 				} 
 				else
 				{
-					tabla.crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[iOrigen]]);
+					tabla -> crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[iOrigen]]);
 				}
 
 				for (int cij = 0; cij < m_iCantRouters; cij++)
 				{
-					tabla.crearEntradaBandWidth(
+					tabla -> crearEntradaBandWidth(
 					m_aRefRouters[cij],
 					m_iMatrizOriginal.getElemento(cii, cij));
 				}
