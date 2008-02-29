@@ -4,7 +4,7 @@
 
 using namespace std;
 
-		Matriz<N>::Matriz()
+		template <class N> Matriz<N>::Matriz()
 		{
 			for (int cii = 0; cii < NUM_MAX_ROUTERS; cii++)
 			{
@@ -15,17 +15,17 @@ using namespace std;
 			}
 		}
 
-		void Matriz<N>::setElemento(int iFila, int iColumna, N iElemento)
+		template <class N> void Matriz<N>::setElemento(int iFila, int iColumna, N iElemento)
 		{
 			m_aiMatriz[iFila][iColumna] = iElemento;
 		}
 
-		N Matriz<N>::getElemento(int iFila, int iColumna)
+		template <class N> N Matriz<N>::getElemento(int iFila, int iColumna)
 		{
 			return m_aiMatriz[iFila][iColumna];
 		}
 
-		void Matriz<N>::printMatriz(int iFilas)
+		template <class N> void Matriz<N>::printMatriz(int iFilas)
 		{
 			for (int cii = 0; cii < iFilas; cii++) {
 				for (int cij = 0; cij < iFilas; cij++) {

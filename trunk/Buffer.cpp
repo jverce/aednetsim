@@ -4,23 +4,23 @@
 
 using namespace std;
 
-void Buffer<C> :: insert(C elem)
+template <class C> void Buffer <C> :: insert(C elem)
 {
 	m_aLista.push_back(elem);
 	m_iSize++;
 }
 
-void Buffer<C> :: sort()
+template <class C> void Buffer <C> :: sort()
 {
 	m_aLista.sort();
 }
 
-bool Buffer<C> :: empty()
+template <class C> bool Buffer <C> :: empty()
 {
-	return m_aList.empty();
+	return m_aLista.empty();
 }
 
-C Buffer<C> :: get()
+template <class C> C Buffer <C> :: get()
 {
 	C elem = m_aLista.front();
 	m_aLista.pop_front();
