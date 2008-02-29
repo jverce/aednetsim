@@ -4,5 +4,8 @@
 
 #define OTRA_COLUMNA ' '
 #define OTRA_FILA '\n'
+
 #define NUM_MAX_ROUTERS 256
+
+#define INF 999
 #define PROPIO_ROUTER -1
