@@ -1,5 +1,5 @@
-#ifndef __ADMIN_H__
-#define __ADMIN_H__
+#ifndef __TABLA_H__
+#define __TABLA_H__
 
 #include <map>
 #include <string>
@@ -15,7 +15,7 @@ class Tabla
 
 	public:
 	
-		Tabla()
+		Tabla();
 		void crearEntradaDestinos(int iDestino, Router* nextHop);
 		Router* getNextHop(int iDestino);
 		void crearEntradaCarga(Router* interfaz, int iCarga);

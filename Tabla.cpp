@@ -1,3 +1,4 @@
+#include <string>
 #include <sstream>
 
 #include "Librerias.h"
@@ -40,12 +41,11 @@ using namespace std;
 		{
 			map<int, Router*> :: iterator it = m_aMapaDestinos.begin();
 
+			stringstream stringStream; 
 			while (it != m_aMapaDestinos.end())
 			{
-				stringstream stringStream; 
-				stringStream
-					<< "Destino: " << it -> first << '\t' 
-					<< "Ruta: " << m_aMapaDestinos -> second -> getId() << endl;
+				stringStream << "Destino: " << it -> first << '\t';
+				stringStream << "Ruta: " << it -> second -> getId() << endl;
 
 			}
 

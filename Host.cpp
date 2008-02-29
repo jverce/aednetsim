@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <list>
 
 #include "Librerias.h"
 
@@ -11,12 +12,9 @@ using namespace std;
 			m_iRandomNumber = calcularRandom(m_Admin -> getCantRouters());
 
 			IP ip(
-					m_iRandomNumber, 
-					calcularRandom(
-						m_Admin -> 
-						getRouterPorDestino(m_iRandomNumber) ->
-						getListaHosts.
-						size()));
+			m_iRandomNumber, 
+			calcularRandom(
+				m_Admin -> getRouterPorDestino(m_iRandomNumber) -> getListaHosts().size()));
 	
 			return ip;
 		}
