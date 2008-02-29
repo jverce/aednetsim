@@ -36,7 +36,8 @@ using namespace std;
 
 		void Router::meterEnLista(Pagina pagina)
 		{
-			for (int cii = 0; cii < pagina.getCantPaquetes(); cii++) {
+			for (int cii = 0; cii < pagina.getCantPaquetes(); cii++) 
+			{
 				m_ListaPaquetes.push_back(pagina.getPaquete(cii));
 				m_ArchivoSalida << "Entra_ " + pagina.getPaquete(cii).toString() << endl;
 			}		
@@ -53,9 +54,13 @@ using namespace std;
 			Router* router = m_TablaEnrutamiento -> getNextHop(paquete.getIPDestino().getPrimerOcteto());
 
 			if (isVecino(router))
+			{
 				return router;
+			}
 			else
+			{
 				return m_TablaEnrutamiento -> getNextHop(router -> getId());
+			}
 		}
 
 		Paquete Router::getAt(list<Paquete> lista, int iIndex)
@@ -84,8 +89,9 @@ using namespace std;
 			m_iCantHosts = 0;
 
 			string szAuxFileName = "Router_" + toString(i1Oct) + ".log";
-			char* szFileName = new char[szAuxFileName.size()];
+			char* szFileName = new char[szAuxFileName.size() + 1];
 			strcpy(szFileName, szAuxFileName.c_str());
+			
 			m_ArchivoSalida.open(szFileName);
 		}
 
