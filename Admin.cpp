@@ -1,4 +1,8 @@
-#include "Admin.h"
+#include <utility>
+
+#include "Librerias.h"
+
+using namespace std;
         
 		void Admin::inicializarTodo()
 		{

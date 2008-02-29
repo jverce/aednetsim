@@ -1,4 +1,6 @@
-#include "Router.h"
+#include "Librerias.h"
+
+using namespace std;
 
 
 		bool Router::isVecino (Router* router)
@@ -43,12 +45,12 @@
 
 		Router* Router::elegirInterfaz(Paquete paquete)
 		{
-			Router* router = m_TablaEnrutamiento.getNextHop(paquete.getIPDestino().getPrimerOct());
+			Router* router = m_TablaEnrutamiento -> getNextHop(paquete.getIPDestino().getPrimerOct());
 
 			if (isVecino(router))
 				return router;
 			else
-				return m_TablaEnrutamiento.getNextHop(router -> getId());
+				return m_TablaEnrutamiento -> getNextHop(router -> getId());
 		}
 
 		Paquete Router::getAt(list<Paquete> lista, int iIndex)
@@ -78,10 +80,10 @@
 
 		void Router::setTabla(Tabla tabla)
 		{
-			m_TablaEnrutamiento = tabla;
+			*m_TablaEnrutamiento = tabla;
 			m_ArchivoSalida << "La tabla de enrutamiento ha cambiado." << endl;
 			m_ArchivoSalida << "Nueva tabla de enrutamiento: " << endl;
-			m_ArchivoSalida << m_Tabla.toString() << endl;
+			m_ArchivoSalida << m_TablaEnrutamiento -> toString() << endl;
 		}
 
 		list<Host*> Router::getListaHosts()
@@ -149,10 +151,10 @@
 
 				list<Paquete> :: iterator it_2 = m_ListaPaquetes.begin();
 				for (int cij = 0; 
-						(cij < m_TablaEnrutamiento.getBW(routerDestino)) || 
+						(cij < m_TablaEnrutamiento -> getBW(routerDestino)) || 
 						(it_2 != m_ListaPaquetes.end()); it_2++)
 				{
-					if (m_TablaEnrutamiento.getNextHop(*it_2) == routerDestino) 
+					if (m_TablaEnrutamiento -> getNextHop(*it_2) == routerDestino) 
 					{
 						m_ColasVecinos[routerDestino].push(*it_2);
 						m_ListaPaquetes.erase(it_2);

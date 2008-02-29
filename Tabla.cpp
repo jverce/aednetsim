@@ -1,4 +1,8 @@
-#include "Tabla.h"
+#include <sstream>
+
+#include "Librerias.h"
+
+using namespace std;
 	
 		void Tabla::crearEntradaDestinos(int iDestino, Router* nextHop)
 		{

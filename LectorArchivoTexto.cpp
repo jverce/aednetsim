@@ -1,4 +1,6 @@
-#include "LectorArchivoTexto.h"
+#include "Librerias.h"
+
+using namespace std;
 
 LectorArchivoTexto::LectorArchivoTexto() 
 {	
@@ -83,8 +85,8 @@ int LectorArchivoTexto::getCantRouters() {
 Matriz LectorArchivoTexto::getMatriz(){
 	Matriz matriz;
 
-	for (int cii = 1; cii <= MAX_N_ROUTER; cii++) {
-		for (int cij = 1 ; cij <= MAX_N_ROUTER; cij++) {
+	for (int cii = 1; cii <= NUM_MAX_ROUTERS; cii++) {
+		for (int cij = 1 ; cij <= NUM_MAX_ROUTERS; cij++) {
 			matriz.setElemento(cii - 1, cij - 1, getAnchoBanda(cii,cij));
 		}	
 	}

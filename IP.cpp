@@ -1,4 +1,11 @@
-#include "IP.h"
+#include <string>
+#include <sstream>
+
+#include "Librerias.h"
+
+using namespace std;
+
+		IP::IP() {}
 
 		IP::IP(int i1Oct, int i2Oct)
 		{

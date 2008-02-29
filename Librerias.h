@@ -1,20 +1,17 @@
-#include <map>
-#include <list>
-#include <utility>
-#include <queue>
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <cstdio>
-#include <string>
-#include <sstream>
-#include "Admin.h"
 #include "Constantes.h"
-#include "Host.h"
+
 #include "IP.h"
-#include "LectorArchivoTexto.h"
-#include "Matriz.h"
-#include "Pagina.h"
 #include "Paquete.h"
+#include "Pagina.h"
+
+#include "Buffer.h"
+#include "Matriz.h"
+
+#include "LectorArchivoTexto.h"
+
 #include "Router.h"
+#include "Admin.h"
+#include "Host.h"
+
 #include "Tabla.h"
+
