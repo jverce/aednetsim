@@ -87,7 +87,7 @@ using namespace std;
 			adDistMinimas[iOrigen] = 0;
 			aColaDePares.push(pair<double, int> (adDistMinimas[iOrigen], iOrigen));
 
-			while ( !adDistMinimas.empty() )
+			while ( !aColaDePares.empty() )
 			{
 				nodoTemporal = aColaDePares.top();
 				aColaDePares.pop();
@@ -102,13 +102,13 @@ using namespace std;
 					{
 						if (
 						!abListo[iVertice2] &&
-						m_dMatrizActualizada.getElement(iVertice1, iVertice2) > 0 &&
+						m_dMatrizActualizada.getElemento(iVertice1, iVertice2) > 0 &&
 						( adDistMinimas[iVertice1] + 
-						m_dMatrizActualizada.getElement(iVertice1, iVertice2) )
+						m_dMatrizActualizada.getElemento(iVertice1, iVertice2) )
 						< adDistMinimas[iVertice2] )
 						{
 							adDistMinimas[iVertice2] = 
-							m_dMatrizActualizada[iVertice1][iVertice2] +
+							m_dMatrizActualizada.getElemento(iVertice1, iVertice2) +
 							adDistMinimas[iVertice1];
 							
 							aiNextHop[iVertice2] = iVertice1;
@@ -166,7 +166,7 @@ using namespace std;
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
 				list<Host*> :: iterator it = m_aRefRouters[cii] -> getListaHosts().begin();
-				while ( !it.end() )
+				while ( it != m_aRefRouters[cii] -> getListaHosts().end() )
 				{
 					(*it) -> enviar();
 					it++;
