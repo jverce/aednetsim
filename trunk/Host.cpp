@@ -39,7 +39,7 @@ using namespace std;
 			m_Admin = admin;
 	
 			string szAuxFileName = "Host_" + m_IP.toString() + ".log";
-			char* szFileName = new char[szAuxFileName.size()];
+			char* szFileName = new char[szAuxFileName.size() + 1];
 			strcpy(szFileName, szAuxFileName.c_str());
 
 			m_ArchivoSalida.open(szFileName);
