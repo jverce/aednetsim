@@ -4,6 +4,8 @@
 #include <map>
 #include <string>
 
+class Paquete;
+
 using namespace std;
 
 class Tabla
@@ -17,6 +19,7 @@ class Tabla
 	
 		Tabla();
 		void crearEntradaDestinos(int iDestino, Router* nextHop);
+		Router* getNextHop(Paquete* paquete);
 		Router* getNextHop(int iDestino);
 		void crearEntradaCarga(Router* interfaz, int iCarga);
 		int getCarga(Router* interfaz);

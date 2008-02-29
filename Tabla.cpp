@@ -12,6 +12,11 @@ using namespace std;
 			m_aMapaDestinos[iDestino] = nextHop;
 		}
 
+		Router* Tabla::getNextHop(Paquete* paquete)
+		{
+			return getNextHop(paquete -> getIPDestino().getPrimerOcteto());
+		}
+
 		Router* Tabla::getNextHop(int iDestino) 
 		{
 			return m_aMapaDestinos[iDestino];

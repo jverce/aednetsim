@@ -1,5 +1,6 @@
 #include <fstream>
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <list>
 
@@ -37,8 +38,11 @@ using namespace std;
 			setIP(i1Oct, i2Oct);
 			m_Admin = admin;
 	
-			string szAuxString = "Host_" + m_IP.toString() + ".log";
-			m_ArchivoSalida.open(szAuxString);
+			string szAuxFileName = "Host_" + m_IP.toString() + ".log";
+			char* szFileName = new char[szAuxFileName.size()];
+			strcpy(szFileName, szAuxFileName.c_str());
+
+			m_ArchivoSalida.open(szFileName);
 		
 			srand((unsigned) time(0));
 	
