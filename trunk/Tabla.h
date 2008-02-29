@@ -15,6 +15,7 @@ class Tabla
 
 	public:
 	
+		Tabla()
 		void crearEntradaDestinos(int iDestino, Router* nextHop);
 		Router* getNextHop(int iDestino);
 		void crearEntradaCarga(Router* interfaz, int iCarga);

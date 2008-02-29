@@ -45,7 +45,7 @@ using namespace std;
 
 		Router* Router::elegirInterfaz(Paquete paquete)
 		{
-			Router* router = m_TablaEnrutamiento -> getNextHop(paquete.getIPDestino().getPrimerOct());
+			Router* router = m_TablaEnrutamiento -> getNextHop(paquete.getIPDestino().getPrimerOcteto());
 
 			if (isVecino(router))
 				return router;
@@ -78,9 +78,9 @@ using namespace std;
 			return m_i1Oct;
 		}
 
-		void Router::setTabla(Tabla tabla)
+		void Router::setTabla(Tabla* tabla)
 		{
-			*m_TablaEnrutamiento = tabla;
+			m_TablaEnrutamiento = tabla;
 			m_ArchivoSalida << "La tabla de enrutamiento ha cambiado." << endl;
 			m_ArchivoSalida << "Nueva tabla de enrutamiento: " << endl;
 			m_ArchivoSalida << m_TablaEnrutamiento -> toString() << endl;

@@ -1,5 +1,5 @@
-#ifndef __ADMIN_H__
-#define __ADMIN_H__
+#ifndef __ROUTER_H__
+#define __ROUTER_H__
 
 #include <fstream>
 #include <list>
@@ -36,7 +36,7 @@ class Router
 	
 		Router(int i1Oct);
 		int getId();
-		void setTabla(Tabla tabla);
+		void setTabla(Tabla* tabla);
 		list<Host*> getListaHosts();
 		int getCarga(int iDestino);
 		void agregarHost(Host* host);

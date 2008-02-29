@@ -4,6 +4,8 @@
 
 using namespace std;
 	
+		Tabla::Tabla() {}
+
 		void Tabla::crearEntradaDestinos(int iDestino, Router* nextHop)
 		{
 			m_aMapaDestinos[iDestino] = nextHop;
