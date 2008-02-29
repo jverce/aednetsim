@@ -130,7 +130,7 @@ using namespace std;
 		{
 			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 			{
-				m_Buffer.insert(getPaquete(cii));
+				m_Buffer.insert(pagina.getPaquete(cii));
 			}
 		}
 
