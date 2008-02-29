@@ -5,7 +5,7 @@ using namespace std;
 
 		bool Router::isVecino (Router* router)
 		{
-			map<Router*, queue<Paquete>> :: iterator it = m_ColasVecinos.begin();
+			map< Router*, queue<Paquete> > :: iterator it = m_ColasVecinos.begin();
 			
 			while ( it != m_ColasVecinos.end() )
 			{
@@ -143,7 +143,7 @@ using namespace std;
 		{
 			vaciarBuffer();
 
-			map<Router*, queue<Paquete>> :: iterator it_1 = m_ColasVecinos.begin();
+			map< Router*, queue<Paquete> > :: iterator it_1 = m_ColasVecinos.begin();
 
 			while (it_1 != m_ColasVecinos.end())
 			{
@@ -166,7 +166,7 @@ using namespace std;
 				it_1++;
 			}
 
-			map<Router*, queue<Paquete>> :: iterator it = m_ColasVecinos.begin();
+			map< Router*, queue<Paquete> > :: iterator it = m_ColasVecinos.begin();
 
 			while (it != m_ColasVecinos.end()) 
 			{

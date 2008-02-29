@@ -1,5 +1,8 @@
 #define NOMBRE_ARCHIVO "Datos.txt"
 
+#define CICLOS_ACTUALIZACION 30
+
 #define OTRA_COLUMNA ' '
 #define OTRA_FILA '\n'
-#define NUM_MAX_ROUTERS
+#define NUM_MAX_ROUTERS 256
+#define PROPIO_ROUTER -1
