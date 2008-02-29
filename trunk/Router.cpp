@@ -1,3 +1,8 @@
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <sstream>
+
 #include "Librerias.h"
 
 using namespace std;
@@ -63,13 +68,24 @@ using namespace std;
 			return (*it);
 		}
 
+		string Router::toString(int iNum)
+		{
+			stringstream strStream;
+
+			strStream << iNum;
+
+			return strStream.str();
+		}
+
 
 		Router::Router(int i1Oct)
 		{
 			m_i1Oct = i1Oct;
 			m_iCantHosts = 0;
 
-			string szFileName = "Router_" + i1Oct + ".log";
+			string szAuxFileName = "Router_" + toString(i1Oct) + ".log";
+			char* szFileName = new char[szAuxFileName.size()];
+			strcpy(szFileName, szAuxFileName.c_str());
 			m_ArchivoSalida.open(szFileName);
 		}
 
@@ -154,7 +170,7 @@ using namespace std;
 						(cij < m_TablaEnrutamiento -> getBW(routerDestino)) || 
 						(it_2 != m_ListaPaquetes.end()); it_2++)
 				{
-					if (m_TablaEnrutamiento -> getNextHop(*it_2) == routerDestino) 
+					if (m_TablaEnrutamiento -> getNextHop(&(*it_2)) == routerDestino) 
 					{
 						m_ColasVecinos[routerDestino].push(*it_2);
 						m_ListaPaquetes.erase(it_2);

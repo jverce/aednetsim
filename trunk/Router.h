@@ -5,6 +5,7 @@
 #include <list>
 #include <queue>
 #include <map>
+#include <string>
 
 class Host;
 class Tabla;
@@ -31,6 +32,7 @@ class Router
 		void meterEnLista(Paquete paquete);
 		Router* elegirInterfaz(Paquete paquete);
 		Paquete getAt(list<Paquete> lista, int iIndex);
+		string toString(int iNum);
 
 	public:
 	
