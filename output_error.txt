@@ -29,17 +29,14 @@ Admin.cpp:57: error: ‘m_iMatrizOriginal’ was not declared in this scope
 Admin.cpp:58: error: ‘m_aRefRouters’ was not declared in this scope
 Admin.cpp:60: error: ‘m_dMatrizActualizada’ was not declared in this scope
 Admin.cpp:64: error: ‘m_dMatrizActualizada’ was not declared in this scope
-Admin.cpp:64: error: ‘PROPIO_ROUTER’ was not declared in this scope
 Admin.cpp: At global scope:
 Admin.cpp:70: error: invalid use of undefined type ‘struct Admin’
 Host.h:6: error: forward declaration of ‘struct Admin’
 Admin.cpp: In member function ‘void Admin::dijkstra(int)’:
-Admin.cpp:72: error: ‘>>’ should be ‘> >’ within a nested template argument list
 Admin.cpp:76: error: ‘m_iCantRouters’ was not declared in this scope
 Admin.cpp:82: error: ‘adDistMinimas’ was not declared in this scope
 Admin.cpp:82: error: ‘INF’ was not declared in this scope
 Admin.cpp:83: error: ‘aiNextHop’ was not declared in this scope
-Admin.cpp:83: error: ‘PROPIO_ROUTER’ was not declared in this scope
 Admin.cpp:84: error: ‘abListo’ was not declared in this scope
 Admin.cpp:87: error: ‘adDistMinimas’ was not declared in this scope
 Admin.cpp:97: error: ‘abListo’ was not declared in this scope
@@ -47,7 +44,6 @@ Admin.cpp:105: error: ‘m_dMatrizActualizada’ was not declared in this scope
 Admin.cpp:114: error: ‘aiNextHop’ was not declared in this scope
 Admin.cpp:123: error: aggregate ‘Tabla tabla’ has incomplete type and cannot be defined
 Admin.cpp:126: error: ‘aiNextHop’ was not declared in this scope
-Admin.cpp:126: error: ‘PROPIO_ROUTER’ was not declared in this scope
 Admin.cpp:128: error: ‘m_aRefRouters’ was not declared in this scope
 Admin.cpp:132: error: ‘m_aRefRouters’ was not declared in this scope
 Admin.cpp:138: error: ‘m_aRefRouters’ was not declared in this scope
@@ -79,7 +75,6 @@ Admin.cpp:169: error: ‘struct std::_List_iterator<Host*>’ has no member name
 Admin.cpp:178: error: ‘actualizarMatriz’ was not declared in this scope
 Admin.cpp:179: error: ‘m_iCantRouters’ was not declared in this scope
 Admin.cpp:181: error: ‘dijkstra’ was not declared in this scope
-Admin.cpp:184: error: ‘CICLOS_ACTUALIZACION’ was not declared in this scope
 Admin.cpp:186: error: ‘m_iCantRouters’ was not declared in this scope
 Admin.cpp:188: error: ‘m_aRefRouters’ was not declared in this scope
 Buffer.cpp:7: error: ‘template<class C> class Buffer’ used without template parameters
@@ -96,41 +91,35 @@ Buffer.cpp:20: error: ‘m_aList’ was not declared in this scope
 Buffer.cpp: At global scope:
 Buffer.cpp:23: error: ‘C’ does not name a type
 Host.cpp: In member function ‘IP Host::generarDestino()’:
-Host.cpp:7: error: invalid use of undefined type ‘struct Admin’
+Host.cpp:11: error: invalid use of undefined type ‘struct Admin’
 Host.h:6: error: forward declaration of ‘struct Admin’
-Host.cpp:12: error: invalid use of undefined type ‘struct Admin’
+Host.cpp:16: error: invalid use of undefined type ‘struct Admin’
 Host.h:6: error: forward declaration of ‘struct Admin’
 Host.cpp: In constructor ‘Host::Host(int, int, Admin*)’:
-Host.cpp:39: error: no matching function for call to ‘std::basic_ofstream<char, std::char_traits<char> >::open(std::string&)’
+Host.cpp:43: error: no matching function for call to ‘std::basic_ofstream<char, std::char_traits<char> >::open(std::string&)’
 /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../include/c++/4.1.2/fstream:626: note: candidates are: void std::basic_ofstream<_CharT, _Traits>::open(const char*, std::_Ios_Openmode) [with _CharT = char, _Traits = std::char_traits<char>]
-Host.cpp:43: error: invalid use of undefined type ‘struct Admin’
+Host.cpp:47: error: invalid use of undefined type ‘struct Admin’
 Host.h:6: error: forward declaration of ‘struct Admin’
 LectorArchivoTexto.cpp:85: error: invalid use of template-name ‘Matriz’ without an argument list
 Main.cpp: In function ‘int main()’:
 Main.cpp:10: error: aggregate ‘Admin admin’ has incomplete type and cannot be defined
-Matriz.cpp:5: error: ‘template<class N> class Matriz’ used without template parameters
-Matriz.cpp:5: error: ISO C++ forbids declaration of ‘Matriz’ with no type
+Matriz.cpp:7: error: ‘template<class N> class Matriz’ used without template parameters
+Matriz.cpp:7: error: ISO C++ forbids declaration of ‘Matriz’ with no type
 Matriz.cpp: In function ‘int Matriz()’:
-Matriz.cpp:5: error: ‘int Matriz()’ redeclared as different kind of symbol
+Matriz.cpp:7: error: ‘int Matriz()’ redeclared as different kind of symbol
 Matriz.h:7: error: previous declaration of ‘template<class N> class Matriz’
-Matriz.cpp:7: error: expected primary-expression before ‘;’ token
-Matriz.cpp:9: error: expected primary-expression before ‘;’ token
-Matriz.cpp:11: error: ‘m_aiMatriz’ was not declared in this scope
-Matriz.cpp:11: error: ‘VALOR_INICIAL’ was not declared in this scope
+Matriz.cpp:13: error: ‘m_aiMatriz’ was not declared in this scope
+Matriz.cpp:13: error: ‘VALOR_INICIAL’ was not declared in this scope
 Matriz.cpp: At global scope:
-Matriz.cpp:16: error: ‘template<class N> class Matriz’ used without template parameters
-Matriz.cpp:16: error: ‘N’ has not been declared
+Matriz.cpp:18: error: ‘template<class N> class Matriz’ used without template parameters
+Matriz.cpp:18: error: ‘N’ has not been declared
 Matriz.cpp: In function ‘void setElemento(int, int, int)’:
-Matriz.cpp:18: error: ‘m_aiMatriz’ was not declared in this scope
+Matriz.cpp:20: error: ‘m_aiMatriz’ was not declared in this scope
 Matriz.cpp: At global scope:
-Matriz.cpp:21: error: ‘N’ does not name a type
-Matriz.cpp:26: error: ‘template<class N> class Matriz’ used without template parameters
+Matriz.cpp:23: error: ‘N’ does not name a type
+Matriz.cpp:28: error: ‘template<class N> class Matriz’ used without template parameters
 Matriz.cpp: In function ‘void printMatriz(int)’:
-Matriz.cpp:30: error: ‘cout’ was not declared in this scope
-Matriz.cpp:30: error: ‘m_aiMatriz’ was not declared in this scope
-Matriz.cpp:33: error: ‘cout’ was not declared in this scope
-Router.cpp: In member function ‘bool Router::isVecino(Router*)’:
-Router.cpp:8: error: ‘>>’ should be ‘> >’ within a nested template argument list
+Matriz.cpp:32: error: ‘m_aiMatriz’ was not declared in this scope
 Router.cpp: In member function ‘Router* Router::elegirInterfaz(Paquete)’:
 Router.cpp:48: error: invalid use of undefined type ‘struct Tabla’
 Router.h:10: error: forward declaration of ‘struct Tabla’
@@ -147,12 +136,10 @@ Router.h:10: error: forward declaration of ‘struct Tabla’
 Router.cpp:86: error: invalid use of undefined type ‘struct Tabla’
 Router.h:10: error: forward declaration of ‘struct Tabla’
 Router.cpp: In member function ‘void Router::enviar()’:
-Router.cpp:146: error: ‘>>’ should be ‘> >’ within a nested template argument list
 Router.cpp:154: error: invalid use of undefined type ‘struct Tabla’
 Router.h:10: error: forward declaration of ‘struct Tabla’
 Router.cpp:157: error: invalid use of undefined type ‘struct Tabla’
 Router.h:10: error: forward declaration of ‘struct Tabla’
-Router.cpp:169: error: ‘>>’ should be ‘> >’ within a nested template argument list
 Tabla.cpp:7: error: invalid use of undefined type ‘struct Tabla’
 Router.h:10: error: forward declaration of ‘struct Tabla’
 Tabla.cpp: In member function ‘void Tabla::crearEntradaDestinos(int, Router*)’:

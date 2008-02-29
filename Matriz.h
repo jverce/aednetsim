@@ -9,7 +9,7 @@ template <class N> class Matriz
 	private:
 	
 		static const int VALOR_INICIAL = 0;
-		N** m_aiMatriz;
+		N m_aiMatriz[NUM_MAX_ROUTERS][NUM_MAX_ROUTERS];
 
 	public:
 	

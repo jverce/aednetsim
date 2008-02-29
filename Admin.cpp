@@ -69,7 +69,7 @@ using namespace std;
 
 		void Admin::dijkstra(int iOrigen)
 		{
-			priority_queue<pair<double, int>> aColaDePares;
+			priority_queue< pair<double, int> > aColaDePares;
 			pair<double, int> nodoTemporal;
 			int iVertice1;
 			int iVertice2;

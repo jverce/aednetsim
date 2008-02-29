@@ -1,3 +1,7 @@
+#include <fstream>
+#include <string>
+#include <sstream>
+
 #include "Librerias.h"
 
 using namespace std;
