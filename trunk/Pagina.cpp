@@ -7,11 +7,11 @@ using namespace std;
 
 		Pagina::Pagina() {}
 
-		Pagina::Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen)
+		Pagina::Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen, unsigned int iSeed)
 		{
-			srand((unsigned) time(NULL));
+			srand(iSeed);
 
-			m_dIDPagina = rand();
+			m_dIDPagina = (double) rand() / (double) RAND_MAX;
 
 			m_iCantPaquetes = iCantPaquetes;
 			m_IPDestino = ipDestino;

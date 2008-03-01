@@ -26,7 +26,7 @@ class Host
 
 	public:
 	
-		Host(int i1Oct, int i2Oct, Admin* admin);
+		Host(int i1Oct, int i2Oct, Admin* admin, unsigned int iSeed);
 		void setIP(int i1Oct, int i2Oct);
 		IP getIP();
 		void enviar();

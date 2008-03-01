@@ -81,11 +81,20 @@ using namespace std;
 			return (*it);
 		}
 
+		string Router::toString()
+		{
+			stringstream strStream;
+
+			strStream << "Router numero " << m_i1Oct;
+
+			return strStream.str();
+		}
+
 		string Router::toString(int iNum)
 		{
 			stringstream strStream;
 
-			strStream << "Router numero " << iNum;
+			strStream << iNum;
 
 			return strStream.str();
 		}
