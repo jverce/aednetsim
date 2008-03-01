@@ -11,8 +11,8 @@ class Admin
 	private:
 		
 		// Variables		
-		Matriz<int> m_iMatrizOriginal;
-		Matriz<double> m_dMatrizActualizada;
+		MatrizInt m_iMatrizOriginal;
+		MatrizDouble m_dMatrizActualizada;
 		int m_iCantRouters;
 		map<int, Router*> m_aRefRouters;
 		map<Router*, int> m_aDestRouters;

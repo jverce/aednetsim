@@ -2,17 +2,17 @@
 
 using namespace std;
 
-template <class C> class Buffer
+class Buffer
 {
 	private:
 	
-		list<C> m_aLista;
+		list<Paquete> m_aLista;
 		int m_iSize;
 
 	public:
 
-		void insert(C elem);
+		void insert(Paquete elem);
 		void sort();
 		bool empty();
-		C get();
+		Paquete get();
 };

@@ -21,7 +21,7 @@ class Router
 		ofstream m_ArchivoSalida;
 		list<Host*> m_ListaHosts;
 		map< Router*, queue<Paquete> > m_ColasVecinos;
-		Buffer<Paquete> m_Buffer;
+		Buffer m_Buffer;
 		list<Paquete> m_ListaPaquetes;
 		Tabla* m_TablaEnrutamiento;
 		

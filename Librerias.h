@@ -5,7 +5,8 @@
 #include "Pagina.h"
 
 #include "Buffer.h"
-#include "Matriz.h"
+#include "MatrizInt.h"
+#include "MatrizDouble.h"
 
 #include "LectorArchivoTexto.h"
 
