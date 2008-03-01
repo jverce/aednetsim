@@ -4,25 +4,25 @@
 
 using namespace std;
 
-template <class C> void Buffer <C> :: insert(C elem)
+void Buffer:: insert(Paquete elem)
 {
 	m_aLista.push_back(elem);
 	m_iSize++;
 }
 
-template <class C> void Buffer <C> :: sort()
+void Buffer:: sort()
 {
 	m_aLista.sort();
 }
 
-template <class C> bool Buffer <C> :: empty()
+bool Buffer:: empty()
 {
 	return m_aLista.empty();
 }
 
-template <class C> C Buffer <C> :: get()
+Paquete Buffer:: get()
 {
-	C elem = m_aLista.front();
+	Paquete elem = m_aLista.front();
 	m_aLista.pop_front();
 	return elem;
 }

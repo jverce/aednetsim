@@ -82,8 +82,8 @@ int LectorArchivoTexto::getCantRouters() {
 	return n_Routers;
 };
 
-Matriz<int> LectorArchivoTexto::getMatriz(){
-	Matriz<int> matriz;
+MatrizInt LectorArchivoTexto::getMatriz(){
+	MatrizInt matriz;
 
 	for (int cii = 1; cii <= NUM_MAX_ROUTERS; cii++) {
 		for (int cij = 1 ; cij <= NUM_MAX_ROUTERS; cij++) {

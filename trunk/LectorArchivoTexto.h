@@ -22,6 +22,6 @@ class LectorArchivoTexto {
 		list<int> getRoutersConectados(int Router);
 		void Routers();
 		int getCantRouters();
-		Matriz<int> getMatriz();
+		MatrizInt getMatriz();
 };
 #endif
