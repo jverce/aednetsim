@@ -170,14 +170,14 @@ using namespace std;
 
 			while (it_1 != m_ColasVecinos.end())
 			{
-				Router* routerDestino = (*it_1).first;
+				Router* routerDestino = it_1 -> first;
 
 				list<Paquete> :: iterator it_2 = m_ListaPaquetes.begin();
 				for (int cij = 0; 
 						(cij < m_TablaEnrutamiento -> getBW(routerDestino)) || 
 						(it_2 != m_ListaPaquetes.end()); it_2++)
 				{
-					if (m_TablaEnrutamiento -> getNextHop(&(*it_2)) == routerDestino) 
+					if (elegirInterfaz(*it_2) == routerDestino)
 					{
 						m_ColasVecinos[routerDestino].push(*it_2);
 						m_ListaPaquetes.erase(it_2);
