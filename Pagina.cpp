@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Librerias.h"
 
 using namespace std;
@@ -7,7 +9,7 @@ using namespace std;
 
 		Pagina::Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen)
 		{
-			srand((unsigned) time(0));
+			srand((unsigned) time(NULL));
 
 			m_dIDPagina = rand();
 

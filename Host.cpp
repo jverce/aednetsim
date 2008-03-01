@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <cstring>
@@ -29,7 +30,7 @@ using namespace std;
 	
 		int Host::calcularRandom(int iLim)
 		{	
-			return ((int) (rand() % iLim)) + 1;
+			return ((int) (rand() % iLim));
 		}	
 
 
@@ -44,7 +45,7 @@ using namespace std;
 
 			m_ArchivoSalida.open(szFileName);
 		
-			srand((unsigned) time(0));
+			srand((unsigned) time(NULL));
 	
 			m_Gateway = m_Admin -> getRouterPorDestino(i1Oct);
 		}
