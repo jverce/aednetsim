@@ -11,8 +11,8 @@ using namespace std;
 			m_ipDestino = ipDestino;
 			m_ipOrigen = ipOrigen;
 
-			m_iIDPaquete = iIDPaquete;
 			m_dIDPagina = dIDPagina;
+			m_iIDPaquete = iIDPaquete;
 		}
 
 		string Paquete::toString()
@@ -20,6 +20,7 @@ using namespace std;
 			stringstream stringStream;
 
 			stringStream << "Paquete, ID = " << m_iIDPaquete << ", Pagina.ID = " << m_dIDPagina;
+			stringStream << ". Origen = " << m_ipOrigen.toString() << ", Destino = " << m_ipDestino.toString();
 			string szAuxString = stringStream.str();
 
 			return szAuxString;
