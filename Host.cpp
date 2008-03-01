@@ -23,18 +23,18 @@ using namespace std;
 
 		Pagina Host::generarPagina()
 		{		
-			Pagina pagina(calcularRandom(100), generarDestino(), m_IP);
+			Pagina pagina(calcularRandom(NUM_MAX_PAQ_POR_PAG), generarDestino(), m_IP, rand());
 		
 			return pagina;
 		}	
 	
 		int Host::calcularRandom(int iLim)
 		{	
-			return ((int) (rand() % iLim));
+			return rand() % iLim;
 		}	
 
 
-		Host::Host(int i1Oct, int i2Oct, Admin* admin)
+		Host::Host(int i1Oct, int i2Oct, Admin* admin, unsigned int iSeed)
 		{
 			setIP(i1Oct, i2Oct);
 			m_Admin = admin;
@@ -45,7 +45,7 @@ using namespace std;
 
 			m_ArchivoSalida.open(szFileName);
 		
-			srand((unsigned) time(NULL));
+			srand(iSeed);
 	
 			m_Gateway = m_Admin -> getRouterPorDestino(i1Oct);
 		}

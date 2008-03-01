@@ -10,6 +10,8 @@ using namespace std;
 		{
 			LectorArchivoTexto lector;
 
+			srand((unsigned) time(NULL));
+
 			m_iMatrizOriginal = lector.getMatriz();
 			m_iCantRouters = lector.getCantRouters();
 			crearRouters(lector);
@@ -42,7 +44,7 @@ using namespace std;
 
 				for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
 				{
-					m_aRefRouters[cii] -> agregarHost(new Host(cii, cij, this));
+					m_aRefRouters[cii] -> agregarHost(new Host(cii, cij, this, rand()));
 				}
 			}
 		}

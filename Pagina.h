@@ -19,7 +19,7 @@ class Pagina
 	public:
 		
 		Pagina();
-		Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen);
+		Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen, unsigned int iSeed);
 		Pagina(list<Paquete> listaPaquetes);
 		int getCantPaquetes();
 		IP getIPDestino();

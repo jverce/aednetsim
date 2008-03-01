@@ -33,6 +33,7 @@ class Router
 		Router* elegirInterfaz(Paquete paquete);
 		Router* elegirInterfaz(int iRouterId);
 		Paquete getAt(list<Paquete> lista, int iIndex);
+		string toString();
 		string toString(int iNum);
 
 	public:
