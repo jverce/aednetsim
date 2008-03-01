@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <sstream>
 
@@ -52,6 +53,7 @@ using namespace std;
 				stringStream << "Destino: " << it -> first << '\t';
 				stringStream << "Ruta: " << it -> second -> getId() << endl;
 
+				it++;
 			}
 
 			return stringStream.str();

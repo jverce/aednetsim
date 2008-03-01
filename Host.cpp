@@ -29,7 +29,7 @@ using namespace std;
 	
 		int Host::calcularRandom(int iLim)
 		{	
-			return ((int) (rand() * iLim)) + 1;
+			return ((int) (rand() % iLim)) + 1;
 		}	
 
 
@@ -77,7 +77,7 @@ using namespace std;
 		{
 			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 			{
-				m_ArchivoSalida << "Entra_ " + pagina.getPaquete(cii).toString() << endl;			
+				m_ArchivoSalida << "Entra_ " + pagina.getPaquete(cii).toString() << endl;
 			}
 		}
 

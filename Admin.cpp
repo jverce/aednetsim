@@ -1,4 +1,6 @@
+#include <iostream>
 #include <utility>
+#include <list>
 
 #include "Librerias.h"
 
@@ -129,7 +131,7 @@ using namespace std;
 				} 
 				else
 				{
-					tabla -> crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[iOrigen]]);
+					tabla -> crearEntradaDestinos(cii, m_aRefRouters[iOrigen]);
 				}
 
 				for (int cij = 0; cij < m_iCantRouters; cij++)
@@ -165,8 +167,9 @@ using namespace std;
 			
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
-				list<Host*> :: iterator it = m_aRefRouters[cii] -> getListaHosts().begin();
-				while ( it != m_aRefRouters[cii] -> getListaHosts().end() )
+				list<Host*> listaHosts = m_aRefRouters[cii] -> getListaHosts();
+				list<Host*> :: iterator it = listaHosts.begin();
+				while ( it != listaHosts.end() )
 				{
 					(*it) -> enviar();
 					it++;
@@ -178,7 +181,7 @@ using namespace std;
 				actualizarMatriz();
 				for (int cij = 0; cij < m_iCantRouters; cij++) 
 				{
-					dijkstra(cii);
+					dijkstra(cij);
 				}
 
 				for (int cij = 0; cij < CICLOS_ACTUALIZACION; cij++)
