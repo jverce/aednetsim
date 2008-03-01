@@ -31,6 +31,7 @@ class Router
 		void meterEnLista(Pagina pagina);
 		void meterEnLista(Paquete paquete);
 		Router* elegirInterfaz(Paquete paquete);
+		Router* elegirInterfaz(int iRouterId);
 		Paquete getAt(list<Paquete> lista, int iIndex);
 		string toString(int iNum);
 

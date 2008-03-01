@@ -52,7 +52,12 @@ using namespace std;
 
 		Router* Router::elegirInterfaz(Paquete paquete)
 		{
-			Router* router = m_TablaEnrutamiento -> getNextHop(paquete.getIPDestino().getPrimerOcteto());
+			return elegirInterfaz(paquete.getIPDestino().getPrimerOcteto());
+		}
+
+		Router* Router::elegirInterfaz(int iRouterId)
+		{
+			Router* router = m_TablaEnrutamiento -> getNextHop(iRouterId);
 
 			if (isVecino(router))
 			{
@@ -60,7 +65,7 @@ using namespace std;
 			}
 			else
 			{
-				return m_TablaEnrutamiento -> getNextHop(router -> getId());
+				return elegirInterfaz(router -> getId());
 			}
 		}
 
@@ -69,7 +74,9 @@ using namespace std;
 			list<Paquete> :: iterator it = lista.begin();
 
 			for (int cii = 0; cii < iIndex; cii++)
+			{
 				it++;
+			}
 
 			return (*it);
 		}
@@ -78,7 +85,7 @@ using namespace std;
 		{
 			stringstream strStream;
 
-			strStream << iNum;
+			strStream << "Router numero " << iNum;
 
 			return strStream.str();
 		}
