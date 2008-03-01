@@ -6,13 +6,14 @@
 using namespace std;
 
 
-		Paquete::Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete)
+		Paquete::Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete, int iTotalPaquetes)
 		{
 			m_ipDestino = ipDestino;
 			m_ipOrigen = ipOrigen;
 
 			m_dIDPagina = dIDPagina;
 			m_iIDPaquete = iIDPaquete;
+			m_iTotalPaquetes = iTotalPaquetes;
 		}
 
 		string Paquete::toString()
@@ -29,6 +30,11 @@ using namespace std;
 		double Paquete::getIDPagina()
 		{
 			return m_dIDPagina;
+		}
+
+		int Paquete::getTotalPaquetes()
+		{
+			return m_iTotalPaquetes;
 		}
 
 		int Paquete::getIDPaquete()

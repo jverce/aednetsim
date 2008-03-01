@@ -19,7 +19,7 @@ using namespace std;
 
 			for (int cii = 0; cii < iCantPaquetes; cii++) 
 			{
-				Paquete paquete(ipDestino, ipOrigen, m_dIDPagina, (cii + 1));
+				Paquete paquete(ipDestino, ipOrigen, m_dIDPagina, (cii + 1), m_iCantPaquetes);
 				m_ListaPaquetes.push_back(paquete);
 			}
 		}
@@ -49,7 +49,7 @@ using namespace std;
 		{
 			list<Paquete> :: iterator it = m_ListaPaquetes.begin();
 
-			for (int cii = 0; cii < iPos; cii++)
+			for (int cii = 1; cii < iPos; cii++)
 			{
 				it++;
 			}
