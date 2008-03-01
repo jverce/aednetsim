@@ -26,6 +26,11 @@ using namespace std;
 			return false;
 		}
 
+		bool Router::isMismoRouter(Router* router)
+		{
+			return router == this;
+		}
+
 		void Router::vaciarBuffer()
 		{
 			m_Buffer.sort();
@@ -151,6 +156,11 @@ using namespace std;
 		{
 			m_ListaHosts.push_back(host);
 			m_iCantHosts++;
+			
+			m_aRefHosts[host -> getIP().getSegundoOcteto()] = host;
+			
+			queue<Paquete> cola;
+			m_ColasLocales[host] = cola;
 		}
 
 		void Router::agregarVecino(Router* vecino)
@@ -175,12 +185,70 @@ using namespace std;
 
 		void Router::recibir(Paquete paquete)
 		{
-			m_Buffer.insert(paquete);
+			if (paquete.getIPDestino().getPrimerOcteto() != m_i1Oct)
+			{
+				m_Buffer.insert(paquete);
+			}
+			else
+			{
+				recibirInterno(paquete);
+			}
 		}
 
+		void Router::recibirInterno(Paquete paquete)
+		{
+			m_ColasLocales[m_aRefHosts[paquete.getIPDestino().getSegundoOcteto()]].push(paquete);
+		}
+
+		void Router::enviarLocal()
+		{
+			for (int cii = 0; cii < m_iCantHosts; cii++)
+			{
+				queue<Paquete> cola = m_ColasLocales[m_aRefHosts[cii]];
+				list<Paquete> listaPaquetes;
+				list<double> listaIdPagina;
+
+				while (!cola.empty())
+				{
+					listaPaquetes.push_back(cola.front());
+					listaIdPagina.push_back(cola.front().getIDPagina());
+					cola.pop();
+				}
+
+				listaIdPagina.sort();
+				listaIdPagina.unique();
+
+				while (!listaIdPagina.empty())
+				{
+					double dIdPagina = listaIdPagina.front();
+					listaIdPagina.pop_front();
+
+					list<Paquete> :: iterator it = listaPaquetes.begin();
+					list<Paquete> listaAuxiliar;
+					Paquete paqAux = *it;
+					while (it != listaPaquetes.end())
+					{
+						if ( it -> getIDPagina() == dIdPagina )
+						{
+							listaAuxiliar.push_back(*it);
+						}
+
+						it++;
+					}
+
+					if (listaAuxiliar.size() == paqAux.getTotalPaquetes())
+					{
+						Pagina pagina(listaAuxiliar);
+						m_aRefHosts[cii] -> recibir(pagina);
+					}
+				}
+			}
+		}
+					
 		void Router::enviar()
 		{
 			vaciarBuffer();
+			enviarLocal();
 
 			map< Router*, queue<Paquete> > :: iterator it_1 = m_ColasVecinos.begin();
 
