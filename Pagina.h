@@ -2,6 +2,7 @@
 #define __PAGINA_H__
 
 #include <list>
+#include <string>
 
 using namespace std;
 
@@ -24,5 +25,6 @@ class Pagina
 		int getCantPaquetes();
 		IP getIPDestino();
 		Paquete getPaquete(int iPos);
+		string toString();
 };
 #endif

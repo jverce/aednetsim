@@ -76,9 +76,7 @@ using namespace std;
 	
 		void Host::recibir(Pagina pagina)
 		{
-			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
-			{
-				m_ArchivoSalida << "Entra_ " + pagina.getPaquete(cii).toString() << endl;
-			}
+			m_ArchivoSalida << "Entra_ PAGINA " << endl;
+			m_ArchivoSalida << "Entra_ " + pagina.toString() << endl;
 		}
 
