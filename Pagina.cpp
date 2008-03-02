@@ -19,20 +19,28 @@ using namespace std;
 
 			for (int cii = 0; cii < iCantPaquetes; cii++) 
 			{
-				Paquete paquete(ipDestino, ipOrigen, m_dIDPagina, (cii + 1), m_iCantPaquetes);
+				Paquete* paquete = 
+					new Paquete(ipDestino, ipOrigen, m_dIDPagina, (cii + 1), m_iCantPaquetes);
 				m_ListaPaquetes.push_back(paquete);
 			}
 		}
 
 		Pagina::Pagina(list<Paquete> listaPaquetes)
 		{
-			m_ListaPaquetes = listaPaquetes;
+			list<Paquete> :: iterator it_1 = listaPaquetes.begin();
+			while (it_1 != listaPaquetes.end())
+			{
+				Paquete* paq = new Paquete(*it_1);
+				m_ListaPaquetes.push_back(paq);
+				it_1++;
+			}
+
 			m_iCantPaquetes = listaPaquetes.size();
 
-			list<Paquete> :: iterator it = listaPaquetes.begin();
-			m_dIDPagina = it -> getIDPagina();
-			m_IPDestino = it -> getIPDestino();
-			m_IPOrigen = it ->getIPOrigen();
+			list<Paquete> :: iterator it_2 = listaPaquetes.begin();
+			m_dIDPagina = it_2 -> getIDPagina();
+			m_IPDestino = it_2 -> getIPDestino();
+			m_IPOrigen = it_2 ->getIPOrigen();
 		}
 
 		int Pagina::getCantPaquetes()
@@ -47,14 +55,14 @@ using namespace std;
 
 		Paquete Pagina::getPaquete(int iPos)
 		{
-			list<Paquete> :: iterator it = m_ListaPaquetes.begin();
+			list<Paquete*> :: iterator it = m_ListaPaquetes.begin();
 
 			for (int cii = 1; cii < iPos; cii++)
 			{
 				it++;
 			}
 
-			return *it;
+			return *(*it);
 		}
 
 

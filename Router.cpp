@@ -62,15 +62,20 @@ using namespace std;
 
 		Router* Router::elegirInterfaz(int iRouterId)
 		{
-			Router* router = m_TablaEnrutamiento -> getNextHop(iRouterId);
+			Router* router_1 = m_TablaEnrutamiento -> getNextHop(iRouterId);
+			Router* router_2 = m_Admin -> getRouterPorDestino(iRouterId);
 
-			if (isVecino(router))
+			if (isVecino(router_1))
 			{
-				return router;
+				return router_1;
+			}
+			else if (isVecino(router_2))
+			{
+				return router_2;
 			}
 			else
 			{
-				return elegirInterfaz(router -> getId());
+				return elegirInterfaz(router_1 -> getId());
 			}
 		}
 
@@ -105,9 +110,10 @@ using namespace std;
 		}
 
 
-		Router::Router(int i1Oct)
+		Router::Router(int i1Oct, Admin* admin)
 		{
 			m_i1Oct = i1Oct;
+			m_Admin = admin;
 			m_iCantHosts = 0;
 
 			string szAuxFileName = "Router_" + toString(i1Oct) + ".log";
@@ -251,14 +257,13 @@ using namespace std;
 			enviarLocal();
 
 			map< Router*, queue<Paquete> > :: iterator it_1 = m_ColasVecinos.begin();
-
 			while (it_1 != m_ColasVecinos.end())
 			{
 				Router* routerDestino = it_1 -> first;
 
 				list<Paquete> :: iterator it_2 = m_ListaPaquetes.begin();
 				for (int cij = 0; 
-						(cij < m_TablaEnrutamiento -> getBW(routerDestino)) || 
+						(cij < m_TablaEnrutamiento -> getBW(routerDestino)) &&
 						(it_2 != m_ListaPaquetes.end()); it_2++)
 				{
 					if (elegirInterfaz(*it_2) == routerDestino)

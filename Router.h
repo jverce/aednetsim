@@ -9,6 +9,7 @@
 
 class Host;
 class Tabla;
+class Admin;
 
 using namespace std;
 
@@ -18,6 +19,7 @@ class Router
 		//Variables
 		int m_i1Oct;
 		int m_iCantHosts;
+		Admin* m_Admin;
 		ofstream m_ArchivoSalida;
 		list<Host*> m_ListaHosts;
 		map< Router*, queue<Paquete> > m_ColasVecinos;
@@ -43,7 +45,7 @@ class Router
 
 	public:
 	
-		Router(int i1Oct);
+		Router(int i1Oct, Admin* admin);
 		int getId();
 		void setTabla(Tabla* tabla);
 		list<Host*> getListaHosts();

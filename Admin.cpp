@@ -23,7 +23,7 @@ using namespace std;
 		{
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
-				Router* router = new Router(cii);
+				Router* router = new Router(cii, this);
 				m_aRefRouters[cii] = router;
 				m_aDestRouters[router] = cii;
 			}
