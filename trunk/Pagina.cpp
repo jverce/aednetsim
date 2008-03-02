@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <sstream>
 
 #include "Librerias.h"
 
@@ -63,6 +65,18 @@ using namespace std;
 			}
 
 			return *(*it);
+		}
+
+		string Pagina::toString()
+		{
+			stringstream strStream;
+
+			for (int cii = 0; cii < m_iCantPaquetes; cii++)
+			{
+				strStream << getPaquete(cii).toString() << endl;
+			}
+
+			return strStream.str();
 		}
 
 

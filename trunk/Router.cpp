@@ -42,10 +42,12 @@ using namespace std;
 
 		void Router::meterEnLista(Pagina pagina)
 		{
+			m_ArchivoSalida << "Entra_ PAGINA " << endl;
+			m_ArchivoSalida << pagina.toString() << endl;
+			
 			for (int cii = 0; cii < pagina.getCantPaquetes(); cii++) 
 			{
 				m_ListaPaquetes.push_back(pagina.getPaquete(cii));
-				m_ArchivoSalida << "Entra_ " + pagina.getPaquete(cii).toString() << endl;
 			}		
 		}
 
@@ -246,6 +248,9 @@ using namespace std;
 					{
 						Pagina pagina(listaAuxiliar);
 						m_aRefHosts[cii] -> recibir(pagina);
+						m_ColasLocales[m_aRefHosts[cii]] = cola;
+						m_ArchivoSalida << "Sale_ PAGINA" << endl;
+						m_ArchivoSalida << pagina.toString() << endl;
 					}
 				}
 			}
@@ -280,11 +285,11 @@ using namespace std;
 			}
 
 			map< Router*, queue<Paquete> > :: iterator it = m_ColasVecinos.begin();
-
 			while (it != m_ColasVecinos.end()) 
 			{
 				for (int cii = 0; cii < it -> second.size(); ) 
 				{
+					m_ArchivoSalida << "Sale_ " + it -> second.front().toString() << endl;
 					it -> first -> recibir(it -> second.front());
 					it -> second.pop();
 				}
