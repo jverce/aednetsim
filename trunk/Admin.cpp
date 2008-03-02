@@ -44,7 +44,8 @@ using namespace std;
 
 				for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
 				{
-					m_aRefRouters[cii] -> agregarHost(new Host(cii, cij, this, rand()));
+					Host* host = new Host(cii, cij, this, rand());
+					m_aRefRouters[cii] -> agregarHost(host);
 				}
 			}
 		}

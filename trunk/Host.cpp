@@ -24,7 +24,7 @@ using namespace std;
 		Pagina Host::generarPagina()
 		{		
 			Pagina pagina(calcularRandom(NUM_MAX_PAQ_POR_PAG), generarDestino(), m_IP, rand());
-		
+
 			return pagina;
 		}	
 	

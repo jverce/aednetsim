@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <sstream>
 
@@ -5,6 +6,8 @@
 
 using namespace std;
 
+
+		Paquete::Paquete() {}
 
 		Paquete::Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete, int iTotalPaquetes)
 		{
