@@ -54,7 +54,7 @@ using namespace std;
 				it++;
 			}
 
-			return (*it);
+			return *it;
 		}
 
 

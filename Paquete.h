@@ -17,6 +17,7 @@ class Paquete
 
 	public:
 	
+		Paquete();
 		Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete, int iTotalPaquetes);
 		string toString();
 		double getIDPagina();
