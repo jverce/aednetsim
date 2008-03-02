@@ -30,7 +30,7 @@ using namespace std;
 	
 		int Host::calcularRandom(int iLim)
 		{	
-			return (rand() % iLim) + 1;
+			return (rand() % (iLim-1)) + 1;
 		}	
 
 

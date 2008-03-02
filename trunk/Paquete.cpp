@@ -67,5 +67,5 @@ using namespace std;
 
 		bool Paquete::operator == (const Paquete &paquete2)
 		{
-			 return m_iIDPaquete == paquete2.m_iIDPaquete;
+			return m_iIDPaquete == paquete2.m_iIDPaquete;
 		}
