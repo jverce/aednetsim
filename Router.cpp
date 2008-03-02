@@ -248,7 +248,7 @@ using namespace std;
 					{
 						Pagina pagina(listaAuxiliar);
 						m_aRefHosts[cii] -> recibir(pagina);
-						m_ColasLocales[m_aRefHosts[cii]] = cola;
+
 						m_ArchivoSalida << "Sale_ PAGINA" << endl;
 						m_ArchivoSalida << pagina.toString() << endl;
 					}
