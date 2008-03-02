@@ -10,7 +10,7 @@ class Pagina
 
 	private:
 	
-		list<Paquete> m_ListaPaquetes;
+		list<Paquete*> m_ListaPaquetes;
 		int m_iCantPaquetes;
 		IP m_IPDestino;
 		IP m_IPOrigen;
