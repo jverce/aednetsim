@@ -185,7 +185,7 @@ using namespace std;
 		{
 			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 			{
-				m_Buffer.insert(pagina.getPaquete(cii));
+				recibir(pagina.getPaquete(cii));
 			}
 		}
 
@@ -270,6 +270,7 @@ using namespace std;
 					{
 						m_ColasVecinos[routerDestino].push(*it_2);
 						m_ListaPaquetes.erase(it_2);
+						it_2 = m_ListaPaquetes.begin();
 
 						cij++;
 					}
