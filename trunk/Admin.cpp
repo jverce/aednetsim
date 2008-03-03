@@ -166,8 +166,10 @@ using namespace std;
 		
 		void Admin::start (int iVueltas)
 		{
+			cout << "Inicializando datos..." << endl;
 			inicializarTodo();
 			
+			cout << "Creando paginas al azar..." << endl;
 			for (int cii = 0; cii < m_iCantRouters; cii++)
 			{
 				list<Host*> listaHosts = m_aRefRouters[cii] -> getListaHosts();
@@ -181,12 +183,14 @@ using namespace std;
 
 			for (int cii = 0; cii < iVueltas; cii++)
 			{
+				cout << "Recalculando caminos mas cortos..." << endl;
 				actualizarMatriz();
 				for (int cij = 0; cij < m_iCantRouters; cij++) 
 				{
 					dijkstra(cij);
 				}
 
+				cout << "Enviando datos entre routers..." << endl;
 				for (int cij = 0; cij < CICLOS_ACTUALIZACION; cij++)
 				{
 					for (int cik = 0; cik < m_iCantRouters; cik++)
