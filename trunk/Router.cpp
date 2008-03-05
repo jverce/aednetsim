@@ -273,7 +273,7 @@ using namespace std;
 				{
 					if (elegirInterfaz(*it_2) == routerDestino)
 					{
-						m_ColasVecinos[routerDestino].push(*it_2);
+						it_1 -> second.push(*it_2);
 						m_ListaPaquetes.erase(it_2);
 						it_2 = m_ListaPaquetes.begin();
 
