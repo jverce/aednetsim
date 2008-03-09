@@ -22,24 +22,22 @@ class Router
 		Admin* m_Admin;
 		ofstream m_ArchivoSalida;
 		list<Host*> m_ListaHosts;
-		map< Router*, queue<Paquete> > m_ColasVecinos;
-		map< Host*, queue<Paquete> > m_ColasLocales;
+		map< Router*, queue<Paquete*> > m_ColasVecinos;
+		map< Host*, queue<Paquete*> > m_ColasLocales;
 		map<int, Host*> m_aRefHosts;
 		Buffer m_Buffer;
-		list<Paquete> m_ListaPaquetes;
 		Tabla* m_TablaEnrutamiento;
 		
 		//Metodos
 		bool isVecino(Router* router);
 		bool isMismoRouter(Router* router);
 		void vaciarBuffer();
-		void meterEnLista(Pagina pagina);
-		void meterEnLista(Paquete paquete);
-		Router* elegirInterfaz(Paquete paquete);
+		void meterEnLista(Paquete* paquete);
+		Router* elegirInterfaz(Paquete* paquete);
 		Router* elegirInterfaz(int iRouterId);
-		void recibirInterno(Paquete paquete);
+		void recibirInterno(Paquete* paquete);
 		void enviarLocal();
-		Paquete getAt(list<Paquete> lista, int iIndex);
+		Paquete* getAt(list<Paquete*> lista, int iIndex);
 		string toString();
 		string toString(int iNum);
 
@@ -54,7 +52,7 @@ class Router
 		void agregarVecino(Router* vecino);
 		int getCarga(Router* interfaz);
 		void recibir(Pagina pagina);
-		void recibir(Paquete paquete);
+		void recibir(Paquete* paquete);
 		void enviar();
 };
 #endif

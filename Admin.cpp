@@ -26,6 +26,7 @@ using namespace std;
 				Router* router = new Router(cii, this);
 				m_aRefRouters[cii] = router;
 				m_aDestRouters[router] = cii;
+				dijkstra(cii);
 			}
 		}
 
