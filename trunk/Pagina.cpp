@@ -27,22 +27,15 @@ using namespace std;
 			}
 		}
 
-		Pagina::Pagina(list<Paquete> listaPaquetes)
+		Pagina::Pagina(list<Paquete*> listaPaquetes)
 		{
-			list<Paquete> :: iterator it_1 = listaPaquetes.begin();
-			while (it_1 != listaPaquetes.end())
-			{
-				Paquete* paq = new Paquete(*it_1);
-				m_ListaPaquetes.push_back(paq);
-				it_1++;
-			}
-
+			m_ListaPaquetes = listaPaquetes;
 			m_iCantPaquetes = listaPaquetes.size();
 
-			list<Paquete> :: iterator it_2 = listaPaquetes.begin();
-			m_dIDPagina = it_2 -> getIDPagina();
-			m_IPDestino = it_2 -> getIPDestino();
-			m_IPOrigen = it_2 ->getIPOrigen();
+			list<Paquete*> :: iterator it_2 = listaPaquetes.begin();
+			m_dIDPagina = (*it_2) -> getIDPagina();
+			m_IPDestino = (*it_2) -> getIPDestino();
+			m_IPOrigen = (*it_2) ->getIPOrigen();
 		}
 
 		int Pagina::getCantPaquetes()
@@ -55,7 +48,7 @@ using namespace std;
 			return m_IPDestino;
 		}
 
-		Paquete Pagina::getPaquete(int iPos)
+		Paquete* Pagina::getPaquete(int iPos)
 		{
 			list<Paquete*> :: iterator it = m_ListaPaquetes.begin();
 
@@ -64,7 +57,7 @@ using namespace std;
 				it++;
 			}
 
-			return *(*it);
+			return (*it);
 		}
 
 		string Pagina::toString()
@@ -73,7 +66,7 @@ using namespace std;
 
 			for (int cii = 0; cii < m_iCantPaquetes; cii++)
 			{
-				strStream << getPaquete(cii).toString() << endl;
+				strStream << getPaquete(cii) -> toString() << endl;
 			}
 
 			return strStream.str();

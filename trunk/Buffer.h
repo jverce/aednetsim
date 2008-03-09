@@ -6,13 +6,13 @@ class Buffer
 {
 	private:
 	
-		list<Paquete> m_aLista;
+		list<Paquete*> m_aLista;
 		int m_iSize;
 
 	public:
 
-		void insert(Paquete elem);
+		void insert(Paquete* elem);
 		void sort();
 		bool empty();
-		Paquete get();
+		Paquete* get();
 };

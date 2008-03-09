@@ -11,8 +11,7 @@ using namespace std;
 
 		bool Router::isVecino (Router* router)
 		{
-			map< Router*, queue<Paquete> > :: iterator it = m_ColasVecinos.begin();
-			
+			map< Router*, queue<Paquete*> > :: iterator it = m_ColasVecinos.begin();
 			while ( it != m_ColasVecinos.end() )
 			{
 				if ( (it -> first) == router)
@@ -40,26 +39,14 @@ using namespace std;
 			}
 		}
 
-		void Router::meterEnLista(Pagina pagina)
+		void Router::meterEnLista(Paquete* paquete)
 		{
-			m_ArchivoSalida << "Entra_ PAGINA " << endl;
-			m_ArchivoSalida << pagina.toString() << endl;
-			
-			for (int cii = 0; cii < pagina.getCantPaquetes(); cii++) 
-			{
-				m_ListaPaquetes.push_back(pagina.getPaquete(cii));
-			}		
+			m_ColasVecinos[elegirInterfaz(paquete)].push(paquete);
 		}
 
-		void Router::meterEnLista(Paquete paquete)
+		Router* Router::elegirInterfaz(Paquete* paquete)
 		{
-			m_ListaPaquetes.push_back(paquete);
-			m_ArchivoSalida << "Entra_ " + paquete.toString() << endl;
-		}
-
-		Router* Router::elegirInterfaz(Paquete paquete)
-		{
-			return elegirInterfaz(paquete.getIPDestino().getPrimerOcteto());
+			return elegirInterfaz(paquete -> getIPDestino().getPrimerOcteto());
 		}
 
 		Router* Router::elegirInterfaz(int iRouterId)
@@ -81,10 +68,9 @@ using namespace std;
 			}
 		}
 
-		Paquete Router::getAt(list<Paquete> lista, int iIndex)
+		Paquete* Router::getAt(list<Paquete*> lista, int iIndex)
 		{
-			list<Paquete> :: iterator it = lista.begin();
-
+			list<Paquete*> :: iterator it = lista.begin();
 			for (int cii = 0; cii < iIndex; cii++)
 			{
 				it++;
@@ -145,19 +131,7 @@ using namespace std;
 
 		int Router::getCarga(int iDestino)
 		{
-			list<Paquete> :: iterator it = m_ListaPaquetes.begin();
-			int iCounter = 0;
-
-			while (it != m_ListaPaquetes.end())
-			{
-				if ( (it -> getIPDestino().getPrimerOcteto()) == iDestino )
-				{
-					iCounter++;
-				}
-				it++;
-			}
-
-			return iCounter;
+			return m_ColasVecinos[elegirInterfaz(iDestino)].size();
 		}
 
 		void Router::agregarHost(Host* host)
@@ -167,13 +141,13 @@ using namespace std;
 			
 			m_aRefHosts[host -> getIP().getSegundoOcteto()] = host;
 			
-			queue<Paquete> cola;
+			queue<Paquete*> cola;
 			m_ColasLocales[host] = cola;
 		}
 
 		void Router::agregarVecino(Router* vecino)
 		{
-			queue<Paquete> cola;
+			queue<Paquete*> cola;
 
 			m_ColasVecinos[vecino] = cola;	
 		}
@@ -185,15 +159,19 @@ using namespace std;
 
 		void Router::recibir(Pagina pagina)
 		{
+			m_ArchivoSalida << "Entra_ PAGINA " << endl;
+			
 			for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 			{
 				recibir(pagina.getPaquete(cii));
 			}
 		}
 
-		void Router::recibir(Paquete paquete)
+		void Router::recibir(Paquete* paquete)
 		{
-			if (paquete.getIPDestino().getPrimerOcteto() != m_i1Oct)
+			m_ArchivoSalida << "Entra_ " + paquete -> toString() << endl;
+
+			if (paquete -> getIPDestino().getPrimerOcteto() != m_i1Oct)
 			{
 				m_Buffer.insert(paquete);
 			}
@@ -203,23 +181,23 @@ using namespace std;
 			}
 		}
 
-		void Router::recibirInterno(Paquete paquete)
+		void Router::recibirInterno(Paquete* paquete)
 		{
-			m_ColasLocales[m_aRefHosts[paquete.getIPDestino().getSegundoOcteto()]].push(paquete);
+			m_ColasLocales[m_aRefHosts[paquete -> getIPDestino().getSegundoOcteto()]].push(paquete);
 		}
 
 		void Router::enviarLocal()
 		{
 			for (int cii = 0; cii < m_iCantHosts; cii++)
 			{
-				queue<Paquete> cola = m_ColasLocales[m_aRefHosts[cii]];
-				list<Paquete> listaPaquetes;
+				queue<Paquete*> cola = m_ColasLocales[m_aRefHosts[cii]];
+				list<Paquete*> listaPaquetes;
 				list<double> listaIdPagina;
 
 				while (!cola.empty())
 				{
 					listaPaquetes.push_back(cola.front());
-					listaIdPagina.push_back(cola.front().getIDPagina());
+					listaIdPagina.push_back(cola.front() -> getIDPagina());
 					cola.pop();
 				}
 
@@ -231,12 +209,12 @@ using namespace std;
 					double dIdPagina = listaIdPagina.front();
 					listaIdPagina.pop_front();
 
-					list<Paquete> :: iterator it = listaPaquetes.begin();
-					list<Paquete> listaAuxiliar;
-					Paquete paqAux = *it;
+					list<Paquete*> :: iterator it = listaPaquetes.begin();
+					list<Paquete*> listaAuxiliar;
+					Paquete* paqAux = *it;
 					while (it != listaPaquetes.end())
 					{
-						if ( it -> getIDPagina() == dIdPagina )
+						if ( (*it) -> getIDPagina() == dIdPagina )
 						{
 							listaAuxiliar.push_back(*it);
 						}
@@ -244,7 +222,7 @@ using namespace std;
 						it++;
 					}
 
-					if (listaAuxiliar.size() == paqAux.getTotalPaquetes())
+					if (listaAuxiliar.size() == paqAux -> getTotalPaquetes())
 					{
 						Pagina pagina(listaAuxiliar);
 						m_aRefHosts[cii] -> recibir(pagina);
@@ -261,41 +239,21 @@ using namespace std;
 			vaciarBuffer();
 			enviarLocal();
 
-			map< Router*, queue<Paquete> > :: iterator it_1 = m_ColasVecinos.begin();
-			while (it_1 != m_ColasVecinos.end())
+			map< Router*, queue<Paquete*> > :: iterator it = m_ColasVecinos.begin();
+			while (it != m_ColasVecinos.end())
 			{
-				Router* routerDestino = it_1 -> first;
+				Router* routerDestino = it -> first;
 
-				list<Paquete> :: iterator it_2 = m_ListaPaquetes.begin();
 				for (int cij = 0; 
 						(cij < m_TablaEnrutamiento -> getBW(routerDestino)) &&
-						(it_2 != m_ListaPaquetes.end()); it_2++)
+						(it -> second.empty()); 
+						it -> second.pop(), cij++)
 				{
-					if (elegirInterfaz(*it_2) == routerDestino)
-					{
-						it_1 -> second.push(*it_2);
-						m_ListaPaquetes.erase(it_2);
-						it_2 = m_ListaPaquetes.begin();
-
-						cij++;
-					}
+					routerDestino -> recibir(it -> second.front());
+					m_ArchivoSalida << "Sale_ " + it -> second.front() -> toString() << endl;
 				}
 
-				it_1++;
-			}
-
-			map< Router*, queue<Paquete> > :: iterator it = m_ColasVecinos.begin();
-			while (it != m_ColasVecinos.end()) 
-			{
-				for (int cii = 0; cii < it -> second.size(); ) 
-				{
-					m_ArchivoSalida << "Sale_ " + it -> second.front().toString() << endl;
-					it -> first -> recibir(it -> second.front());
-					it -> second.pop();
-				}
-				
 				it++;
 			}
-
 		}
 
