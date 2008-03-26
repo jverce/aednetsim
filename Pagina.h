@@ -10,7 +10,6 @@ class Pagina
 {
 
 	private:
-	
 		list<Paquete*> m_ListaPaquetes;
 		int m_iCantPaquetes;
 		IP m_IPDestino;
@@ -18,13 +17,12 @@ class Pagina
 		double m_dIDPagina;
 
 	public:
-		
-		Pagina();
-		Pagina(int iCantPaquetes, IP ipDestino, IP ipOrigen, unsigned int iSeed);
-		Pagina(list<Paquete*> listaPaquetes);
-		int getCantPaquetes();
-		IP getIPDestino();
-		Paquete* getPaquete(int iPos);
-		string toString();
+		Pagina ();
+		Pagina (int iCantPaquetes, IP ipDestino, IP ipOrigen, unsigned int iSeed);
+		Pagina (list<Paquete*> listaPaquetes);
+		int getCantPaquetes ();
+		IP getIPDestino ();
+		Paquete* getPaquete (int iPos);
+		string toString ();
 };
 #endif

@@ -16,15 +16,14 @@ class Tabla
 		map<Router*, int> m_aMapaBandWidth;
 
 	public:
-	
-		Tabla();
-		void crearEntradaDestinos(int iDestino, Router* nextHop);
-		Router* getNextHop(Paquete* paquete);
-		Router* getNextHop(int iDestino);
-		void crearEntradaCarga(Router* interfaz, int iCarga);
-		int getCarga(Router* interfaz);
-		void crearEntradaBandWidth(Router* router, int bandWidth);
-		int getBW(Router* router);
-		string toString();
+		Tabla ();
+		void crearEntradaDestinos (int iDestino, Router* nextHop);
+		Router* getNextHop (Paquete* paquete);
+		Router* getNextHop (int iDestino);
+		void crearEntradaCarga (Router* interfaz, int iCarga);
+		int getCarga (Router* interfaz);
+		void crearEntradaBandWidth (Router* router, int bandWidth);
+		int getBW (Router* router);
+		string toString ();
 };
 #endif

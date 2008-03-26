@@ -8,7 +8,6 @@ using namespace std;
 class Paquete
 {
 	private:
-	
 		double m_dIDPagina;
 		int m_iIDPaquete;
 		int m_iTotalPaquetes;
@@ -16,15 +15,14 @@ class Paquete
 		IP m_ipOrigen;
 
 	public:
-	
-		Paquete();
-		Paquete(IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete, int iTotalPaquetes);
-		string toString();
-		double getIDPagina();
-		int getIDPaquete();
-		int getTotalPaquetes();
-		IP getIPDestino();
-		IP getIPOrigen();
+		Paquete ();
+		Paquete (IP ipDestino, IP ipOrigen, double dIDPagina, int iIDPaquete, int iTotalPaquetes);
+		string toString ();
+		double getIDPagina ();
+		int getIDPaquete ();
+		int getTotalPaquetes ();
+		IP getIPDestino ();
+		IP getIPOrigen ();
 		bool operator < (const Paquete &paquete2);
 		bool operator > (const Paquete &paquete2);
 		bool operator == (const Paquete &paquete2);
