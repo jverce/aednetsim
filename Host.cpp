@@ -70,7 +70,7 @@ void Host :: enviar ()
 
 	for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 	{
-		m_ArchivoSalida << "Sale_ " + pagina.getPaquete(cii).toString() << endl;		
+		m_ArchivoSalida << "Sale_ " + pagina.getPaquete(cii) -> toString() << endl;
 	}
 }
 	
