@@ -102,6 +102,7 @@ Router :: Router (int i1Oct, Admin* admin)
 	m_i1Oct = i1Oct;
 	m_Admin = admin;
 	m_iCantHosts = 0;
+	m_TablaEnrutamiento = NULL;
 
 	string szAuxFileName = "Router_" + toString(i1Oct) + ".log";
 	char* szFileName = new char[szAuxFileName.size() + 1];
