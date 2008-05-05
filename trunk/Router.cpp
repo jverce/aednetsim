@@ -118,7 +118,7 @@ int Router :: getId ()
 
 void Router :: setTabla (Tabla* tabla)
 {
-	free(m_TablaEnrutamiento);
+	delete m_TablaEnrutamiento;
 	m_TablaEnrutamiento = tabla;
 
 	m_ArchivoSalida << "La tabla de enrutamiento ha cambiado." << endl;
