@@ -13,10 +13,23 @@ void Admin :: inicializarTodo ()
 	srand((unsigned) time(NULL));
 
 	m_iMatrizOriginal = lector.getMatriz();
+	copiarMatriz(m_dMatrizActualizada, m_iMatrizOriginal);
 	m_iCantRouters = lector.getCantRouters();
+
 	crearRouters(lector);
 	crearGrafo(lector);
 	actualizarMatriz();
+}
+
+void Admin :: copiarMatriz (MatrizDouble matDest, MatrizInt matOrig)
+{
+	for (int cii = 0; cii < NUM_MAX_ROUTERS; cii++)
+	{
+		for (int cij = 0; cij < NUM_MAX_ROUTERS; cij++)
+		{
+			matDest.setElemento(cii, cij, (double) matOrig.getElemento(cii, cij));
+		}
+	}
 }
 
 void Admin :: crearRouters (LectorArchivoTexto lector)
