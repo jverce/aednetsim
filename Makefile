@@ -4,7 +4,7 @@ all:	IP.o Paquete.o Pagina.o Buffer.o MatrizInt.o MatrizDouble.o LectorArchivoTe
 clean:
 	rm *.o && rm sim
 
-clear:
+clearlogs:
 	rm *.log
 
 IP.o:	IP.cpp
