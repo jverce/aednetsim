@@ -30,6 +30,11 @@ Pagina Host :: generarPagina ()
 	
 int Host :: calcularRandom (int iLim)
 {	
+	if (iLim <= 1)
+	{
+		return 1;
+	}
+
 	return (rand() % (iLim-1));
 }	
 

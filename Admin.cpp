@@ -21,7 +21,7 @@ void Admin :: inicializarTodo ()
 	actualizarMatriz();
 }
 
-void Admin :: copiarMatriz (MatrizDouble matDest, MatrizInt matOrig)
+void Admin :: copiarMatriz (MatrizDouble &matDest, MatrizInt matOrig)
 {
 	for (int cii = 0; cii < NUM_MAX_ROUTERS; cii++)
 	{
@@ -39,6 +39,10 @@ void Admin :: crearRouters (LectorArchivoTexto lector)
 		Router* router = new Router(cii, this);
 		m_aRefRouters[cii] = router;
 		m_aDestRouters[router] = cii;
+	}
+
+	for (int cii = 0; cii < m_iCantRouters; cii++)
+	{
 		dijkstra(cii);
 	}
 }
