@@ -73,7 +73,7 @@ void Host :: enviar ()
 	
 	m_Gateway -> recibir(pagina);
 
-	for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
+	for (unsigned int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 	{
 		m_ArchivoSalida << "Sale_ " + pagina.getPaquete(cii) -> toString() << endl;
 	}

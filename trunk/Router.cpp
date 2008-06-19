@@ -119,6 +119,7 @@ int Router :: getId ()
 void Router :: setTabla (Tabla* tabla)
 {
 	delete m_TablaEnrutamiento;
+
 	m_TablaEnrutamiento = tabla;
 
 	m_ArchivoSalida << "La tabla de enrutamiento ha cambiado." << endl;
@@ -163,7 +164,7 @@ void Router :: recibir (Pagina pagina)
 {
 	m_ArchivoSalida << "Entra_ PAGINA " << endl;
 			
-	for (int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
+	for (unsigned int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 	{
 		recibir(pagina.getPaquete(cii));
 	}

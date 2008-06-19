@@ -35,7 +35,7 @@ double Paquete :: getIDPagina ()
 	return m_dIDPagina;
 }
 
-int Paquete :: getTotalPaquetes ()
+unsigned int Paquete :: getTotalPaquetes ()
 {
 	return m_iTotalPaquetes;
 }
