@@ -25,5 +25,6 @@ Paquete* Buffer :: get ()
 	Paquete* elem = m_aLista.front();
 	m_aLista.pop_front();
 	m_iSize--;
+	
 	return elem;
 }
