@@ -32,7 +32,7 @@ int Host :: calcularRandom (int iLim)
 {	
 	if (iLim <= 1)
 	{
-		return 1;
+		return 0;
 	}
 
 	return (rand() % (iLim-1));
