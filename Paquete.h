@@ -20,7 +20,7 @@ class Paquete
 		string toString ();
 		double getIDPagina ();
 		int getIDPaquete ();
-		int getTotalPaquetes ();
+		unsigned int getTotalPaquetes ();
 		IP getIPDestino ();
 		IP getIPOrigen ();
 		bool operator < (const Paquete &paquete2);

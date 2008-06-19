@@ -38,7 +38,7 @@ Pagina :: Pagina (list<Paquete*> listaPaquetes)
 	m_IPOrigen = (*it_2) ->getIPOrigen();
 }
 
-int Pagina :: getCantPaquetes ()
+unsigned int Pagina :: getCantPaquetes ()
 {
 	return m_iCantPaquetes;
 }
