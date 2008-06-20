@@ -1,0 +1,63 @@
+# Project: aednetsim
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = IP.o Paquete.o Pagina.o Buffer.o MatrizInt.o MatrizDouble.o LectorArchivoTexto.o Router.o Admin.o Host.o Tabla.o Main.o $(RES)
+LINKOBJ  = IP.o Paquete.o Pagina.o Buffer.o MatrizInt.o MatrizDouble.o LectorArchivoTexto.o Router.o Admin.o Host.o Tabla.o Main.o $(RES)
+LIBS =  -L"K:/Dev-Cpp/lib"  
+INCS =  -I"K:/Dev-Cpp/include" 
+CXXINCS =  -I"K:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"K:/Dev-Cpp/include/c++/3.4.2/backward"  -I"K:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"K:/Dev-Cpp/include/c++/3.4.2"  -I"K:/Dev-Cpp/include"  -I"K:/Documents and Settings/Administrador/Mis documentos/programacion/aednetsim" 
+BIN  = aednetsim.exe
+CXXFLAGS = $(CXXINCS)   -fexpensive-optimizations -O3
+CFLAGS = $(INCS)   -fexpensive-optimizations -O3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before aednetsim.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "aednetsim.exe" $(LIBS)
+
+IP.o: IP.cpp
+	$(CPP) -c IP.cpp -o IP.o $(CXXFLAGS)
+
+Paquete.o: Paquete.cpp
+	$(CPP) -c Paquete.cpp -o Paquete.o $(CXXFLAGS)
+
+Pagina.o: Pagina.cpp
+	$(CPP) -c Pagina.cpp -o Pagina.o $(CXXFLAGS)
+
+Buffer.o: Buffer.cpp
+	$(CPP) -c Buffer.cpp -o Buffer.o $(CXXFLAGS)
+
+MatrizInt.o: MatrizInt.cpp
+	$(CPP) -c MatrizInt.cpp -o MatrizInt.o $(CXXFLAGS)
+
+MatrizDouble.o: MatrizDouble.cpp
+	$(CPP) -c MatrizDouble.cpp -o MatrizDouble.o $(CXXFLAGS)
+
+LectorArchivoTexto.o: LectorArchivoTexto.cpp
+	$(CPP) -c LectorArchivoTexto.cpp -o LectorArchivoTexto.o $(CXXFLAGS)
+
+Router.o: Router.cpp
+	$(CPP) -c Router.cpp -o Router.o $(CXXFLAGS)
+
+Admin.o: Admin.cpp
+	$(CPP) -c Admin.cpp -o Admin.o $(CXXFLAGS)
+
+Host.o: Host.cpp
+	$(CPP) -c Host.cpp -o Host.o $(CXXFLAGS)
+
+Tabla.o: Tabla.cpp
+	$(CPP) -c Tabla.cpp -o Tabla.o $(CXXFLAGS)
+
+Main.o: Main.cpp
+	$(CPP) -c Main.cpp -o Main.o $(CXXFLAGS)
