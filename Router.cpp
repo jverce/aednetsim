@@ -249,7 +249,7 @@ void Router :: enviar ()
 
 		for (int cij = 0; 
 				(cij < m_TablaEnrutamiento -> getBW(routerDestino)) &&
-				(it -> second.empty()); 
+				!(it -> second.empty()); 
 				it -> second.pop(), cij++)
 		{
 			routerDestino -> recibir(it -> second.front());
