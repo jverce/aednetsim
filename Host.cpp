@@ -75,13 +75,13 @@ void Host :: enviar ()
 
 	for (unsigned int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 	{
-		m_ArchivoSalida << "Sale_ " + pagina.getPaquete(cii) -> toString() << endl;
+		m_ArchivoSalida << "Sale_ " + pagina.getPaquete(cii) -> toString() << endl << endl;
 	}
 }
 	
 void Host :: recibir (Pagina pagina)
 {
 	m_ArchivoSalida << "Entra_ PAGINA " << endl;
-	m_ArchivoSalida << "Entra_ " + pagina.toString() << endl;
+	m_ArchivoSalida << pagina.toString() << endl << endl;
 }
 

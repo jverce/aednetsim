@@ -172,7 +172,7 @@ void Router :: recibir (Pagina pagina)
 
 void Router :: recibir (Paquete* paquete)
 {
-	m_ArchivoSalida << "Entra_ " + paquete -> toString() << endl;
+	m_ArchivoSalida << paquete -> toString() << endl << endl;
 
 	if (paquete -> getIPDestino().getPrimerOcteto() != m_i1Oct)
 	{
@@ -193,15 +193,15 @@ void Router :: enviarLocal ()
 {
 	for (int cii = 0; cii < m_iCantHosts; cii++)
 	{
-		queue<Paquete*> cola = m_ColasLocales[m_aRefHosts[cii]];
+		queue<Paquete*>* cola = &m_ColasLocales[m_aRefHosts[cii]];
 		list<Paquete*> listaPaquetes;
 		list<double> listaIdPagina;
 
-		while (!cola.empty())
+		while (!cola -> empty())
 		{
-			listaPaquetes.push_back(cola.front());
-			listaIdPagina.push_back(cola.front() -> getIDPagina());
-			cola.pop();
+			listaPaquetes.push_back(cola -> front());
+			listaIdPagina.push_back(cola -> front() -> getIDPagina());
+			cola -> pop();
 		}
 
 		listaIdPagina.sort();
@@ -231,7 +231,7 @@ void Router :: enviarLocal ()
 				m_aRefHosts[cii] -> recibir(pagina);
 
 				m_ArchivoSalida << "Sale_ PAGINA" << endl;
-				m_ArchivoSalida << pagina.toString() << endl;
+				m_ArchivoSalida << pagina.toString() << endl << endl;
 			}
 		}
 	}
@@ -253,7 +253,7 @@ void Router :: enviar ()
 				it -> second.pop(), cij++)
 		{
 			routerDestino -> recibir(it -> second.front());
-			m_ArchivoSalida << "Sale_ " + it -> second.front() -> toString() << endl;
+			m_ArchivoSalida << "Sale_ " + it -> second.front() -> toString() << endl << endl;
 		}
 
 		it++;
