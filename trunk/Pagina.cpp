@@ -35,7 +35,7 @@ Pagina :: Pagina (list<Paquete*> listaPaquetes)
 	list<Paquete*> :: iterator it_2 = listaPaquetes.begin();
 	m_dIDPagina = (*it_2) -> getIDPagina();
 	m_IPDestino = (*it_2) -> getIPDestino();
-	m_IPOrigen = (*it_2) ->getIPOrigen();
+	m_IPOrigen = (*it_2) -> getIPOrigen();
 }
 
 unsigned int Pagina :: getCantPaquetes ()
