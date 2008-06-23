@@ -34,7 +34,7 @@ class Router
 		Router* elegirInterfaz (Paquete* paquete);
 		Router* elegirInterfaz (int iRouterId);
 		void recibirInterno (Paquete* paquete);
-		bool isPaginaLista (Paquete* paquete);
+		bool isPaginaLista (Paquete* paquete, queue<Paquete*> cola);
 		int getCantPaginasListas (queue<Paquete*>* cola);
 		Pagina getPaginaVieja(queue<Paquete*>* cola);
 		void enviarLocal ();
