@@ -192,41 +192,49 @@ void Router :: recibirInterno (Paquete* paquete)
 	m_ColasLocales[m_aRefHosts[paquete -> getIPDestino().getSegundoOcteto()]].push(paquete);
 }
 
-bool Router :: isPaginaLista (Paquete* paquete, queue<Paquete*>* cola)
+bool Router :: isPaginaLista (Paquete* paquete, queue<Paquete*> cola)
 {
 	double dIdPagina = paquete -> getIDPagina();
 	int iCounter = 0;
 	
-	if (paquete -> getIDPaquete() == paquete -> getTotalPaquetes())
+	while (!cola.empty())
 	{
-		return true;
+		if (cola.front() -> getIDPagina() == dIdPagina)
+		{
+			iCounter++;
+		}
 	}
 	
-	return false;
+	return iCounter == paquete -> getTotalPaquetes();
 }
 
 int Router :: getCantPaginasListas (queue<Paquete*>* cola)
 {
 	int iCounter = 0;
+	list<double> listaIdPaginas;
 	
 	queue<Paquete*> auxCola = *cola;
 	while (!auxCola.empty())
 	{
 		if (isPaginaLista(auxCola.front(), auxCola))
 		{
-			iCounter++;
+			listaIdPaginas.push_back(auxCola.front() -> getIDPagina());
 		}
 		
 		auxCola.pop();
 	}
 	
-	return iCounter;
+	listaIdPaginas.sort();
+	listaIdPaginas.unique();
+	
+	return listaIdPaginas.size();
 }
 
 Pagina Router :: getPaginaVieja(queue<Paquete*>* cola)
 {
 	list<Paquete*> listaPaquetes;
 	list<Paquete*> auxListaCola;
+	queue<Paquete*> auxCola = *cola;
 	double dIdPagina;
 		
 	while (!cola -> empty())
@@ -238,7 +246,7 @@ Pagina Router :: getPaginaVieja(queue<Paquete*>* cola)
 	list<Paquete*> :: iterator it = auxListaCola.begin();
 	while (it != auxListaCola.end())
 	{
-		if (isPaginaLista(*it))
+		if (isPaginaLista(*it, auxCola))
 		{
 			dIdPagina = (*it) -> getIDPagina();
 			break;
