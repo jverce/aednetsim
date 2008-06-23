@@ -221,31 +221,43 @@ int Router :: getCantPaginasListas (queue<Paquete*>* cola)
 Pagina Router :: getPaginaVieja(queue<Paquete*>* cola)
 {
 	list<Paquete*> listaPaquetes;
-	Pagina pagina;
+	list<Paquete*> auxListaCola;
 	double dIdPagina;
+		
+	while (!cola -> empty())
+	{
+		auxListaCola.push_back(cola -> front());
+		cola -> pop();
+	}
 	
-	queue<Paquete*> :: iterator it = cola -> begin();
-	while (it != cola -> end())
+	list<Paquete*> :: iterator it = auxListaCola.begin();
+	while (it != auxListaCola.end())
 	{
 		if (isPaginaLista(*it))
 		{
 			dIdPagina = (*it) -> getIDPagina();
 			break;
 		}
+		
+		it++;
 	}
 	
-	it = cola -> begin();
-	while (it != cola -> end())
+	it = auxListaCola.begin();
+	while (it != auxListaCola.end())
 	{
-		if (*it -> getIDPagina() == dIdPagina)
+		if ((*it) -> getIDPagina() == dIdPagina)
 		{
-			listaPaquetes.push_back(*it);
-			cola -> pop();
+			listaPaquetes.push_back(*it);			
+		}
+		else
+		{
+			cola -> push(*it);
 		}
 		
 		it++;
 	}
 	
+	Pagina pagina(listaPaquetes);
 	return pagina;
 }	
 
