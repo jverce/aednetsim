@@ -190,50 +190,78 @@ void Router :: recibirInterno (Paquete* paquete)
 	m_ColasLocales[m_aRefHosts[paquete -> getIPDestino().getSegundoOcteto()]].push(paquete);
 }
 
+bool Router :: isPaginaLista (Paquete* paquete)
+{
+	if (paquete -> getIDPaquete() == paquete -> getTotalPaquetes())
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+int Router :: getCantPaginasListas (queue<Paquete*>* cola)
+{
+	int iCounter = 0;
+	
+	queue<Paquete*> auxCola = *cola;
+	while (!auxCola.empty())
+	{
+		if (isPaginaLista(auxCola.front()))
+		{
+			iCounter++;
+		}
+		
+		auxCola.pop();
+	}
+	
+	return iCounter;
+}
+
+Pagina Router :: getPaginaVieja(queue<Paquete*>* cola)
+{
+	list<Paquete*> listaPaquetes;
+	Pagina pagina;
+	double dIdPagina;
+	
+	queue<Paquete*> :: iterator it = cola -> begin();
+	while (it != cola -> end())
+	{
+		if (isPaginaLista(*it))
+		{
+			dIdPagina = (*it) -> getIDPagina();
+			break;
+		}
+	}
+	
+	it = cola -> begin();
+	while (it != cola -> end())
+	{
+		if (*it -> getIDPagina() == dIdPagina)
+		{
+			listaPaquetes.push_back(*it);
+			cola -> pop();
+		}
+		
+		it++;
+	}
+	
+	return pagina;
+}	
+
 void Router :: enviarLocal ()
 {
 	for (int cii = 0; cii < m_iCantHosts; cii++)
 	{
 		queue<Paquete*>* cola = &m_ColasLocales[m_aRefHosts[cii]];
-		list<Paquete*> listaPaquetes;
-		list<double> listaIdPagina;
-
-		while (!cola -> empty())
+				
+		for (int cij = 0; cij < getCantPaginasListas(cola); cij++)
 		{
-			listaPaquetes.push_back(cola -> front());
-			listaIdPagina.push_back(cola -> front() -> getIDPagina());
-			cola -> pop();
-		}
+			Pagina pagina = getPaginaVieja(cola);
+			m_aRefHosts[cii] -> recibir(pagina);
 
-		listaIdPagina.sort();
-		listaIdPagina.unique();
-
-		while (!listaIdPagina.empty())
-		{
-			double dIdPagina = listaIdPagina.front();
-			listaIdPagina.pop_front();
-
-			list<Paquete*> :: iterator it = listaPaquetes.begin();
-			list<Paquete*> listaAuxiliar;
-			Paquete* paqAux = *it;
-			while (it != listaPaquetes.end())
-			{
-				if ( (*it) -> getIDPagina() == dIdPagina )
-				{
-					listaAuxiliar.push_back(*it);
-				}
-
-				it++;
-			}
-
-			if (listaAuxiliar.size() == paqAux -> getTotalPaquetes())
-			{
-				Pagina pagina(listaAuxiliar);
-				m_aRefHosts[cii] -> recibir(pagina);
-
-				m_ArchivoSalida << "Sale_ PAGINA" << endl;
-				m_ArchivoSalida << pagina.toString() << endl << endl;
-			}
+			m_ArchivoSalida << "Sale_ PAGINA" << endl;
+			m_ArchivoSalida << pagina.toString() << endl << endl;
 		}
 	}
 }

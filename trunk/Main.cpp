@@ -1,14 +1,31 @@
 #include <iostream>
 #include <cstdlib>
 
+#ifdef __conio_h_
+	   #define CONIO_H
+	   #include <conio.h>
+#endif
+
 #include "Librerias.h"
 
+#define SALUDO1 "+------------------------------+"
+#define SALUDO2 "|                              |"
+#define SALUDO3 "|        A.  E.  D.            |"
+#define SALUDO4 "|      N e t   S i m           |"
+#define SALUDO5 "|                              |"
+#define SALUDO6 "|                      2008(c) |"
+#define SALUDO7 "+------------------------------+"
+
 using namespace std;
+
+void printSaludo ();
 
 int main (int argc, char* argv[])
 {
 	int iVueltas;
 	Admin admin;
+	
+	printSaludo();
 
 	if (argc > 1)
 	{
@@ -21,4 +38,23 @@ int main (int argc, char* argv[])
 	}
 
 	admin.start(iVueltas);
+	
+	
+	#ifdef CONIO_H
+		_getch();
+	#endif
+}
+
+
+void printSaludo ()
+{
+ 	 cout << SALUDO1 << endl;
+  	 cout << SALUDO2 << endl;
+ 	 cout << SALUDO3 << endl;
+ 	 cout << SALUDO4 << endl;
+ 	 cout << SALUDO5 << endl;
+ 	 cout << SALUDO6 << endl;
+ 	 cout << SALUDO7 << endl;
+	 
+	 cout << endl;	  	  	  	   	  	 
 }

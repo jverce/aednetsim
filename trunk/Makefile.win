@@ -26,38 +26,38 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o "aednetsim.exe" $(LIBS)
 
-IP.o: IP.cpp
+IP.o: IP.cpp K:/Dev-Cpp/include/c++/3.4.2/string   K:/Dev-Cpp/include/c++/3.4.2/sstream Librerias.h Constantes.h IP.h   Paquete.h Pagina.h K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h   MatrizInt.h MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h
 	$(CPP) -c IP.cpp -o IP.o $(CXXFLAGS)
 
-Paquete.o: Paquete.cpp
+Paquete.o: Paquete.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/sstream Librerias.h Constantes.h IP.h   Paquete.h Pagina.h K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h   MatrizInt.h MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h
 	$(CPP) -c Paquete.cpp -o Paquete.o $(CXXFLAGS)
 
-Pagina.o: Pagina.cpp
+Pagina.o: Pagina.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/sstream Librerias.h Constantes.h IP.h   Paquete.h Pagina.h K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h   MatrizInt.h MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h
 	$(CPP) -c Pagina.cpp -o Pagina.o $(CXXFLAGS)
 
-Buffer.o: Buffer.cpp
+Buffer.o: Buffer.cpp K:/Dev-Cpp/include/c++/3.4.2/list Librerias.h   Constantes.h IP.h K:/Dev-Cpp/include/c++/3.4.2/string Paquete.h   Pagina.h Buffer.h MatrizInt.h MatrizDouble.h LectorArchivoTexto.h   Router.h K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h
 	$(CPP) -c Buffer.cpp -o Buffer.o $(CXXFLAGS)
 
-MatrizInt.o: MatrizInt.cpp
+MatrizInt.o: MatrizInt.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   Librerias.h Constantes.h IP.h Paquete.h Pagina.h   K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h MatrizInt.h MatrizDouble.h   LectorArchivoTexto.h Router.h K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h
 	$(CPP) -c MatrizInt.cpp -o MatrizInt.o $(CXXFLAGS)
 
-MatrizDouble.o: MatrizDouble.cpp
+MatrizDouble.o: MatrizDouble.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   Librerias.h Constantes.h IP.h Paquete.h Pagina.h   K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h MatrizInt.h MatrizDouble.h   LectorArchivoTexto.h Router.h K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h
 	$(CPP) -c MatrizDouble.cpp -o MatrizDouble.o $(CXXFLAGS)
 
-LectorArchivoTexto.o: LectorArchivoTexto.cpp
+LectorArchivoTexto.o: LectorArchivoTexto.cpp Librerias.h Constantes.h   IP.h K:/Dev-Cpp/include/c++/3.4.2/string Paquete.h Pagina.h   K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h MatrizInt.h MatrizDouble.h   LectorArchivoTexto.h Router.h K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h
 	$(CPP) -c LectorArchivoTexto.cpp -o LectorArchivoTexto.o $(CXXFLAGS)
 
-Router.o: Router.cpp
+Router.o: Router.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/sstream Librerias.h Constantes.h IP.h   Paquete.h Pagina.h K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h   MatrizInt.h MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h
 	$(CPP) -c Router.cpp -o Router.o $(CXXFLAGS)
 
-Admin.o: Admin.cpp
+Admin.o: Admin.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/utility K:/Dev-Cpp/include/c++/3.4.2/list   Librerias.h Constantes.h IP.h Paquete.h Pagina.h Buffer.h MatrizInt.h   MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h
 	$(CPP) -c Admin.cpp -o Admin.o $(CXXFLAGS)
 
-Host.o: Host.cpp
+Host.o: Host.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/sstream K:/Dev-Cpp/include/c++/3.4.2/list   Librerias.h Constantes.h IP.h Paquete.h Pagina.h Buffer.h MatrizInt.h   MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h
 	$(CPP) -c Host.cpp -o Host.o $(CXXFLAGS)
 
-Tabla.o: Tabla.cpp
+Tabla.o: Tabla.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/sstream Librerias.h Constantes.h IP.h   Paquete.h Pagina.h K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h   MatrizInt.h MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h
 	$(CPP) -c Tabla.cpp -o Tabla.o $(CXXFLAGS)
 
-Main.o: Main.cpp
+Main.o: Main.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream Librerias.h   Constantes.h IP.h Paquete.h Pagina.h K:/Dev-Cpp/include/c++/3.4.2/list   Buffer.h MatrizInt.h MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h
 	$(CPP) -c Main.cpp -o Main.o $(CXXFLAGS)
