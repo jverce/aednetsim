@@ -54,9 +54,9 @@ Router* Router :: elegirInterfaz (int iRouterId)
 	Router* router_1 = m_TablaEnrutamiento -> getNextHop(iRouterId);
 	Router* router_2 = m_Admin -> getRouterPorDestino(iRouterId);
 
-	if (isVecino(router_1))
+	if (isMismoRouter(router_1))
 	{
-		return router_1;
+		return m_Admin -> getRouterPorDestino(iRouterId);
 	}
 	else if (isVecino(router_2))
 	{
@@ -162,12 +162,14 @@ int Router :: getCarga (Router* interfaz)
 
 void Router :: recibir (Pagina pagina)
 {
-	m_ArchivoSalida << "Entra_ PAGINA " << endl;
+	m_ArchivoSalida << "Entra_ PAGINA. ID = " << pagina.getID() << endl;
 			
 	for (unsigned int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 	{
 		recibir(pagina.getPaquete(cii));
 	}
+	
+	m_ArchivoSalida << endl;
 }
 
 void Router :: recibir (Paquete* paquete)
@@ -190,8 +192,11 @@ void Router :: recibirInterno (Paquete* paquete)
 	m_ColasLocales[m_aRefHosts[paquete -> getIPDestino().getSegundoOcteto()]].push(paquete);
 }
 
-bool Router :: isPaginaLista (Paquete* paquete)
+bool Router :: isPaginaLista (Paquete* paquete, queue<Paquete*>* cola)
 {
+	double dIdPagina = paquete -> getIDPagina();
+	int iCounter = 0;
+	
 	if (paquete -> getIDPaquete() == paquete -> getTotalPaquetes())
 	{
 		return true;
@@ -207,7 +212,7 @@ int Router :: getCantPaginasListas (queue<Paquete*>* cola)
 	queue<Paquete*> auxCola = *cola;
 	while (!auxCola.empty())
 	{
-		if (isPaginaLista(auxCola.front()))
+		if (isPaginaLista(auxCola.front(), auxCola))
 		{
 			iCounter++;
 		}
@@ -273,7 +278,7 @@ void Router :: enviarLocal ()
 			m_aRefHosts[cii] -> recibir(pagina);
 
 			m_ArchivoSalida << "Sale_ PAGINA" << endl;
-			m_ArchivoSalida << pagina.toString() << endl << endl;
+			m_ArchivoSalida << pagina.toString() << endl;
 		}
 	}
 }

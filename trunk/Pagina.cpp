@@ -38,6 +38,11 @@ Pagina :: Pagina (list<Paquete*> listaPaquetes)
 	m_IPOrigen = (*it_2) -> getIPOrigen();
 }
 
+double Pagina :: getID()
+{
+	return m_dIDPagina;
+}
+
 unsigned int Pagina :: getCantPaquetes ()
 {
 	return m_iCantPaquetes;
