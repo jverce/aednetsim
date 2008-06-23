@@ -64,7 +64,7 @@ string Pagina :: toString ()
 {
 	stringstream strStream;
 
-	for (int cii = 0; cii < m_iCantPaquetes; cii++)
+	for (int cii = 1; cii <= m_iCantPaquetes; cii++)
 	{
 		strStream << getPaquete(cii) -> toString() << endl;
 	}
