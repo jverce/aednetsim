@@ -5,7 +5,7 @@
 #define OTRA_COLUMNA ' '
 #define OTRA_FILA '\n'
 
-#define NUM_MAX_PAQ_POR_PAG 10
+#define NUM_MAX_PAQ_POR_PAG 20
 
 #define NUM_MAX_ROUTERS 256
 
