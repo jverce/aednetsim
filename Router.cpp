@@ -203,6 +203,8 @@ bool Router :: isPaginaLista (Paquete* paquete, queue<Paquete*> cola)
 		{
 			iCounter++;
 		}
+		
+		cola.pop();
 	}
 	
 	return iCounter == paquete -> getTotalPaquetes();
