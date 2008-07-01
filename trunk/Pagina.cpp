@@ -36,6 +36,8 @@ Pagina :: Pagina (list<Paquete*> listaPaquetes)
 	m_dIDPagina = (*it_2) -> getIDPagina();
 	m_IPDestino = (*it_2) -> getIPDestino();
 	m_IPOrigen = (*it_2) -> getIPOrigen();
+	
+	m_ListaPaquetes.sort();
 }
 
 double Pagina :: getID()
