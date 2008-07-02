@@ -1,18 +1,18 @@
 # Project: aednetsim
 # Makefile created by Dev-C++ 4.9.9.2
 
-CPP  = g++.exe
-CC   = gcc.exe
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
 WINDRES = windres.exe
 RES  = 
 OBJ  = IP.o Paquete.o Pagina.o Buffer.o MatrizInt.o MatrizDouble.o LectorArchivoTexto.o Router.o Admin.o Host.o Tabla.o Main.o $(RES)
 LINKOBJ  = IP.o Paquete.o Pagina.o Buffer.o MatrizInt.o MatrizDouble.o LectorArchivoTexto.o Router.o Admin.o Host.o Tabla.o Main.o $(RES)
-LIBS =  -L"K:/Dev-Cpp/lib"  
+LIBS =  -L"K:/Dev-Cpp/lib"  -g3 
 INCS =  -I"K:/Dev-Cpp/include" 
 CXXINCS =  -I"K:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"K:/Dev-Cpp/include/c++/3.4.2/backward"  -I"K:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"K:/Dev-Cpp/include/c++/3.4.2"  -I"K:/Dev-Cpp/include"  -I"K:/Documents and Settings/Administrador/Mis documentos/programacion/aednetsim" 
 BIN  = aednetsim.exe
-CXXFLAGS = $(CXXINCS)   -fexpensive-optimizations -O3
-CFLAGS = $(INCS)   -fexpensive-optimizations -O3
+CXXFLAGS = $(CXXINCS)   -fexpensive-optimizations -O3 -g3
+CFLAGS = $(INCS)   -fexpensive-optimizations -O3 -g3
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
