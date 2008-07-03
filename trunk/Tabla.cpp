@@ -15,7 +15,7 @@ void Tabla :: crearEntradaDestinos (int iDestino, Router* nextHop)
 
 Router* Tabla :: getNextHop (Paquete* paquete)
 {
-	return getNextHop(paquete -> getIPDestino().getPrimerOcteto());
+	return getNextHop(paquete->getIPDestino().getPrimerOcteto());
 }
 
 Router* Tabla :: getNextHop (int iDestino) 
@@ -50,8 +50,8 @@ string Tabla :: toString ()
 	stringstream stringStream; 
 	while (it != m_aMapaDestinos.end())
 	{
-		stringStream << "Destino: " << it -> first << '\t';
-		stringStream << "Ruta: " << it -> second -> getId() << '\t';
+		stringStream << "Destino: " << it->first << '\t';
+		stringStream << "Ruta: " << it->second->getId() << '\t';
 
 		it++;
 	}
