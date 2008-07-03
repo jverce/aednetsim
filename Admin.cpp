@@ -161,7 +161,7 @@ void Admin :: dijkstra (int iOrigen)
 			m_aRefRouters[cij],
 			m_iMatrizOriginal.getElemento(cii, cij));
 		}
-	}
+	}	
 
 	m_aRefRouters[iOrigen] -> setTabla(tabla);
 

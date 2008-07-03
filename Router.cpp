@@ -56,10 +56,6 @@ Router* Router :: elegirInterfaz (int iRouterId)
 
 	if (isMismoRouter(router_1))
 	{
-		return m_Admin -> getRouterPorDestino(iRouterId);
-	}
-	else if (isVecino(router_2))
-	{
 		return router_2;
 	}
 	else

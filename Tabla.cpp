@@ -33,9 +33,9 @@ int Tabla :: getCarga (Router* interfaz)
 	return m_aMapaCarga[interfaz];
 }
 
-void Tabla :: crearEntradaBandWidth (Router* router, int bandWidth)
+void Tabla :: crearEntradaBandWidth (Router* router, int iBandWidth)
 {
-	m_aMapaBandWidth[router] = bandWidth;
+	m_aMapaBandWidth[router] = iBandWidth;
 }
 
 int Tabla :: getBW (Router* router)
@@ -51,7 +51,7 @@ string Tabla :: toString ()
 	while (it != m_aMapaDestinos.end())
 	{
 		stringStream << "Destino: " << it -> first << '\t';
-		stringStream << "Ruta: " << it -> second -> getId() << endl;
+		stringStream << "Ruta: " << it -> second -> getId() << '\t';
 
 		it++;
 	}
