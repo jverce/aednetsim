@@ -22,7 +22,7 @@ class Tabla
 		Router* getNextHop (int iDestino);
 		void crearEntradaCarga (Router* interfaz, int iCarga);
 		int getCarga (Router* interfaz);
-		void crearEntradaBandWidth (Router* router, int bandWidth);
+		void crearEntradaBandWidth (Router* router, int iBandWidth);
 		int getBW (Router* router);
 		string toString ();
 };

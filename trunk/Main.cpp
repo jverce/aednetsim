@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cstdlib>
 
-#ifdef __conio_h_
-	   #define CONIO_H
+
+
 	   #include <conio.h>
-#endif
+
 
 #include "Librerias.h"
 
@@ -40,9 +40,10 @@ int main (int argc, char* argv[])
 	admin.start(iVueltas);
 	
 	
-	#ifdef CONIO_H
-		_getch();
-	#endif
+
+	_getch();
+
+
 }
 
 
