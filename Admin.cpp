@@ -56,14 +56,14 @@ void Admin :: crearGrafo (LectorArchivoTexto lector)
 
 		while ( it != aiLista.end() )
 		{
-			m_aRefRouters[cii] -> agregarVecino(m_aRefRouters[*it]);
+			m_aRefRouters[cii]->agregarVecino(m_aRefRouters[*it]);
 			it++;
 		}
 
 		for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
 		{
 			Host* host = new Host(cii, cij, this, rand());
-			m_aRefRouters[cii] -> agregarHost(host);
+			m_aRefRouters[cii]->agregarHost(host);
 		}
 	}
 }
@@ -78,7 +78,7 @@ void Admin :: actualizarMatriz ()
 			{
 				double dNuevoCosto =
 				( 1 / (double) m_iMatrizOriginal.getElemento(cii, cij) ) *
-				( 1 + m_aRefRouters[cii] -> getCarga(m_aRefRouters[cij]) );
+				( 1 + m_aRefRouters[cii]->getCarga(m_aRefRouters[cij]) );
 
 				m_dMatrizActualizada.setElemento(cii, cij, dNuevoCosto);
 			}
@@ -148,22 +148,22 @@ void Admin :: dijkstra (int iOrigen)
 	{
 		if (aiNextHop[cii] != PROPIO_ROUTER)
 		{
-			tabla -> crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[cii]]);
+			tabla->crearEntradaDestinos(cii, m_aRefRouters[aiNextHop[cii]]);
 		} 
 		else
 		{
-			tabla -> crearEntradaDestinos(cii, m_aRefRouters[iOrigen]);
+			tabla->crearEntradaDestinos(cii, m_aRefRouters[iOrigen]);
 		}
 
 		for (int cij = 0; cij < m_iCantRouters; cij++)
 		{
-			tabla -> crearEntradaBandWidth(
+			tabla->crearEntradaBandWidth(
 			m_aRefRouters[cij],
 			m_iMatrizOriginal.getElemento(cii, cij));
 		}
 	}	
 
-	m_aRefRouters[iOrigen] -> setTabla(tabla);
+	m_aRefRouters[iOrigen]->setTabla(tabla);
 
 }
 
@@ -190,11 +190,11 @@ void Admin :: start (int iVueltas)
 	cout << "Creando paginas al azar..." << endl;
 	for (int cii = 0; cii < m_iCantRouters; cii++)
 	{
-		list<Host*> listaHosts = m_aRefRouters[cii] -> getListaHosts();
+		list<Host*> listaHosts = m_aRefRouters[cii]->getListaHosts();
 		list<Host*> :: iterator it = listaHosts.begin();
 		while ( it != listaHosts.end() )
 		{
-			(*it) -> enviar();
+			(*it)->enviar();
 			it++;
 		}
 	}
@@ -213,7 +213,7 @@ void Admin :: start (int iVueltas)
 		{
 			for (int cik = 0; cik < m_iCantRouters; cik++)
 			{
-				m_aRefRouters[cik] -> enviar();
+				m_aRefRouters[cik]->enviar();
 			}
 		}
 	}

@@ -11,12 +11,12 @@ using namespace std;
 
 IP Host :: generarDestino ()
 {
-	m_iRandomNumber = calcularRandom(m_Admin -> getCantRouters());
+	m_iRandomNumber = calcularRandom(m_Admin->getCantRouters());
 
 	IP ip(
 	m_iRandomNumber, 
 	calcularRandom(
-		m_Admin -> getRouterPorDestino(m_iRandomNumber) -> getListaHosts().size()));
+		m_Admin->getRouterPorDestino(m_iRandomNumber)->getListaHosts().size()));
 	
 	return ip;
 }
@@ -52,7 +52,7 @@ Host :: Host (int i1Oct, int i2Oct, Admin* admin, unsigned int iSeed)
 
 	srand(iSeed);
 	
-	m_Gateway = m_Admin -> getRouterPorDestino(i1Oct);
+	m_Gateway = m_Admin->getRouterPorDestino(i1Oct);
 }
 
 void Host :: setIP (int i1Oct, int i2Oct)
@@ -71,11 +71,11 @@ void Host :: enviar ()
 	Pagina pagina;
 	pagina = generarPagina();
 	
-	m_Gateway -> recibir(pagina);
+	m_Gateway->recibir(pagina);
 
 	for (unsigned int cii = 1; cii <= pagina.getCantPaquetes(); cii++)
 	{
-		m_ArchivoSalida << "Sale_ " + pagina.getPaquete(cii) -> toString() << endl;
+		m_ArchivoSalida << "Sale_ " + pagina.getPaquete(cii)->toString() << endl;
 	}
 	
 	m_ArchivoSalida << endl;

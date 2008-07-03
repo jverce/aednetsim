@@ -33,9 +33,9 @@ Pagina :: Pagina (list<Paquete*> listaPaquetes)
 	m_iCantPaquetes = listaPaquetes.size();
 
 	list<Paquete*> :: iterator it_2 = listaPaquetes.begin();
-	m_dIDPagina = (*it_2) -> getIDPagina();
-	m_IPDestino = (*it_2) -> getIPDestino();
-	m_IPOrigen = (*it_2) -> getIPOrigen();
+	m_dIDPagina = (*it_2)->getIDPagina();
+	m_IPDestino = (*it_2)->getIPDestino();
+	m_IPOrigen = (*it_2)->getIPOrigen();
 	
 	m_ListaPaquetes.sort();
 }
@@ -73,7 +73,7 @@ string Pagina :: toString ()
 
 	for (int cii = 1; cii <= m_iCantPaquetes; cii++)
 	{
-		strStream << getPaquete(cii) -> toString() << endl;
+		strStream << getPaquete(cii)->toString() << endl;
 	}
 
 	return strStream.str();
