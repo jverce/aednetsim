@@ -1,0 +1,7 @@
+Admin::dijkstra
+	Hay que adaptar el algoritmo para grafos dirigidos,
+	y elegir de otra forma el camino de menor costo.
+
+Router
+	Hay que crear un buffer intermedio, para que un paquete
+	tenga una demora de un ciclo antes de ser enviado.
