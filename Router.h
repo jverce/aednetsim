@@ -26,7 +26,6 @@ class Router
 		map<int, Host*> m_aRefHosts;
 		Buffer m_BufferIntermedio;
 		Buffer m_BufferIntermedioLocal;
-		Buffer m_BufferInmediato;
 		Tabla* m_TablaEnrutamiento;
 		
 		bool isVecino (Router* router);

@@ -32,9 +32,10 @@ bool Router :: isMismoRouter (Router* router)
 
 void Router :: vaciarBufferInt ()
 {
+	m_BufferIntermedio.sort();
 	while (!m_BufferIntermedio.empty())
 	{
-		m_BufferInmediato.insert(m_BufferIntermedio.get());
+		meterEnLista(m_BufferIntermedio.get());
 	}
 }
 
@@ -43,15 +44,6 @@ void Router :: vaciarBufferIntLocal ()
 	while (!m_BufferIntermedioLocal.empty())
 	{
 		cargarEnColasLocales(m_BufferIntermedioLocal.get());
-	}
-}
-
-void Router :: vaciarBufferInmediato ()
-{
-	m_BufferInmediato.sort();
-	while (!m_BufferInmediato.empty())
-	{
-		meterEnLista(m_BufferInmediato.get());
 	}
 }
 
@@ -311,7 +303,6 @@ void Router :: enviarLocal ()
 					
 void Router :: enviar ()
 {
-	vaciarBufferInmediato();
 	enviarLocal();
 
 	map< Router*, queue<Paquete*> > :: iterator it = m_ColasVecinos.begin();
