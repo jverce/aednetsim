@@ -155,12 +155,9 @@ void Admin :: dijkstra (int iOrigen)
 			tabla->crearEntradaDestinos(cii, m_aRefRouters[iOrigen]);
 		}
 
-		for (int cij = 0; cij < m_iCantRouters; cij++)
-		{
-			tabla->crearEntradaBandWidth(
-			m_aRefRouters[cij],
-			m_iMatrizOriginal.getElemento(cii, cij));
-		}
+		tabla->crearEntradaBandWidth(
+		m_aRefRouters[cii],
+		m_iMatrizOriginal.getElemento(cii, iOrigen));
 	}	
 
 	m_aRefRouters[iOrigen]->setTabla(tabla);

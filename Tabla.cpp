@@ -51,7 +51,7 @@ string Tabla :: toString ()
 	while (it != m_aMapaDestinos.end())
 	{
 		stringStream << "Destino: " << it->first << '\t';
-		stringStream << "Ruta: " << it->second->getId() << '\t';
+		stringStream << "Ruta: " << it->second->getId() << endl;
 
 		it++;
 	}
