@@ -24,16 +24,20 @@ class Router
 		map< Router*, queue<Paquete*> > m_ColasVecinos;
 		map< Host*, queue<Paquete*> > m_ColasLocales;
 		map<int, Host*> m_aRefHosts;
-		Buffer m_Buffer;
+		Buffer m_BufferIntermedio;
+		Buffer m_BufferIntermedioLocal;
+		Buffer m_BufferInmediato;
 		Tabla* m_TablaEnrutamiento;
 		
 		bool isVecino (Router* router);
 		bool isMismoRouter (Router* router);
-		void vaciarBuffer ();
+		void vaciarBufferInt ();
+		void vaciarBufferIntLocal ();
+		void vaciarBufferInmediato ();
 		void meterEnLista (Paquete* paquete);
 		Router* elegirInterfaz (Paquete* paquete);
 		Router* elegirInterfaz (int iRouterId);
-		void recibirInterno (Paquete* paquete);
+		void cargarEnColasLocales (Paquete* paquete);
 		bool isPaginaLista (Paquete* paquete, queue<Paquete*> cola);
 		int getCantPaginasListas (queue<Paquete*>* cola);
 		Pagina getPaginaVieja(queue<Paquete*>* cola);

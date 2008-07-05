@@ -30,12 +30,28 @@ bool Router :: isMismoRouter (Router* router)
 	return router == this;
 }
 
-void Router :: vaciarBuffer ()
+void Router :: vaciarBufferInt ()
 {
-	m_Buffer.sort();
-	while (!m_Buffer.empty())
+	while (!m_BufferIntermedio.empty())
 	{
-		meterEnLista(m_Buffer.get());
+		m_BufferInmediato.insert(m_BufferIntermedio.get());
+	}
+}
+
+void Router :: vaciarBufferIntLocal ()
+{
+	while (!m_BufferIntermedioLocal.empty())
+	{
+		cargarEnColasLocales(m_BufferIntermedioLocal.get());
+	}
+}
+
+void Router :: vaciarBufferInmediato ()
+{
+	m_BufferInmediato.sort();
+	while (!m_BufferInmediato.empty())
+	{
+		meterEnLista(m_BufferInmediato.get());
 	}
 }
 
@@ -175,15 +191,15 @@ void Router :: recibir (Paquete* paquete)
 
 	if (paquete->getIPDestino().getPrimerOcteto() != m_i1Oct)
 	{
-		m_Buffer.insert(paquete);
+		m_BufferIntermedio.insert(paquete);
 	}
 	else
 	{
-		recibirInterno(paquete);
+		m_BufferIntermedioLocal.insert(paquete);
 	}
 }
 
-void Router :: recibirInterno (Paquete* paquete)
+void Router :: cargarEnColasLocales (Paquete* paquete)
 {
 	m_ColasLocales[m_aRefHosts[paquete->getIPDestino().getSegundoOcteto()]].push(paquete);
 }
@@ -268,7 +284,9 @@ Pagina Router :: getPaginaVieja(queue<Paquete*>* cola)
 		it++;
 	}
 	
+	listaPaquetes.sort();
 	Pagina pagina(listaPaquetes);
+	
 	return pagina;
 }	
 
@@ -287,11 +305,13 @@ void Router :: enviarLocal ()
 			m_ArchivoSalida << pagina.toString() << endl;
 		}
 	}
+	
+	vaciarBufferIntLocal();
 }
 					
 void Router :: enviar ()
 {
-	vaciarBuffer();
+	vaciarBufferInmediato();
 	enviarLocal();
 
 	map< Router*, queue<Paquete*> > :: iterator it = m_ColasVecinos.begin();
@@ -310,5 +330,7 @@ void Router :: enviar ()
 
 		it++;
 	}
+	
+	vaciarBufferInt();
 }
 

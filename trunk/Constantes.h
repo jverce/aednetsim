@@ -1,6 +1,6 @@
 #define NOMBRE_ARCHIVO "Datos.txt"
 
-#define CICLOS_ACTUALIZACION 30
+#define CICLOS_ACTUALIZACION 10
 
 #define OTRA_COLUMNA ' '
 #define OTRA_FILA '\n'
