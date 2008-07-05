@@ -199,7 +199,7 @@ void Router :: cargarEnColasLocales (Paquete* paquete)
 bool Router :: isPaginaLista (Paquete* paquete, queue<Paquete*> cola)
 {
 	double dIdPagina = paquete->getIDPagina();
-	int iCounter = 0;
+	unsigned int iCounter = 0;
 	
 	while (!cola.empty())
 	{
@@ -216,7 +216,6 @@ bool Router :: isPaginaLista (Paquete* paquete, queue<Paquete*> cola)
 
 int Router :: getCantPaginasListas (queue<Paquete*>* cola)
 {
-	int iCounter = 0;
 	list<double> listaIdPaginas;
 	
 	queue<Paquete*> auxCola = *cola;
