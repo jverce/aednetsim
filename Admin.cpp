@@ -76,9 +76,18 @@ void Admin :: actualizarMatriz ()
 		{
 			if (cii != cij)
 			{
-				double dNuevoCosto =
-				( 1 / (double) m_iMatrizOriginal.getElemento(cii, cij) ) *
-				( 1 + m_aRefRouters[cii]->getCarga(m_aRefRouters[cij]) );
+				double dNuevoCosto;
+				
+				if (!m_iMatrizOriginal.getElemento(cii, cij))
+				{
+					dNuevoCosto = INF;
+				}
+				else
+				{
+					dNuevoCosto =
+					( 1 / (double) m_iMatrizOriginal.getElemento(cii, cij) ) *
+					( 1 + m_aRefRouters[cii]->getCarga(m_aRefRouters[cij]) );
+				}
 
 				m_dMatrizActualizada.setElemento(cii, cij, dNuevoCosto);
 			}
@@ -91,7 +100,7 @@ void Admin :: actualizarMatriz ()
 }
 
 void Admin :: dijkstra (int iOrigen)
-{
+{	
 	priority_queue< pair<double, int> > aColaDePares;
 	pair<double, int> nodoTemporal;
 	int iVertice1;
@@ -161,7 +170,6 @@ void Admin :: dijkstra (int iOrigen)
 	}	
 
 	m_aRefRouters[iOrigen]->setTabla(tabla);
-
 }
 
 Router* Admin :: getRouterPorDestino (int iDestino)
