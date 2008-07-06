@@ -3,7 +3,7 @@
 
 
 
-//	   #include <conio.h>
+	   #include <conio.h>
 
 
 #include "Librerias.h"
@@ -41,7 +41,7 @@ int main (int argc, char* argv[])
 	
 	
 
-//	_getch();
+	_getch();
 
 
 }
