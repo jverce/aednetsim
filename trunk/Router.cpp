@@ -136,6 +136,11 @@ list<Host*> Router :: getListaHosts ()
 	return m_ListaHosts;
 }
 
+int Router :: getCarga (Router* interfaz)
+{
+	return getCarga(interfaz->getId());
+}
+
 int Router :: getCarga (int iDestino)
 {
 	return m_ColasVecinos[elegirInterfaz(iDestino)].size();
@@ -157,11 +162,6 @@ void Router :: agregarVecino (Router* vecino)
 	queue<Paquete*> cola;
 
 	m_ColasVecinos[vecino] = cola;	
-}
-
-int Router :: getCarga (Router* interfaz)
-{
-	return getCarga(interfaz->getId());
 }
 
 void Router :: recibir (Pagina pagina)

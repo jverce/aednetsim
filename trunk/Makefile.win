@@ -50,7 +50,7 @@ LectorArchivoTexto.o: LectorArchivoTexto.cpp Librerias.h Constantes.h   IP.h K:/
 Router.o: Router.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/sstream Librerias.h Constantes.h IP.h   Paquete.h Pagina.h K:/Dev-Cpp/include/c++/3.4.2/list Buffer.h   MatrizInt.h MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h
 	$(CPP) -c Router.cpp -o Router.o $(CXXFLAGS)
 
-Admin.o: Admin.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/utility K:/Dev-Cpp/include/c++/3.4.2/list   Librerias.h Constantes.h IP.h Paquete.h Pagina.h Buffer.h MatrizInt.h   MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h
+Admin.o: Admin.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/utility K:/Dev-Cpp/include/c++/3.4.2/list   Librerias.h Constantes.h IP.h Paquete.h Pagina.h Buffer.h MatrizInt.h   MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/fstream K:/Dev-Cpp/include/c++/3.4.2/queue   K:/Dev-Cpp/include/c++/3.4.2/map Admin.h Host.h Tabla.h   K:/Dev-Cpp/include/conio.h
 	$(CPP) -c Admin.cpp -o Admin.o $(CXXFLAGS)
 
 Host.o: Host.cpp K:/Dev-Cpp/include/c++/3.4.2/iostream   K:/Dev-Cpp/include/c++/3.4.2/fstream   K:/Dev-Cpp/include/c++/3.4.2/sstream K:/Dev-Cpp/include/c++/3.4.2/list   Librerias.h Constantes.h IP.h Paquete.h Pagina.h Buffer.h MatrizInt.h   MatrizDouble.h LectorArchivoTexto.h Router.h   K:/Dev-Cpp/include/c++/3.4.2/queue K:/Dev-Cpp/include/c++/3.4.2/map   Admin.h Host.h Tabla.h

@@ -16,11 +16,12 @@ class Admin
 		map<Router*, int> m_aDestRouters;
 		map<int, int> m_Tabla_Destino_nextHop; 
 		
-		void inicializarTodo ();
-		void copiarMatriz(MatrizDouble &matDest, MatrizInt matOrig);
+		void inicializarTodo ();		
 		void crearRouters (LectorArchivoTexto lector);
 		void crearGrafo (LectorArchivoTexto lector);		
+		void inicializarMatriz ();
 		void actualizarMatriz ();
+		void recalcularCaminos ();
 		void dijkstra (int iOrigen);
 
 	public:	
