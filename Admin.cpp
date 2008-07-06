@@ -3,6 +3,7 @@
 #include <list>
 
 #include "Librerias.h"
+#include <conio.h>
 
 using namespace std;
         
@@ -13,23 +14,13 @@ void Admin :: inicializarTodo ()
 	srand((unsigned) time(NULL));
 
 	m_iMatrizOriginal = lector.getMatriz();
-	copiarMatriz(m_dMatrizActualizada, m_iMatrizOriginal);
 	m_iCantRouters = lector.getCantRouters();
-
+	
 	crearRouters(lector);
 	crearGrafo(lector);
-	actualizarMatriz();
-}
-
-void Admin :: copiarMatriz (MatrizDouble &matDest, MatrizInt matOrig)
-{
-	for (int cii = 0; cii < NUM_MAX_ROUTERS; cii++)
-	{
-		for (int cij = 0; cij < NUM_MAX_ROUTERS; cij++)
-		{
-			matDest.setElemento(cii, cij, (double) matOrig.getElemento(cii, cij));
-		}
-	}
+	inicializarMatriz();
+	
+	recalcularCaminos();
 }
 
 void Admin :: crearRouters (LectorArchivoTexto lector)
@@ -40,7 +31,10 @@ void Admin :: crearRouters (LectorArchivoTexto lector)
 		m_aRefRouters[cii] = router;
 		m_aDestRouters[router] = cii;
 	}
+}
 
+void Admin :: recalcularCaminos ()
+{
 	for (int cii = 0; cii < m_iCantRouters; cii++)
 	{
 		dijkstra(cii);
@@ -67,17 +61,47 @@ void Admin :: crearGrafo (LectorArchivoTexto lector)
 		}
 	}
 }
-		
-void Admin :: actualizarMatriz ()
+
+void Admin :: inicializarMatriz ()
 {
+	double dNuevoCosto;
+	
 	for (int cii = 0; cii < m_iCantRouters; cii++)
 	{
 		for (int cij = 0; cij < m_iCantRouters; cij++)
 		{
 			if (cii != cij)
 			{
-				double dNuevoCosto;
+				if (!m_iMatrizOriginal.getElemento(cii, cij))
+				{
+					dNuevoCosto = INF;
+				}
+				else
+				{
+					dNuevoCosto = 
+					( 1 / (double) m_iMatrizOriginal.getElemento(cii, cij) );
+				}
 				
+				m_dMatrizActualizada.setElemento(cii, cij, dNuevoCosto);
+			}
+			else
+			{
+				m_dMatrizActualizada.setElemento(cii, cij, PROPIO_ROUTER);
+			}
+		}
+	}
+}
+		
+void Admin :: actualizarMatriz ()
+{
+	double dNuevoCosto;
+	
+	for (int cii = 0; cii < m_iCantRouters; cii++)
+	{
+		for (int cij = 0; cij < m_iCantRouters; cij++)
+		{
+			if (cii != cij)
+			{							
 				if (!m_iMatrizOriginal.getElemento(cii, cij))
 				{
 					dNuevoCosto = INF;
@@ -94,6 +118,7 @@ void Admin :: actualizarMatriz ()
 			else
 			{
 				m_dMatrizActualizada.setElemento(cii, cij, PROPIO_ROUTER);
+// 				m_dMatrizActualizada.setElemento(cii, cij, INF);
 			}
 		}
 	}
@@ -208,10 +233,7 @@ void Admin :: start (int iVueltas)
 	{
 		cout << "Recalculando caminos mas cortos..." << endl;
 		actualizarMatriz();
-		for (int cij = 0; cij < m_iCantRouters; cij++) 
-		{
-			dijkstra(cij);
-		}
+		recalcularCaminos();
 
 		cout << "Enviando datos entre routers..." << endl;
 		for (int cij = 0; cij < CICLOS_ACTUALIZACION; cij++)
