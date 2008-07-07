@@ -1,3 +1,5 @@
+
+---------------------------- LISTO ----------------------------
 Admin::dijkstra
 	Hay que adaptar el algoritmo para grafos dirigidos,
 	y elegir de otra forma el camino de menor costo.
