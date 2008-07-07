@@ -2,10 +2,7 @@
 #include <cstdlib>
 
 
-#ifndef _WINDOWS_H_	
-	#include <conio.h>
-#endif
-
+//	   #include <conio.h>
 
 
 #include "Librerias.h"
@@ -42,10 +39,9 @@ int main (int argc, char* argv[])
 	admin.start(iVueltas);
 	
 	cout << "Simulacion finalizada" << endl;
-	
-	#ifdef _CONIO_H_
-		_getch();
-	#endif
+
+
+//	_getch();
 
 
 }

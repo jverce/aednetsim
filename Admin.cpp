@@ -3,7 +3,6 @@
 #include <list>
 
 #include "Librerias.h"
-#include <conio.h>
 
 using namespace std;
         
