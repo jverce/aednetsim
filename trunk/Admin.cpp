@@ -56,7 +56,7 @@ void Admin :: crearGrafo (LectorArchivoTexto lector)
 
 		for (int cij = 0; cij < lector.getNumeroPcs(cii); cij++)
 		{
-			Host* host = new Host(cii, cij, this, rand());
+			Host* host = new Host(cii, cij, this);
 			m_aRefRouters[cii]->agregarHost(host);
 		}
 	}

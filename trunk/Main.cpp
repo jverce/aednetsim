@@ -41,6 +41,7 @@ int main (int argc, char* argv[])
 
 	admin.start(iVueltas);
 	
+	cout << "Simulacion finalizada" << endl;
 	
 	#ifdef _CONIO_H_
 		_getch();
