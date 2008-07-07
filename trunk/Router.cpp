@@ -274,8 +274,7 @@ Pagina Router :: getPaginaVieja(queue<Paquete*>* cola)
 		
 		it++;
 	}
-	
-	listaPaquetes.sort();
+		
 	Pagina pagina(listaPaquetes);
 	
 	return pagina;
