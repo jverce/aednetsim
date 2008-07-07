@@ -21,7 +21,7 @@ class Host
 		int calcularRandom (int iLim);
 
 	public:
-		Host (int i1Oct, int i2Oct, Admin* admin, unsigned int iSeed);
+		Host (int i1Oct, int i2Oct, Admin* admin);
 		void setIP (int i1Oct, int i2Oct);
 		IP getIP ();
 		void enviar ();

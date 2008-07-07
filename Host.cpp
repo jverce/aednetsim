@@ -39,7 +39,7 @@ int Host :: calcularRandom (int iLim)
 }	
 
 
-Host :: Host (int i1Oct, int i2Oct, Admin* admin, unsigned int iSeed)
+Host :: Host (int i1Oct, int i2Oct, Admin* admin)
 {
 	setIP(i1Oct, i2Oct);
 	m_Admin = admin;
@@ -50,7 +50,7 @@ Host :: Host (int i1Oct, int i2Oct, Admin* admin, unsigned int iSeed)
 
 	m_ArchivoSalida.open(szFileName);
 
-	srand(iSeed);
+	srand((unsigned int) time(NULL));
 	
 	m_Gateway = m_Admin->getRouterPorDestino(i1Oct);
 }
